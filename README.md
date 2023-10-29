@@ -19,7 +19,7 @@ EMR 全称 Easy Mixed Reality 其中 Easy 指的是快速、敏捷、容易理�
 ```
 ### 脚本
 ```
-// mounted生命周期
+// mounted 生命周期
 protected override void mounted()
 {
     // 通过Id获取空间内的指定节点
