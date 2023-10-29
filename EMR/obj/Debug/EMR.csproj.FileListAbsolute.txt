@@ -2,10 +2,6 @@ C:\hololens\EMR\bin\EMR.dll
 C:\hololens\EMR\bin\EMR.pdb
 C:\hololens\EMR\EMR\obj\Debug\EMR.csproj.AssemblyReference.cache
 C:\hololens\EMR\EMR\obj\Debug\EMR.csproj.CoreCompileInputs.cache
+C:\hololens\EMR\EMR\obj\Debug\EMR.csproj.CopyComplete
 C:\hololens\EMR\EMR\obj\Debug\EMR.dll
 C:\hololens\EMR\EMR\obj\Debug\EMR.pdb
-C:\hololens\EMRDevelop\Assets\EMR.dll
-C:\hololens\EMRDevelop\Assets\EMR.pdb
-C:\hololens\LifeDeveloper\Assets\EMR.dll
-C:\hololens\LifeDeveloper\Assets\EMR.pdb
-C:\hololens\EMR\EMR\obj\Debug\EMR.csproj.CopyComplete
