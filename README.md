@@ -1,5 +1,5 @@
 # EMR
-EMR 全称 Easy Mixed Reality 其中 Easy 指的是快速、敏捷、容易理解，它使用类似 HTML 的方式带你进入空间开发
+EMR 全称 Easy Mixed Reality 其中 Easy 指的是快速、敏捷、容易理解，它使用类似 HTML 的方式带你进入空间开发，EMR支持微软Hololens
 ## Example
 ### 视图文档
 ```
