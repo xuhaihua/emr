@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    元素（Element）
+                </h1>
+                <p class="mb-10 fs-18">
+                    所有节点和组件都有一个统一的名称叫元素，引入元素是为了在EMR中对所有节点和组件都有统一的操作。元素与节点的区别是节点提供了操作的更多细节而元素只是一个接口，每个节点或组件都实现了<strong>Element</strong>接口，接口抽取了所有节点和组件的公共部分。
+                </p>
+
+                <div>
+                    <img style="width: 100%;" src="../img/node.png" alt="" />
+                </div>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../img/info.png" alt="" />
+                            </span>
+                            <label>说明：</label>
+                        </span>
+                    </p>
+                    <p>
+                        在上图中不管是SpaceNode节点、PanelRoot节点还是PanelLayer节点它们都是元素并且这些节点都统一继承了Element接口。
+                    </p>
+                </div>
+            </div>
+            
+            <!--空间节点-->
+            <div class="mt-30">
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">元素的常用属性</li>
+                    </ul>
+                </h3>
+        
+                <div class="table-border">
+                    <table cellspacing="0" class="table bb-1 bt-1">
+                        <tr class="tableHead">
+                            <td class="name" style="width: 20%;">名称</td>
+                            <td style="width: 10%">数据类型</td>
+                            <td>说明</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold">parentElement</td>
+                            <td>Element</td>
+                            <td>获取当前元素的父元素（如果不存在则结果为 null）</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold">previousElement</td>
+                            <td>Element</td>
+                            <td>获取当前元素的前一个兄弟元素（如果不存在则结果为 null）</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold">nextElement</td>
+                            <td>Element</td>
+                            <td>获取当前元素的下一下兄弟元素（如果不存在则结果为 null）</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold">firstChildElement</td>
+                            <td>Element</td>
+                            <td>获取第一个直接子元素（如果不存在则结果为 null）</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold">lastChildElement</td>
+                            <td>Element</td>
+                            <td>获取最后一个直接子元素（如果不存在则结果为 null）</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold">childElements</td>
+                            <td>Element</td>
+                            <td>获取直接子元素列表（如果不存在则结果为 为一个空列表）</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

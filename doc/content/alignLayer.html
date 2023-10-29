@@ -1,0 +1,837 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    对齐
+                </h1>
+                <p class="mb-10 fs-18">
+                    EMR提供了一些布局所需的基本属性（例如：左对齐、右对齐、居中对齐、两端对齐、元素浮动等），利用这些属性可以轻松布局空间中的元素
+                </p>
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            子节点左对齐：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个平面容器，设置contentHorizontal属性为left控制其中的子元素靠左对齐
+        设置horizontalInterval属性为20控制各节点之间的间隔为20mm
+        设置horizontalLeftInterval属性为true使开始节点左侧也存在对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="800"
+        height="500"
+        backgroundColor="255,255,255"
+        contentHorizontal="left"
+        horizontalInterval="20"
+        horizontalLeftInterval="true"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex31.png" alt="" />
+                </div>
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            子节点右对齐：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个平面容器，设置contentHorizontal属性为right控制其中的子元素靠右对齐
+        设置horizontalInterval属性为20控制各节点之间的间隔为20mm
+        设置horizontalRightInterval属性为true使开始节点右侧也存在对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="800"
+        height="500"
+        backgroundColor="255,255,255"
+        contentHorizontal="right"
+        horizontalInterval="20"
+        horizontalRightInterval="true"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex32.png" alt="" />
+                </div>
+
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            子节点水平居中对齐：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个平面容器，设置contentHorizontal属性为center控制其中的子元素水平居中对齐
+        设置horizontalInterval属性为20控制各节点之间的间隔为20mm
+     --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="800"
+        height="500"
+        backgroundColor="255,255,255"
+        contentHorizontal="center"
+        horizontalInterval="20"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex33.png" alt="" />
+                </div>
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            水平两端对齐：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个平面容器，设置contentHorizontal属性为between控制其中的子元素水平两端对齐
+        设置horizontalLeftInterval属性为true使开始节点左侧也存在对齐间隔
+        设置horizontalRightInterval属性为true使结束节点右侧也存在对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="800"
+        height="500"
+        backgroundColor="255,255,255"
+        contentHorizontal="between"
+        horizontalLeftInterval="true"
+        horizontalRightInterval="true"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex34.png" alt="" />
+                </div>
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            子节点顶部对齐：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个平面容器，设置contentVertical属性为top控制其中的子节点靠顶部对齐
+        设置verticalInterval属性为20控制各节点之间的间隔为20mm
+        设置verticalTopInterval属性为true使开始节点顶部也存在对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="150"
+        height="500"
+        backgroundColor="255,255,255"
+        contentVertical="top"
+        verticalInterval="20"
+        verticalTopInterval="true"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex35.png" alt="" />
+                </div>
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            子节点底部对齐：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个平面容器，设置contentVertical属性为bottom控制其中的子节点靠底部对齐
+        设置verticalInterval属性为20控制各节点之间的间隔为20mm
+        设置verticalBottomInterval属性为true使结束节点底部也存在对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="150"
+        height="500"
+        backgroundColor="255,255,255"
+        contentVertical="bottom"
+        verticalInterval="20"
+        verticalBottomInterval="true"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex36.png" alt="" />
+                </div>
+
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            子节点垂直居中对齐：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个平面容器，设置contentVertical属性为center控制其中的各子节点垂直居中对齐
+        设置verticalInterval属性为20控制各节点之间的间隔为20mm
+     --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="150"
+        height="500"
+        backgroundColor="255,255,255"
+        contentVertical="center"
+        verticalInterval="20"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex37.png" alt="" />
+                </div>
+
+
+                
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            子节点垂直两端对齐：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个平面容器，设置contentVertical属性为between控制其中的各子节点垂直两端对齐
+        设置verticalTopInterval属性为true控制开始节点顶部也存在有对齐间隔
+        设置verticalBottomInterval属性为true控制开始节点底部也存在有对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="150"
+        height="500"
+        backgroundColor="255,255,255"
+        contentVertical="between"
+        verticalTopInterval="true"
+        verticalBottomInterval="true"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex38.png" alt="" />
+                </div>
+
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            子节沿Z轴正方向对齐：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个空间节点，设置contentForward属性为forward控制其中的子元素靠Z轴正方向对齐
+        设置forwardInterval属性为20控制各节点之间的间隔为20mm
+        设置forwardFrontInterval属性为true使结束节点正前侧也存在对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="500"
+        height="500"
+        depth="500"
+        renderMode="additive"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        borderWidth="2"
+        backgroundColor="0,0,0"
+        contentForward="forward"
+        forwardInterval="20"
+        forwardFrontInterval="true"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v4">
+                    <div>
+                        <video src="../img/v19.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            子节沿Z轴负方向对齐：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个空间节点，设置contentForward属性为back控制其中的子元素靠Z轴负方向对齐
+        设置forwardInterval属性为20控制各节点之间的间隔为20mm
+        设置forwardBackInterval属性为true使开始节点正后侧也存在对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="500"
+        height="500"
+        depth="500"
+        renderMode="additive"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        borderWidth="2"
+        backgroundColor="0,0,0"
+        contentForward="back"
+        forwardInterval="20"
+        forwardBackInterval="true"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v4">
+                    <div>
+                        <video src="../img/v20.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            子节沿Z轴方向居中对齐：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个空间节点，设置contentForward属性为center控制其中的子元素靠Z轴方向居中对齐
+        设置forwardInterval属性为20控制各节点之间的间隔为20mm
+     --&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="500"
+        height="500"
+        depth="500"
+        renderMode="additive"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        borderWidth="2"
+        backgroundColor="0,0,0"
+        contentForward="center"
+        forwardInterval="20"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v4">
+                    <div>
+                        <video src="../img/v21.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            子节沿Z轴方向两端对齐：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个空间节点，设置contentForward属性为between控制其中的子元素在Z轴上两端对齐
+        设置forwardInterval属性为20控制各节点之间的间隔为20mm
+        设置forwardFrontInterval属性为true使结束节点正前侧也存在对齐间隔
+        设置forwardBackInterval属性为true使结束节点正后侧也存在对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="500"
+        height="500"
+        depth="500"
+        renderMode="additive"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        borderWidth="2"
+        backgroundColor="0,0,0"
+        contentForward="between"
+        forwardInterval="20"
+        forwardFrontInterval="true"
+        forwardBackInterval="true"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v4">
+                    <div>
+                        <video src="../img/v22.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            节点左浮动：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!-- 创建一个平面容器 --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> name="container" x="0" y="0" z="1500" width="800" height="300" backgroundColor="255,255,255"</span></label><span>&gt;</span>
+        <sub>&lt;!--子节点，设置horizontalFloat属性为left控制节点靠左浮动--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0" horizontalFloat="left"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex46.png" alt="" />
+                </div>
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            节点右浮动：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!-- 创建一个平面容器 --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> name="container" x="0" y="0" z="1500" width="800" height="300" backgroundColor="255,255,255"</span></label><span>&gt;</span>
+        <sub>&lt;!--子节点，设置horizontalFloat属性为right控制节点靠右浮动--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0" horizontalFloat="right"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex45.png" alt="" />
+                </div>
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            节点水平居中浮动：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!-- 创建一个平面容器 --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> name="container" x="0" y="0" z="1500" width="800" height="300" backgroundColor="255,255,255"</span></label><span>&gt;</span>
+        <sub>&lt;!--子节点，设置horizontalFloat属性为center控制节点浮动到居中位置--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0" horizontalFloat="center"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex47.png" alt="" />
+                </div>
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            节点垂直顶部浮动：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!-- 创建一个平面容器 --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> name="container" x="0" y="0" z="1500" width="200" height="500" backgroundColor="255,255,255"</span></label><span>&gt;</span>
+        <sub>&lt;!--子节点，设置verticalFloat属性为top控制节点垂直浮动到顶部位置--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0" verticalFloat="top"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex48.png" alt="" />
+                </div>
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            节点垂直底部浮动：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!-- 创建一个平面容器 --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> name="container" x="0" y="0" z="1500" width="200" height="500" backgroundColor="255,255,255"</span></label><span>&gt;</span>
+        <sub>&lt;!--子节点，设置verticalFloat属性为bottom控制节点垂直浮动到底部位置--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0" verticalFloat="bottom"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex49.png" alt="" />
+                </div>
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            节点垂直居中浮动：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!-- 创建一个平面容器 --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> name="container" x="0" y="0" z="1500" width="200" height="500" backgroundColor="255,255,255"</span></label><span>&gt;</span>
+        <sub>&lt;!--子节点，设置verticalFloat属性为center控制节点垂直浮动到居中位置--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0" verticalFloat="center"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex50.png" alt="" />
+                </div>
+
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            节点沿Z轴正方向浮动：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!-- 创建一个空间节点 --&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="500"
+        height="500"
+        depth="500"
+        renderMode="additive"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        borderWidth="2"
+        backgroundColor="0,0,0"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点，设置forwardFloat属性为forward控制节点靠Z轴正方向浮动--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="255,0,0" forwardFloat="forward"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v4">
+                    <div>
+                        <video src="../img/v23.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            节点沿Z轴负方向浮动：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!-- 创建一个空间节点 --&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="500"
+        height="500"
+        depth="500"
+        renderMode="additive"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        borderWidth="2"
+        backgroundColor="0,0,0"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点，设置forwardFloat属性为back控制节点靠Z轴负方向浮动--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="255,0,0" forwardFloat="back"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v4">
+                    <div>
+                        <video src="../img/v24.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            节点在Z轴居中浮动：
+                        </li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!-- 创建一个空间节点 --&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="500"
+        height="500"
+        depth="500"
+        renderMode="additive"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        borderWidth="2"
+        backgroundColor="0,0,0"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点，设置forwardFloat属性为center控制节点在Z轴居中浮动--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="255,0,0" forwardFloat="center"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v4">
+                    <div>
+                        <video src="../img/v25.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../img/info.png" alt="" />
+                            </span>
+                            <label>说明：</label>
+                        </span>
+                    </p>
+                    <p>
+                        节点浮动时将脱离文档的内容，它将不参与对齐部分尺寸的计算
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

@@ -1,0 +1,162 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    阵列
+                </h1>
+                <p class="mb-10 fs-18">
+                    EMR中通过布局属性、空间弯曲可以很容易的实现节点陈列
+                </p>
+                <h3 style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            方形陈列
+                        </li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    方形陈列可以直接通过对齐属性实现
+                </p>
+
+                <h3>
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码通过对元素添加对齐属性实现一个3 * 3 * 3的陈列
+                </p>
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>SpaceNode <span>x="0" y="0" z="1500" width="400" height="400" depth="100" contentVertical="between" enableManipulator="true"</span></label><span>&gt;</span>
+        <sub>&lt;!--创建一个层并将该层设为沿Z沿方向两端对齐，行内再放三个行--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span>width="400" height="100" depth="100" contentForward="between"</span></label><span>&gt;</span>
+            <sub>&lt;!--创建一行并将该行设为水平两端对齐，行内再放三个节点--&gt;</sub>
+            <span>&lt;</span><label>SpaceNode <span>width="400" height="100" depth="25" contentHorizontal="between"</span></label><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+            <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+
+            <sub>&lt;!--创建一行并将该行设为水平两端对齐，行内再放三个节点--&gt;</sub>
+            <span>&lt;</span><label>SpaceNode <span>width="400" height="100" depth="25" contentHorizontal="between"</span></label><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+            <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+
+            <sub>&lt;!--创建一行并将该行设为水平两端对齐，行内再放三个节点--&gt;</sub>
+            <span>&lt;</span><label>SpaceNode <span>width="400" height="100" depth="25" contentHorizontal="between"</span></label><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+            <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+
+        <sub>&lt;!--创建一个层并将该层设为沿Z沿方向两端对齐，行内再放三个行--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span>width="400" height="100" depth="100" contentForward="between"</span></label><span>&gt;</span>
+            <sub>&lt;!--创建一行并将该行设为水平两端对齐，行内再放三个节点--&gt;</sub>
+            <span>&lt;</span><label>SpaceNode <span>width="400" height="100" depth="25" contentHorizontal="between"</span></label><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+            <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+
+            <sub>&lt;!--创建一行并将该行设为水平两端对齐，行内再放三个节点--&gt;</sub>
+            <span>&lt;</span><label>SpaceNode <span>width="400" height="100" depth="25" contentHorizontal="between"</span></label><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+            <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+
+            <sub>&lt;!--创建一行并将该行设为水平两端对齐，行内再放三个节点--&gt;</sub>
+            <span>&lt;</span><label>SpaceNode <span>width="400" height="100" depth="25" contentHorizontal="between"</span></label><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+            <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+
+        <sub>&lt;!--创建一个层并将该层设为沿Z沿方向两端对齐，行内再放三个行--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span>width="400" height="100" depth="100" contentForward="between"</span></label><span>&gt;</span>
+            <sub>&lt;!--创建一行并将该行设为水平两端对齐，行内再放三个节点--&gt;</sub>
+            <span>&lt;</span><label>SpaceNode <span>width="400" height="100" depth="25" contentHorizontal="between"</span></label><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+            <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+
+            <sub>&lt;!--创建一行并将该行设为水平两端对齐，行内再放三个节点--&gt;</sub>
+            <span>&lt;</span><label>SpaceNode <span>width="400" height="100" depth="25" contentHorizontal="between"</span></label><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+            <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+
+            <sub>&lt;!--创建一行并将该行设为水平两端对齐，行内再放三个节点--&gt;</sub>
+            <span>&lt;</span><label>SpaceNode <span>width="400" height="100" depth="25" contentHorizontal="between"</span></label><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+                <span>&lt;</span><label>SpaceNode <span>width="100" height="100" depth="100" npcPath="sources/model/Star/Prefab/star"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+            <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v4">
+                    <div>
+                        <video src="../img/v26.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+                <h3 class="mt-30" style="margin-left: .463rem">
+                    <ul>
+                        <li>
+                            弧形陈列
+                        </li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    使用对齐属性和空间弯曲（轴弯曲）可以很方便的实现弧形陈列
+                </p>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--创建一个布局容器设置其中的子节点左对齐、间距为75mm、轴弯曲为360度，将其中的子节点陈列为一个圆形--&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>x="0" y="0" z="1500" width="1000" height="800" depth="300" contentHorizontal="left" horizontalInterval="75" bendAngle="360"</span></label><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span>width="50" height="20" depth="20" offset="-25,0,0" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span>width="50" height="20" depth="20" offset="-25,0,0" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span>width="50" height="20" depth="20" offset="-25,0,0" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span>width="50" height="20" depth="20" offset="-25,0,0" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span>width="50" height="20" depth="20" offset="-25,0,0" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span>width="50" height="20" depth="20" offset="-25,0,0" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span>width="50" height="20" depth="20" offset="-25,0,0" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span>width="50" height="20" depth="20" offset="-25,0,0" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span>width="50" height="20" depth="20" offset="-25,0,0" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex60.png" alt="" />
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

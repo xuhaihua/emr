@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    文本
+                </h1>
+                <p class="mb-10 fs-18">
+                    通过节点属性可以方便的控制节点内文本的水平、垂直对齐方式，行高和字符间距，这些属性如下表： 
+                </p>
+
+                <div class="table-border">
+                    <table cellspacing="0" class="table bb-1 bt-1">
+                        <tr class="tableHead">
+                            <td class="name" style="width: 20%;">名称</td>
+                            <td style="width: 30%;">说明</td>
+                        </tr>
+        
+                        <tr>
+                            <td class="font-bold">textHorizontal</td>
+                            <td>文本X轴对齐方式，可选的值有：<strong>left | center | flush | geometry | justified | right</strong> ，默认为：left</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="font-bold">textVertical</td>
+                            <td>文本Y轴对齐方式，可选的值有：<strong>top | baseline | capline | geometry | middle | bottom</strong> ，默认为：top</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-bold">characterSpace</td>
+                            <td>字符间距，单位 mm</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-bold">lineSpace</td>
+                            <td>行高，单位 mm</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3 class="mt-30">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码在空间 (0,0,1500mm)处放置了一个空间节点并给它加上了一个宽度为2mm的边框
+                </p>
+                        <code>
+                            <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--在空间内创建一个平面--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> x="0" y="0" z="800" width="500" height="300" backgroundColor="255,255,255" </span></label><span>&gt;</span>
+        <sub>&lt;!--在平面内创建一个图层，并设置文本水方向平居中对齐、垂直方向居小对齐、行高30mm、字符间距为10mm--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span>left="2" top="2" right="2" bottom="2" color="255,255,255" fontSize="25" backgroundColor="0,0,255" textHorizontal="center" textVertical="middle" lineSpace="30" characterSpace="10"</span></label><span>&gt;</span>
+            Developing the metaverse using EMR is very easy.
+        <span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                        </code>
+
+                <div class="result" style="margin-top: .2778rem;">
+                    <img style="width: 100%;" src="../img/ex61.png" alt="" />
+                </div>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

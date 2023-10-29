@@ -1,0 +1,291 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    事件
+                </h1>
+                <p class="fs-16">
+                    与节点一样组件也可以拥有事件，在定义组件的同时也可以为该组件定义相关的事件
+                </p>
+            </div>
+            
+            <!--抛出事件-->
+            <div class="mt-30">
+                <h3>
+                    <ul>
+                        <li class="ml-25">抛出事件（emit）</li>
+                    </ul>
+                </h3>
+
+                <p class="fs-16">
+                    可以在组件内通过emit方法自定义和向外抛出一个事件
+                </p>
+                <h3 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    emit 原型：
+                </h3>
+                <p class="fs-16" style="padding-left: .463rem;">
+                    <span class="tag">public void</span> emit ( <span class="tag">string</span> name, <span class="link" onclick="toLink('./struct/CustomEventData.html', './content/Component/struct/CustomEventData.html')">CustomEventData</span> eventData)
+                </p>
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    参数:
+                </h4>
+
+                <table class="fs-16" style="padding-left: .463rem;">
+                    <tr>
+                        <td class="font-bold">name：</td>
+                        <td>string</td>
+                        <td style="padding-left: .463rem;">自定义事件名</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">eventData：</td>
+                        <td>CustomEventData</td>
+                        <td style="padding-left: .463rem;">事件状态对象</td>
+                    </tr>
+                </table>
+
+                <h3 class="mt-30">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码创建了一个Gril组件，而在Gril组件内向通过emit向外抛出一个自定义的事件PoseEnd
+                </p>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    组件视图代码 main.xml：
+                </h4>
+                <code>
+<pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--由该空间节点加载NPC--&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        id="gril"
+        x="0"
+        y="0"
+        z="1500"
+        width="300"
+        height="400"
+        depth="200"
+        yAngle="180"
+        borderWidth="1"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        renderMode="additive"
+        backgroundColor="0,0,0"
+        npcPath="sources/model/Gril/Prefab/PQchan_Mechanim"
+        onClick="startPoseHandle"
+        onNpcPoseEnd="poseEndHandle"</span></label><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+                </code>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    组件类代码 Gril.cs：
+                </h4>
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span class="tag">using</span> EMR.Entity;
+<span class="tag">using</span> EMR.Event;
+
+<span class="tag">public class</span> <span class="genericity">Gril : EMR.Component</span>
+<span class="block">{</span>
+    <span class="tag">public</span> <span class="methodName">Gril</span>()
+    <span class="block">{</span>
+        <span class="commentary">// 绑定组件视图文档</span>
+        <span class="tag">this</span>.document = <span class="str">"Gril/view/main"</span>;
+    <span class="block">}</span>
+
+    <span class="commentary">// 当用户在组件上通过手部射线单击时将会触发该处理程序</span>
+    <span class="tag">public</span> <span class="adorn">void</span> <span class="methodName">startPoseHandle</span><span class="block">(</span><span class="genericity">ClickEventData</span> eventData<span class="block">)</span>
+    <span class="block">{</span>
+        <span class="commentary">// 按Id获取当前视图文档内的节点</span>
+        <span class="tag">var</span> grilNode = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">SpaceNode</span>>(<span class="str">"gril"</span>);
+    
+        <span class="commentary">// 触发该节点下NPC摆出Pose的动作</span>
+        grilNode.npc?.<span class="methodName">action</span>(<span class="str">"isPose"</span>);
+    <span class="block">}</span>
+    
+    <span class="commentary">// 由NPC抛出的poseEnd事件的事件处理程序（当NPC 完成Pose动作后将会调用该处理程序）</span>
+    <span class="tag">public</span> <span class="adorn">void</span> <span class="methodName">poseEndHandle</span><span class="block">(</span><span class="genericity">NPCEventData</span> eventData<span class="block">)</span>
+    <span class="block">{</span>
+        <span class="commentary">// 自定义一个组件事件PoseEnd并向外抛出</span>
+        <span class="tag">this</span>.<span class="methodName">emit</span>(<span class="methodName">"PoseEnd"</span>, <span class="tag">new</span> <span class="genericity">CustomEventData</span>
+        {
+            data = <span class="tag">eventData</span>.data
+        }) ;
+    <span class="block">}</span>
+<span class="block">}</span></pre>
+                    </code>
+                </div>
+
+                <!--事件注册-->
+                <div class="mt-30">
+                    <h3>
+                        <ul>
+                            <li class="ml-25">事件注册</li>
+                        </ul>
+                    </h3>
+                    <p class="fs-16">
+                        给一个组件注册事件有两种方式，一种是在XML视图文档内通过节点标签属性进行注册 ，另一种是在代码里通过AddListener方法进行注册
+                    </p>
+
+                    <h3>
+                        通过标签属性进行注册
+                    </h3>
+                    <p class="fs-16">
+                        在视图文档内为一个组件注册事件处理程序，可以在组件标签上加上相应的事件属性完成，事件属性名的规则是以on开头后面跟该事件的名称，下面的代码在主视图内通过给Gril标签加上onPoseEnd属性来向它注册PoseEnd事件的处理程序；用户通过手部射线单击该组件并触发NPC摆出的Pose动作完成后就会在该组件的下方打印出该事件的相关信息
+                    </p>
+                </div>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    主视图 main.xml：
+                </h4>
+
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--按钮组件--&gt;</sub>
+    <span>&lt;</span><label>Gril<span> onPoseEnd="poseEndHandle" /</span></label><span>&gt;</span>
+    <sub>&lt;!--信息提示Label--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot<span> id="infoLabel"  x="0" y="-290" z="1500" width="500" height="100" fontSize="25"  textHorizontal="center" /</span></label><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                    </code>
+                </div>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    事件处理程序：
+                </h4>
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// 组件poseEnd事件的事件处理程序</span>
+<span class="tag">public</span> <span class="adorn">void</span> <span class="methodName">poseEndHandle</span><span class="block">(</span><span class="genericity">CustomEventData</span> eventData<span class="block">)</span>
+<span class="block">{</span>
+    <span class="commentary">// 在infoLabel上打印输出该事件传递过来的数据</span>
+    <span class="tag">var</span> data = (<span class="genericity">Dictionary</span>&lt;<span class="tag">string</span>, <span class="tag">object</span>>)eventData.data;
+    <span class="tag">var</span> infoLabel = this.<span class="methodName">getNodeById</span>&lt;<span class="tag">PanelRoot</span>>("<span class="str">infoLabel</span>");
+    infoLabel.text = data["<span class="str">name</span>"] + ": " + data["<span class="str">info</span>"];
+<span class="block">}</span></pre>
+                </code>
+
+                <div class="result mt-25 v5">
+                    <div>
+                        <video src="../../img/v5.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+                <h3 class="mt-25">
+                    通过AddListener方法进行注册
+                </h3>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    AddListener 原型：
+                </h4>
+                <p class="fs-16" style="padding-left: .463rem;">
+                    <span class="tag">public void</span> AddListener (<span class="tag">string</span> name, <span class="genericity">UnityAction</span>&lt;<span class="link" onclick="toLink('./struct/CustomEventData.html', './content/Component/struct/CustomEventData.html')">CustomEventData</span>> handler)
+                </p>
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    参数:
+                </h4>
+
+                <table class="fs-16" style="padding-left: .463rem;">
+                    <tr>
+                        <td class="font-bold">name：</td>
+                        <td>string</td>
+                        <td style="padding-left: .463rem;">事件名称</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">handler：</td>
+                        <td><span class="genericity">UnityAction</span>&lt;<span class="link" onclick="toLink('./struct/CustomEventData.html', './content/Component/struct/CustomEventData.html')">CustomEventData</span>></td>
+                        <td style="padding-left: .463rem;">事件处理程序</td>
+                    </tr>
+                </table>
+
+                <p class="fs-16">
+                    下面的代码在组件的mounted生命周期内，通过AddListener方法将事件处理程序绑定给了组件的PoseEnd事件
+                </p>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// mounted生命周期函数，在这里文档内容已绑定给视图，内容的样式、布局都已完成设置</span>
+<span class="block">protected</span> <span class="block">override</span> <span class="adorn">void</span> <span class="methodName">mounted</span><span class="block">(</span>)</span>
+<span class="block">{</span>
+    <span class="commentary">// 使用AddListener方法注册组件事件</span>
+    <span class="tag">var</span> gril = this.<span class="methodName">getComponents</span>&lt;<span class="genericity">Gril></span>()[0];
+    gril.<span class="methodName">AddListener</span>(<span class="str">"PoseEnd"</span>, <span class="methodName">poseEndHandle</span>);
+<span class="block">}</span></pre>
+                </code>
+            </div>
+
+            <div class="mt-30">
+                <h3>
+                    <ul>
+                        <li class="ml-25">事件注销 RemoveListener</li>
+                    </ul>
+                </h3>
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    RemoveListener 原型：
+                </h4>
+                <p class="fs-16" style="padding-left: .463rem;">
+                    <span class="tag">public void</span> RemoveListener(<span class="tag">string</span> name, <span class="genericity">UnityAction</span>&lt;<span class="link" onclick="toLink('./struct/CustomEventData.html', './content/Component/struct/CustomEventData.html')">CustomEventData</span>> handler)
+                </p>
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    参数:
+                </h4>
+
+                <table class="fs-16" style="padding-left: .463rem;">
+                    <tr>
+                        <td class="font-bold">name：</td>
+                        <td>string</td>
+                        <td style="padding-left: .463rem;">事件名称</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">handler：</td>
+                        <td><span class="genericity">UnityAction</span>&lt;<span class="link" onclick="toLink('./struct/CustomEventData.html', './content/Component/struct/CustomEventData.html')">CustomEventData</span>></td>
+                        <td style="padding-left: .463rem;">事件处理程序</td>
+                    </tr>
+                </table>
+
+                <div class="tip custom-block weightInfo">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/keynote.png" alt="" />
+                            </span>
+                            <label>注意：</label>
+                        </span>
+                    </p>
+                    <p>
+                        RemoveListener方法只能注销掉由AddListener 方法绑定的事件处理程序它无法注销掉在视图内绑定的事件处理程序
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

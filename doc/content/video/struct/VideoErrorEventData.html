@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../../css/style.css">
+        <script src="../../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div>
+                <h1>
+                    VideoErrorEventData
+                </h1>
+                <p class="fs-16">
+                    描述涉及 HTTP 连接问题等错误的事件
+                </p>
+
+                <h2 class="mt-25">
+                    名称空间
+                </h2>
+                <ul class="fs-16 mt-10">
+                    <li style="list-style-type: none;">Namespace：EMR.Event</li>
+                </ul>
+
+                <h2 class="mt-25">
+                    继承
+                </h2>
+                <ul class="fs-16 mt-10">
+                    <li style="list-style-type: none;"><span class="link" onclick="toLink('../../../content/node/Struct/EventData.html', './content/node/struct/EventData.html')">EventData</span> -> VideoErrorEventData</li>
+                </ul>
+                
+                <h2 class="mt-25">
+                    Properties
+                </h2>
+                <table class="mt-10">
+                    <tr>
+                        <td class="font-bold">
+                            source：
+                        </td>
+                        <td>
+                            VideoPlayer
+                        </td>
+                        <td style="padding-left: .463rem">
+                            当前播放正在使用的unity VideoPlayer组件
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            message：
+                        </td>
+                        <td>
+                            string
+                        </td>
+                        <td style="padding-left: .463rem">
+                            异常描述信息
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

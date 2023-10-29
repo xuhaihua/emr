@@ -1,0 +1,538 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    事件
+                </h1>
+                <p class="fs-16">
+                    在视图文档中节点事件必须以 “on” 开头
+                </p>
+                <dl class="mt-25">
+                    <dt class="fs-14">
+                        <strong>本文内容</strong>
+                    </dt>
+                    <dd class="contentIndexList">
+                        <ul>
+                            <li>事件注册</li>
+                            <li>事件注销</li>
+                            <li>节点事件</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            
+            <!--事件注册-->
+            <div class="mt-30">
+                <h3>
+                    <ul>
+                        <li class="ml-25">事件注册</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    为一个节点注册事件有两种方式，一种是在XML视图文档内通过节点标签的事件属性进行注册 ，另一种是在代码里通过AddListener方法进行注册
+                </p>
+
+                <h3>
+                    通过标签的事件属性进行注册
+                </h3>
+                <p class="fs-16">
+                    下面的代码创建了一个载有NPC人物的空间节点及两个按钮，通过onClick属性将单击事件处理程序绑定到这两个按钮，分别控制人物的站立及行走
+                </p>
+                <div>
+                    <h4 style="border-left:4px solid #999; padding-left: .1852rem;">
+                        视图文档代码：
+                    </h4>
+                    <code>
+<pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--创建一个空间节点并加载一个NPC--&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        id="man"
+        x="0"
+        y="0" 
+        z="1500"
+        width="300"
+        height="400"
+        depth="200"
+        yAngle="180"
+        borderWidth="1"
+        hoverColor="255,255,255" 
+        lightIntensity="1"
+        renderMode="additive"
+        backgroundColor="0,0,0"
+        npcPath="sources/model/Man/Prefab/LostWarrior"</span></label><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+
+    <sub>&lt;!--创建一个PanelRoot作为按钮，并通过onClick属性给这个节点添加一个单击事件处理程序，该程序将会触发NPC行走行为--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot<span> id="walk" onClick="startWalkHandle" x="300" y="120" z="1500" backgroundColor="0,255,0" borderRadius="5" width="200" height="100" fontSize="32" textHorizontal="center" textVertical="middle" </span></label><span>&gt;</span>
+        Walk
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+
+    <sub>&lt;!--创建一个PanelRoot作为按钮，并通过onClick属性给这个节点添加一个单击事件处理程序，该程序将会使NPC处于站立姿态--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot<span> id="stop" onClick="stopWalkHandle" x="300" y="0" z="1500" backgroundColor="0,0,255" borderRadius="5" width="200" height="100" fontSize="32" textHorizontal="center" textVertical="middle" </span></label><span>&gt;</span>
+        Stop
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+                    </code>
+
+                    <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                        事件处理程序：
+                    </h4>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// 绑定给onClick的事件处理程序</span>
+<span class="tag">public</span> <span class="adorn">void</span> <span class="methodName">startWalkHandle</span><span class="block">(</span>ClickEventData eventData<span class="block">)</span>
+<span class="block">{</span>
+    <span class="commentary">// 按Id获取当前视图文档内的节点</span>
+    var manNode = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">SpaceNode</span>>(<span class="str">"man"</span>);
+   
+    <span class="commentary">// 触发该节点下NPC的行走动作</span>
+    manNode.npc?.<span class="methodName">action</span>(<span class="str">"isWalk"</span>);
+<span class="block">}</span>
+
+<span class="commentary">// 绑定给onClick的事件处理程序</span>
+<span class="block">public</span> <span class="adorn">void</span> <span class="methodName">stopWalkHandle</span><span class="block">(</span>ClickEventData eventData<span class="block">)</span>
+<span class="block">{</span>
+    var manNode = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">SpaceNode</span>>(<span class="str">"man"</span>);
+
+    <span class="commentary">// 触发该节点下NPC的站立行为</span>
+    manNode.npc?.<span class="methodName">action</span>(<span class="str">"isIdei"</span>);
+<span class="block">}</span>
+                        </pre>
+                    </code>
+                </div>
+
+                <div class="result mt-25 v1">
+                    <div>
+                        <video src="../../img/v1.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+                <div class="tip custom-block weightInfo">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/keynote.png" alt="" />
+                            </span>
+                            <label>注意：</label>
+                        </span>
+                    </p>
+                    <p>
+                        节点的相关事件（例如：点击事件、触摸事件）会基于unity的collider（碰撞体）, 在节点上有一个叫collider的属性（默认值为false），当它为false时：EMR会按照节点的实际情况自动为其添加collider否则节点将不管在任何情况下都会自带一个collider
+                    </p>
+                </div>
+
+                <h3>
+                    通过AddListener方法进行注册
+                </h3>
+
+                <h3 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    原型：
+                </h3>
+                <p class="fs-16" style="padding-left: .463rem;">
+                    <span class="tag">public void</span> <span class="methodName">AddListener</span>(<span class="genericity">UnityAction</span>&lt;T> handle)
+                </p>
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    参数:
+                </h4>
+
+                <table class="fs-16" style="padding-left: .463rem;">
+                    <tr>
+                        <td class="font-bold">handle：</td>
+                        <td><span class="genericity">UnityAction</span>&lt;T></td>
+                        <td style="padding-left: .463rem;">要添加的事件处理程序</td>
+                    </tr>
+                </table>
+
+                <p class="fs-16">
+                    下面的代码在组件的mounted生命周期内，通过AddListener方法将事件处理程序绑定给了节点的单击事件
+                </p>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// mounted生命周期函数，在此用户可以安全的访问空间内的内容</span>
+<span class="block">protected</span> <span class="block">override</span> <span class="adorn">void</span> <span class="methodName">mounted</span><span class="block">(</span>)</span>
+<span class="block">{</span>
+    <span class="commentary">// 分别获取行走按钮和暂停按钮</span>
+    var walk = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">PanelRoot</span>>(<span class="str">"walk"</span>);
+    var stop = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">PanelRoot</span>>(<span class="str">"stop"</span>);
+
+    <span class="commentary">// 通过AddListener方法将事件处理程序绑定给节点的单击事件</span>
+    walk.onClick.<span class="methodName">AddListener</span>(<span class="methodName">startWalkHandle</span>);
+    stop.onClick.<span class="methodName">AddListener</span>(<span class="methodName">stopWalkHandle</span>);
+<span class="block">}</span>
+
+<span class="commentary">// 绑定给onClick事件的处理程序</span>
+<span class="tag">public</span> <span class="adorn">void</span> <span class="methodName">startWalkHandle</span><span class="block">(</span>ClickEventData eventData<span class="block">)</span>
+<span class="block">{</span>
+    <span class="commentary">// 按Id获取当前视图文档内的节点</span>
+    var manNode = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">SpaceNode</span>>(<span class="str">"man"</span>);
+
+    <span class="commentary">// 触发该节点下NPC的行走动作</span>
+    manNode.npc?.<span class="methodName">action</span>(<span class="str">"isWalk"</span>);
+<span class="block">}</span>
+
+<span class="commentary">// 绑定给onClick事件的处理程序</span>
+<span class="block">public</span> <span class="adorn">void</span> <span class="methodName">stopWalkHandle</span><span class="block">(</span>ClickEventData eventData<span class="block">)</span>
+<span class="block">{</span>
+    var manNode = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">SpaceNode</span>>(<span class="str">"man"</span>);
+
+    <span class="commentary">// 触发该节点下NPC的站立行为</span>
+    manNode.npc?.<span class="methodName">action</span>(<span class="str">"isIdei"</span>);
+<span class="block">}</span></pre>
+                </code>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/info.png" alt="" />
+                            </span>
+                            <label>说明：</label>
+                        </span>
+                    </p>
+                    <p>
+                        mounted方法是EMR组件的一个生命周期，这个生命周期代表着一个组件的初始化已彻底完成，用户可以安全的访问它的内容。EMR中的组件与unity的组件不同，unity中的组件是对GameObject对象能力的扩展，而EMR中的组件是对行为、内容、样式的封装。
+                    </p>
+                </div>
+            </div>
+
+            <!--事件注销-->
+            <div class="mt-30">
+                <h3>
+                    <ul>
+                        <li class="ml-25">事件注销</li>
+                    </ul>
+                </h3>
+                <h3>RemoveListener方法</h3>
+
+                <h3 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    原型：
+                </h3>
+                <p class="fs-16" style="padding-left: .463rem;">
+                    <span class="tag">public void</span> <span class="methodName">RemoveListener</span>(<span class="genericity">UnityAction</span>&lt;T> handle)
+                </p>
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    参数:
+                </h4>
+
+                <table class="fs-16" style="padding-left: .463rem;">
+                    <tr>
+                        <td class="font-bold">handle：</td>
+                        <td><span class="genericity">UnityAction</span>&lt;T></td>
+                        <td style="padding-left: .463rem;">要移除的事件处理程序</td>
+                    </tr>
+                </table>
+
+                <p class="fs-16">
+                    下面的代码通过RemoveListener方法移除了绑定给walk节点的事件单击处理程序，当用户第一次点击完Stop按钮后再次单击Walk按钮时将不会触发人物的行走行为因为绑定给它的事件处理程序以被移除，所以此时人物仍将保持站立姿势
+                </p>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// 绑定给onClick的事件处理程序</span>
+<span class="block">public</span> <span class="adorn">void</span> <span class="methodName">stopWalkHandle</span><span class="block">(</span>ClickEventData eventData<span class="block">)</span>
+<span class="block">{</span>
+    var manNode = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">SpaceNode</span>>(<span class="str">"man"</span>);
+    manNode.npc?.<span class="methodName">action</span>(<span class="str">"isIdei"</span>);
+
+    var walk = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">PanelRoot</span>>(<span class="str">"walk"</span>);
+
+    <span class="commentary">// 通过RemoveListener方法移除绑定给walk节点的onClick事件的处理程序</span>
+    walk.onClick.<span class="methodName">RemoveListener</span>(<span class="methodName">startWalkHandle</span>);
+<span class="block">}</span></pre>
+                </code>
+            </div>
+
+
+            <!--节点事件-->
+            <div class="mt-30">
+                <h3>
+                    <ul>
+                        <li class="ml-25">EventData</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    所有节点事件都会接收一个继承自EventData类型的对象，在该对象内存诸着与当前事件相关的一些信息。
+                </p>
+
+                <div>
+                    <h3>
+                        常用方法
+                    </h3>
+                    <div class="table-border">
+                        <table cellspacing="0" class="table bb-1 bt-1">
+                            <tr class="tableHead">
+                                <td style="width:20%">名称</td>
+                                <td>说明</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold link" onclick="toLink('./event/preventDefault.html', './content/node/event/preventDefault.html')">preventDefault</td>
+                                <td>阻止事件默认行为</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--节点事件-->
+            <div class="mt-30">
+                <h3>
+                    <ul>
+                        <li class="ml-25">节点事件</li>
+                    </ul>
+                </h3>
+
+                <div>
+                    <div class="table-border">
+                        <div class="table-subTitle">
+                            <div>
+                                <span></span>
+                                <label>指针事件</label>
+                            </div>
+                        </div>
+                        <table cellspacing="0" class="table bb-1 bt-1">
+                            <tr class="tableHead">
+                                <td style="width:20%">名称</td>
+                                <td style="width:40%">事件委托</td>
+                                <td>说明</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" style="width: 15%;">onClick</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/ClickEventData.html', './content/node/struct/ClickEventData.html')">ClickEventData</span>></td>
+                                <td>指针单击事件</td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-bold w-200"">onDown</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/DownEventData.html', './content/node/struct/DownEventData.html')">DownEventData</span>></td>
+                                <td>指针按下事件</td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-bold w-200"">onDragged</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/DraggedEventData.html', './content/node/struct/DraggedEventData.html')">DraggedEventData</span>></td>
+                                <td>指针拖动事件</td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-bold w-200"">onUp</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/UpEventData.html', './content/node/struct/UpEventData.html')">UpEventData</span>></td>
+                                <td>指针释放事件</td>
+                            </tr>
+                        </table>
+
+                        <div class="table-subTitle">
+                            <div>
+                                <span></span>
+                                <label>触摸事件</label>
+                            </div>
+                        </div>
+                        <table cellspacing="0" class="table bb-1 bt-1">
+                            <tr class="tableHead">
+                                <td style="width:20%">名称</td>
+                                <td style="width:40%">事件委托</td>
+                                <td>说明</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" style="width: 15%;">onTouchStarted</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/TouchStartedEventData.html', './content/node/struct/TouchStartedEventData.html')">TouchStartedEventData</span>></td>
+                                <td>触摸开始事件</td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-bold w-200"">onTouchUpdate</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/TouchUpdateEventData.html', './content/node/struct/TouchUpdateEventData.html')">TouchUpdateEventData</span>></td>
+                                <td>触摸更新事件（手指在虚拟物体上滑动）</td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-bold w-200"">onTouchCompleted</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/TouchCompletedEventData.html', './content/node/struct/TouchCompletedEventData.html')">TouchCompletedEventData</span>></td>
+                                <td>触摸完成事件</td>
+                            </tr>
+                        </table>
+
+                        <div class="table-subTitle">
+                            <div>
+                                <span></span>
+                                <label>焦点事件</label>
+                            </div>
+                        </div>
+                        <table cellspacing="0" class="table bb-1 bt-1">
+                            <tr class="tableHead">
+                                <td style="width:20%">名称</td>
+                                <td style="width:40%">事件委托</td>
+                                <td>说明</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" style="width: 15%;">onFocusEnter</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/FocusEnterEventData.html', './content/node/struct/FocusEnterEventData.html')">FocusEnterEventData</span>></td>
+                                <td>焦点进入事件</td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-bold w-200"">FocusChangedEvent</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/FocusChangedEventData.html', './content/node/struct/FocusChangedEventData.html')">FocusChangedEventData</span>></td>
+                                <td>焦点改变</td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-bold w-200"">FocusExitEvent</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/FocusExitEventData.html', './content/node/struct/FocusExitEventData.html')">FocusExitEventData</span>></td>
+                                <td>焦点退出事件</td>
+                            </tr>
+                        </table>
+
+                        <div class="table-subTitle">
+                            <div>
+                                <span></span>
+                                <label>文档事件</label>
+                            </div>
+                        </div>
+                        <table cellspacing="0" class="table bb-1 bt-1">
+                            <tr class="tableHead">
+                                <td style="width:20%">名称</td>
+                                <td style="width:40%">事件委托</td>
+                                <td>说明</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" style="width: 15%;">onAppend</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/AppendEventData.html', './content/node/struct/AppendEventData.html')">AppendEventData</span>></td>
+                                <td>元素添加事件</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" style="width: 15%;">onAppended</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/AppendedEventData.html', './content/node/struct/AppendedEventData.html')">AppendedEventData</span>></td>
+                                <td>元素添加完成事件</td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-bold w-200"">onInsert</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/InsertEventData.html', './content/node/struct/InsertEventData.html')">InsertEventData</span>></td>
+                                <td>元素插入事件</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold w-200"">onInserted</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/InsertedEventData.html', './content/node/struct/InsertedEventData.html')">InsertedEventData</span>></td>
+                                <td>元素插入完成事件</td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-bold w-200"">onDestory</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/DestoryEventData.html', './content/node/struct/DestoryEventData.html')">DestoryEventData</span>></td>
+                                <td>元素销毁事件</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold w-200"">onDestoryed</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/DestoryedEventData.html', './content/node/struct/DestoryedEventData.html')">DestoryedEventData</span>></td>
+                                <td>元素销毁完成事件</td>
+                            </tr>
+                        </table>
+
+                        <div class="table-subTitle">
+                            <div>
+                                <span></span>
+                                <label>碰撞事件</label>
+                            </div>
+                        </div>
+                        <table cellspacing="0" class="table bb-1 bt-1">
+                            <tr class="tableHead">
+                                <td style="width:20%">名称</td>
+                                <td style="width:40%">事件委托</td>
+                                <td>说明</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" style="width: 15%;">onCollisionEnter</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/CollisionEnterEventData.html', './content/node/struct/CollisionEnterEventData.html')">CollisionEnterEventData</span>></td>
+                                <td>碰撞进入事件</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" style="width: 15%;">onCollisionStay</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/CollisionStayEventData.html', './content/node/struct/CollisionStayEventData.html')">CollisionStayEventData</span>></td>
+                                <td>碰撞中事件</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold w-200"">onCollisionExit</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/CollisionExitEventData.html', './content/node/struct/CollisionExitEventData.html')">CollisionExitEventData</span>></td>
+                                <td>碰撞退出事件</td>
+                            </tr>
+                        </table>
+
+                        <div class="table-subTitle">
+                            <div>
+                                <span></span>
+                                <label>Bound插件事件</label>
+                            </div>
+                        </div>
+                        <table cellspacing="0" class="table bb-1 bt-1">
+                            <tr class="tableHead">
+                                <td style="width:20%">名称</td>
+                                <td style="width:40%">事件委托</td>
+                                <td>说明</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" style="width: 15%;">onBoundScaleStarted</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/BoundScaleStartedEventData.html', './content/node/struct/BoundScaleStartedEventData.html')">BoundScaleStartedEventData</span>></td>
+                                <td>Bound插件缩放开始事件</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" style="width: 15%;">onBoundScaleEnded</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/BoundScaleEndedEventData.html', './content/node/struct/BoundScaleEndedEventData.html')">BoundScaleEndedEventData</span>></td>
+                                <td>Bound插件缩放结束事件</td>
+                            </tr>
+                        </table>
+
+                        <div class="table-subTitle">
+                            <div>
+                                <span></span>
+                                <label>操纵事件</label>
+                            </div>
+                        </div>
+                        <table cellspacing="0" class="table bb-1 bt-1">
+                            <tr class="tableHead">
+                                <td style="width:20%">名称</td>
+                                <td style="width:40%">事件委托</td>
+                                <td>说明</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" style="width: 15%;">onManipulationStarted</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/ManipulationStartedEventData.html', './content/node/struct/ManipulationStartedEventData.html')">ManipulationStartedEventData</span>></td>
+                                <td>节点操纵开始事件</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" style="width: 15%;">onManipulationEnded</td>
+                                <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/ManipulationEndedEventData.html', './content/node/struct/ManipulationEndedEventData.html')">ManipulationEndedEventData</span>></td>
+                                <td>节点操纵结束事件</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

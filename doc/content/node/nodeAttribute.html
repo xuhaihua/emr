@@ -1,0 +1,1253 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+            <h1>
+                节点属性
+            </h1>
+            <p class="fs-16">
+                本篇列出EMR中节点的一些常用属性，在视图文档中，如果一个属性的值引用的是一个变量，则该属性必须以 “_" 开头作为该属性的前缀（例如：如果 width 属性的值是变量 sizeWidth，那标签上的属性应该这样写 _width="sizeWidth"）
+            </p>
+            
+
+            <h3 class="mt-30">
+                通用节点视图属性：
+            </h3>
+            <p class="mb-10 fs-16">
+                下表列出的属性在所有节点中都可以使用
+            </p>
+
+            <div class="table-border">
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>标识类</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">id</td>
+                        <td >节点的唯一标识</td>
+                        <td>string</td>
+                        <td class="color-blue">是</td>
+                        <td>否</td>
+                        <td>组件内唯一</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold w-200"">name</td>
+                        <td>节点名称</td>
+                        <td>string</td>
+                        <td class="color-blue">是</td>
+                        <td>否</td>
+                        <td>不同节点name属性可以相同</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>尺寸属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold w-200">offset</td>
+                        <td>偏移量</td>
+                        <td>Vector3</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>默认值：0,0,0</td>
+                    </tr>
+        
+                    <tr>
+                        <td class="font-bold">width</td>
+                        <td>宽度</td>
+                        <td>float</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>单位 mm</td>
+                    </tr>
+        
+                    <tr>
+                        <td class="font-bold w-200">height</td>
+                        <td>高度</td>
+                        <td>float</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>单位 mm</td>
+                    </tr>
+        
+                    <tr>
+                        <td class="font-bold w-200">depth</td>
+                        <td>厚度 或 深度</td>
+                        <td>float</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>单位 mm</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>样式属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">renderMode</td>
+                        <td>节点渲染方式 可选的值有：<strong>opaque  | cutout | fade | transparent | additive</strong></td>
+                        <td>string enum</td>
+                        <td class="color-blue">是</td>
+                        <td>否</td>
+                        <td>该属性只允许被设置一次</td>
+                    </tr>
+        
+                    <tr>
+                        <td class="font-bold">backgroundColor</td>
+                        <td>节点背景色</td>
+                        <td>Color String</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>Color类型的字符串表示（用“,”号分隔各颜色分量 ）例如：红色 255,0,0,0 默认为：无 "" 空字符串</td>
+                    </tr>
+        
+                    <tr>
+                        <td class="font-bold">backgroundImage</td>
+                        <td>节点背景图</td>
+                        <td>string</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>图片的Resources路径</td>
+                    </tr>
+        
+                    <tr>
+                        <td class="font-bold">borderWidth</td>
+                        <td>边框大小，边框的强度等于灯光(lightIntensity)的强度该属性默认为0也就是不会被显示，边框的颜色等于悬浮灯光的颜色(hoverColor)默认为白色</td>
+                        <td>float</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>单位(mm)  边框的设置与节点的lightIntensity、hoverColor属性有关，在设置边框时需要注意调节节点的这两个属性不然边框有可能不会被正常显示</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">borderRadius</td>
+                        <td>节点圆角半径</td>
+                        <td>float</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>单位 mm</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">stylesheet</td>
+                        <td>与该节点关联的样式</td>
+                        <td>string</td>
+                        <td class="color-blue">是</td>
+                        <td>否</td>
+                        <td>和web前端中的元素的class属性是同一个概念，都是给节点赋于一个样式，只是在这里用的是stylesheet而不是class</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>布局属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">horizontalFloat</td>
+                        <td>节点在X轴上的浮动方式，可选的值有：<strong>none | center | left | right</strong></td>
+                        <td>string enum</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>与web前端中的元素浮动是相同的概念 例如：在web中 float:left 表示将节点定位到父节点的最左侧 默认为：none</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">verticalFloat</td>
+                        <td>节点在Y轴上的浮动方式，可选的值有： <strong>none | center | top | bottom</strong></td>
+                        <td>string enum</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：none</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">contentHorizontal</td>
+                        <td>子节点在X轴上的对齐方式，<strong>none | center | left | right | between</strong></td>
+                        <td>string enum</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：none，这个功能类似于Web开发中的flex布局，作用轴为X</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">horizontalInterval</td>
+                        <td>在X轴上各子节点之间的水平对齐间距</td>
+                        <td>float</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/horizontalLeftInterval.html', './content/node/struct/horizontalLeftInterval.html')">horizontalLeftInterval</span></td>
+                        <td>在X轴上控制开始节点左侧是否存在对齐间隔</td>
+                        <td>bool</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：false</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/horizontalRightInterval.html', './content/node/struct/horizontalRightInterval.html')">horizontalRightInterval</span></td>
+                        <td>在X轴上控制结束节点右侧是否存在对齐间隔</td>
+                        <td>bool</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：false</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">contentVertical</td>
+                        <td>子节点在Y轴上的对齐方式，可选的值有：<strong>none | center | top | bottom | between</strong> </td>
+                        <td>string enum</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：none，这个功能类似于Web开发中的flex布局，作用轴为Y</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">verticalInterval</td>
+                        <td>在Y轴上各子节点之间的垂直对齐间距</td>
+                        <td>float</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/verticalTopInterval.html', './content/node/struct/verticalTopInterval.html')">verticalTopInterval</span></td>
+                        <td>在Y轴上控制开始节点顶部是否存在对齐间隔</td>
+                        <td>bool</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：false</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/verticalBottomInterval.html', './content/node/struct/verticalBottomInterval.html')">verticalBottomInterval</span></td>
+                        <td>在Y轴上控制结束节点底部是否存在对齐间隔</td>
+                        <td>bool</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：false</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>灯光属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">lightIntensity</td>
+                        <td>节点灯光强度</td>
+                        <td>float</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+        
+                    <tr>
+                        <td class="font-bold">hoverColor</td>
+                        <td>悬浮灯光颜色</td>
+                        <td>Color String</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>Color类型的字符串表示（用“,”号分隔各颜色分量 ）例如：红色 255,0,0,0</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>行为控制属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr>
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/widthFixed.html', './content/node/struct/widthFixed.html')">widthFixed</span></td>
+                        <td>节点宽度是否固定，限制宽度的变化</td>
+                        <td>bool</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>PanelLayer节点默认值为true、PanelRoot节点默认值为：false、SpaceNode节点默认值为：false</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">heightFixed</td>
+                        <td>节点高度是否固定，限制高度的变化</td>
+                        <td>bool</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>PanelLayer节点默认值为true、PanelRoot节点默认值为：false、SpaceNode节点默认值为：false</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">depthFixed</td>
+                        <td>节点深度或厚度是否固定，限制深度的变化</td>
+                        <td>bool</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>PanelLayer节点默认值为true、PanelRoot节点默认值为：true、SpaceNode节点默认值为：false</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/enableManipulator.html', './content/node/struct/enableManipulator.html')">enableManipulator</span></td>
+                        <td>是否允许节点可操纵</td>
+                        <td>bool</td>
+                        <td class="color-blue">是</td>
+                        <td>否</td>
+                        <td>本能交互，使得用户可以通过手势或手部射移或旋转物体</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>NPC属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0"  class="table bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">npcPath</td>
+                        <td>NPC Resources路径 (加载一个NPC)</td>
+                        <td>string</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>NPC在Resources目录中的路径</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">npcOffset</td>
+                        <td>NPC 偏移量</td>
+                        <td>Vector3</td>
+                        <td class="color-blue">是</td>
+                        <td class="color-blue">是</td>
+                        <td>默认值：0,0,0</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>逻辑属性：</label>
+                    </div>
+                </div>
+                <table cellspacing="0"  class="table bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">parasitifer</td>
+                        <td>节点表演者</td>
+                        <td>GameObject</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>这是节点的表现对象，所有属性将最终都作用于该对象上，所以你可以在代码中获取该对象，然后直接修改该对象上的属性或添加新的Unity Compontent</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="mt-30">
+                平面节点视图通用属性：
+            </h3>
+            <p class="mb-10">
+                下表列出的属性括用于所有平面节点（PanelRoot节点、Element节点）
+            </p>
+
+            <div class="table-border">
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>标识类</label>
+                    </div>
+                </div>
+
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">overflow</td>
+                        <td>节点内容溢出显示方式，可选的值有：<strong>hidden | visible | scroll</strong></td>
+                        <td>string enum</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：visible</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>文本属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+    
+                    <tr>
+                        <td class="font-bold">color</td>
+                        <td>文本颜色</td>
+                        <td>Color String</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>Color类型的字符串表示（用“,”号分隔各颜色分量 ） 默认为白色： 255,255,255</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">fontSize</td>
+                        <td>文本大小</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>单位(mm) 默认14</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">textHorizontal</td>
+                        <td>文本X轴对齐方式，可选的值有：<strong>left | center | flush | geometry | justified | right</strong></td>
+                        <td>string enum</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：left</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="font-bold">textVertical</td>
+                        <td>文本Y轴对齐方式，可选的值有：<strong>top | baseline | capline | geometry | middle | bottom</strong></td>
+                        <td>string enum</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：top</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">characterSpace</td>
+                        <td>字符间距</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>单位 mm</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">lineSpace</td>
+                        <td>行高</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>单位 mm</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>行为控制属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">scrollDirection</td>
+                        <td>滚动方向，可选的值有：<strong>upAndDown | leftAndRight | both</strong></td>
+                        <td>string enum</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：upAndDown</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <h3 class="mt-30">
+                PanelRoot节点视图属性：
+            </h3>
+            <p class="mb-10">
+                属于平面节点的一种，是空间内其他平面类型节点的根节点，可以把它理解为空间中的一个屏幕
+            </p>
+
+            <div class="table-border">
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>位置、尺寸属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">x</td>
+                        <td>x轴坐标</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">y</td>
+                        <td>y轴坐标</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">z</td>
+                        <td>z轴坐标</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">xAngle</td>
+                        <td>x轴旋转量</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">yAngle</td>
+                        <td>y轴旋转量</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">zAngle</td>
+                        <td>z轴旋转量</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>布局属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">forwardFloat</td>
+                        <td>节点在Z轴上的浮动方式，可选的值有：<strong>none | center | back | forward</strong></td>
+                        <td>string enum</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：none</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>行为控制属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/xFixed.html', './content/node/struct/xFixed.html')">xFixed</span></td>
+                        <td>x轴坐标是否固定，限制x轴的移动</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">yFixed</td>
+                        <td>y轴坐标是否固定，限制y轴的移动</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">zFixed</td>
+                        <td>z轴坐标是否固定，限制z轴的移动</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/xAngleFixed.html', './content/node/struct/xAngleFixed.html')">xAngleFixed</span></td>
+                        <td>限制节点沿x轴旋转</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">yAngleFixed</td>
+                        <td>限制节点沿y轴旋转</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">zAngleFixed</td>
+                        <td>限制节点沿z轴旋转</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/enableSize.html', './content/node/struct/enableSize.html')">enableSize</span></td>
+                        <td>节点是否启用手部尺寸本能交互</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">isPanel</td>
+                        <td>是否为平面，只有当该属性为false时平面的depth（深度）属性才有效，该属性一旦被设置为false后后期将无法再更改</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认为：true</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="mt-30">
+                PanelLayer节点视图属性：
+            </h3>
+            <p class="mb-10">
+                属于平面节点的一种，该类节点的父节点只能是PanelRoot或PanelLayer，可以把它理解为html中的Div元素是用来构建布局的基本元素
+            </p>
+
+            <div class="table-border">
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>位置、尺寸属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">zIndex</td>
+                        <td>节点层叠次序 (你可以把它理解成web开发中div上的z-index属性，它们是同一个概念)</td>
+                        <td>int</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">left</td>
+                        <td>当前节点的左侧与父节左侧的距离值</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：null</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">top</td>
+                        <td>当前节点的顶部与父节点顶部的距离值</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：null</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">right</td>
+                        <td>当前节点的右侧与父节点右侧的距离值</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：null</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">bottom</td>
+                        <td>当前节点的底部与父节点底部的距离值</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：null</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>行为控制属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/leftFixed.html', './content/node/struct/leftFixed.html')">leftFixed</span></td>
+                        <td>固定当前节点的左侧与父节左侧的距离值，限制节点的left属性值的变化</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：true</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">topFixed</td>
+                        <td>固定当前节点的顶部与父节点顶部的距离值，限制节点的top属性值的变化</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：true</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="mt-30">
+                SpaceNode节点视图属性：
+            </h3>
+            <p class="mb-10">
+                SpaceNode属于空间节点，以下列出的属性均可在该类节点上使用
+            </p>
+            <div class="table-border">
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>位置、尺寸属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">x</td>
+                        <td>x轴坐标</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">y</td>
+                        <td>y轴坐标</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">z</td>
+                        <td>z轴坐标</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">xAngle</td>
+                        <td>x轴旋转量</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">yAngle</td>
+                        <td>y轴旋转量</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">zAngle</td>
+                        <td>z轴旋转量</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>布局属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">forwardFloat</td>
+                        <td>节点在Z轴上的浮动方式，可选的值有：<strong>none | center | back | forward</strong></td>
+                        <td>string enum</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：none</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">bendAngle</td>
+                        <td>空间弯曲角度</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">contentForward</td>
+                        <td>子节点在Z轴上的对齐方式，可选的值有：<strong>none | center | back | forward | between</strong></td>
+                        <td>string enum</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：none，这个功能类似于Web开发中的flex布局，作用轴为Z轴</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">forwardInterval</td>
+                        <td>在Z轴上各子节点之间的对齐间距</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/forwardFrontInterval.html', './content/node/struct/forwardFrontInterval.html')">forwardFrontInterval</span></td>
+                        <td>结束节点正前侧也存在对齐间隔</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：false</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/forwardBackInterval.html', './content/node/struct/forwardBackInterval.html')">forwardBackInterval</span></td>
+                        <td>开始节点正后侧是否存在对齐间隔</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：false</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>显示溢出属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">overclip</td>
+                        <td>溢出是否裁切（当他的子节点超出它的尺寸范围时是否裁切)，<span class="color-red">注意：该功能有一限制，如果要启用溢出裁切则他的所有父节点的overclip必须都要为false包括它的子节点，也就是在节点的同一深度方向只允许有一个节点的overclip为true</span></td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：false</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>物理属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">isRigidbody</td>
+                        <td>是否为刚体，只有本属性的值为true时，节点的mass、drag、angularDrag、useGravity、isKinematic属性才会有效</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认值：false</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">mass</td>
+                        <td>质量</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认值：1</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">drag</td>
+                        <td>阻力</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认值：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">angularDrag</td>
+                        <td>角阻力</strong></td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认值：0.05f</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">useGravity</td>
+                        <td>是否使用重力</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认值：true</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">isKinematic</td>
+                        <td>是否使用逆向运动学</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认值：false</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>行为控制属性</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 30%;">说明</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 12%">是否支持元素</td>
+                        <td style="width: 8%">是否样式</td>
+                        <td style="width: 20%;">备注</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">xFixed</td>
+                        <td>x轴坐标是否固定，限制节点在x轴上移动</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">yFixed</td>
+                        <td>y轴坐标是否固定，限制节点在y轴上移动</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">zFixed</td>
+                        <td>z轴坐标是否固定，限制节点在z轴上移动</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">xAngleFixed</td>
+                        <td>限制节点沿x轴旋转</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">yAngleFixed</td>
+                        <td>限制节点沿y轴旋转</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">zAngleFixed</td>
+                        <td>限制节点沿z轴旋转</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td class="color-blue">是</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/joint.html', './content/node/struct/joint.html')">joint</span></td>
+                        <td>节点关节（scale坐标），默认值就为：null</td>
+                        <td>Vector3?</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认为：null</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">jointRotationAxle</td>
+                        <td>关节旋转轴</td>
+                        <td>Vector3?</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认为：null</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">jointConnectId</td>
+                        <td>关节连接对象的id</td>
+                        <td>string</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认为：空</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/enableSize.html', './content/node/struct/enableSize.html')">enableSize</span></td>
+                        <td>节点是否启用手部尺寸本能交互</td>
+                        <td>bool</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认为：flase</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">handleSize</td>
+                        <td>尺寸修改组件控制柄的大小</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>默认为：0.016，<span class="color-red">注意：该值的单位并不是(mm)，它的值其实是比例</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="font-bold"><span class="link" onclick="toLink('./struct/sizeBoxPadding.html', './content/node/struct/sizeBoxPadding.html')">sizeBoxPadding</span></td>
+                        <td>尺寸修改组件控制柄与节点之间的间距</td>
+                        <td>float</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>单位(mm) ，默认为：0</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div class="h-30"></div>
+        </div>
+    </body>
+</html>

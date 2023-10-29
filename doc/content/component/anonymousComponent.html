@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStorage) {
+                localStorage.setItem("currentChild", linkStorage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    匿名组件
+                </h1>
+                <p class="mb-10 fs-18">
+                    匿名组件使用Component标签，可以不指定任何类型只需要通过document属性将视图绑定到Component上
+                </p>
+
+                <h3 class="mt-10">
+                    Example：
+                </h3>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    视图代码 anonymous.xml：
+                </h4>
+                <code>
+<pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>Toolbar <span> x="0" y="0" z="1500" width="640" height="80" borderRadius="5"</span></label><span>&gt;</span>
+        <sub>&lt;!--向Toolbar组件添加按钮--&gt;</sub>
+        <span>&lt;</span><label>Button<span> backgroundImage="Button/source/image/pause" title="Stop"</span></label> />
+        <span>&lt;</span><label>Button<span> backgroundImage="Button/source/image/play" title="Play"</span></label> />
+        <span>&lt;</span><label>Button<span> backgroundImage="Button/source/image/next" title="Next"</span></label> />
+    <span>&lt;</span><span style="color:#F07178;">/Toolbar</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+                </code>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    主视图代码 main.xml：
+                </h4>
+                <code>
+<pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>Component<span> document="anonymous"</span></label><span>/&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+                </code>
+
+                <div class="result mt-10">
+                    <img width="100%" src="../../img/ex26.png" alt="" />
+                </div>
+            </div>
+
+            <div class="tip custom-block">
+                <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                    <span class="infoTitle">
+                        <span>
+                            <img src="../../img/info.png" alt="" />
+                        </span>
+                        <label>说明：</label>
+                    </span>
+                </p>
+                <p>
+                    可以看到以上代码没有创建任何cs类，只需要通过document属性将视图文档绑定到Component上
+                </p>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

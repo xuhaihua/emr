@@ -1,0 +1,240 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStorage) {
+                localStorage.setItem("currentChild", linkStorage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    属性
+                </h1>
+                <p class="mb-10 fs-18">
+                    与节点一样组件也可以拥有属性，属性的定义必须放在属性器内
+                </p>
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// 组件属性，注意要想使组件的属性能在视图中也能使用则其类型必须是基础数据类型</span>
+<span class="tag">public</span> <span class="tag">bool</span> <span class="methodName">visiable</span> <span class="block">{</span>
+    <span class="tag">get</span> {
+        <span class="commentary">// 获取逻辑</span>
+    }
+    <span class="tag">set</span> {
+        <span class="commentary">// 设值逻辑</span>
+    }
+<span class="block">}</span></pre>
+                    </code>
+
+                    <div class="tip custom-block">
+                        <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                            <span class="infoTitle">
+                                <span>
+                                    <img src="../../img/info.png" alt="" />
+                                </span>
+                                <label>说明：</label>
+                            </span>
+                        </p>
+                        <p>
+                            例如：上面的代码为一个组件定义了一个visiable的属性
+                        </p>
+                    </div>
+                </div>
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">属性的数据绑定</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    通过setProperty，getProperty方法可以在视图的可见范围内将组件的属性与视图的内容进行数据双向绑定，当组件的属性发生改变时视图的内容发生改变当视图的内容发生改变时组件的属性发生改变。
+                </p>
+
+                <div class="table-border">
+                    <table cellspacing="0" class="table bb-1 bt-1">
+                        <tr class="tableHead">
+                            <td class="name">方法</td>
+                            <td class="explain">说明</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag">public bool</span> <sapn class="font-bold">setProperty</sapn> (<span class="tag">string</span> name, <span class="tag">object</span> value, <span class="link" onclick="toLink('./struct/SetPropertyCallback.html', './content/Component/struct/SetPropertyCallback.html')">SetPropertyCallback</span> callback)</td>
+                            <td>从组件属性穿透至内容将属性值设置给内容，其中name为属性名，value为要设置的属性值，callback设值完成后的回调函数，该回调有一个名为resultValue的参数它等于设置给该属性的值</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag">public</span> <span class="methodName">T</span> <sapn class="font-bold">getProperty</sapn>&lt;<span class="methodName">T</span>> (<span class="tag">string</span> name, <span class="link" onclick="toLink('./struct/GetPropertyCallback.html', './content/Component/struct/GetPropertyCallback.html')">GetPropertyCallback</span> callback)</td>
+                            <td>从组件属性穿透至内容获取到绑定到内容上的值，其中泛型参数 T 为要获取的属性值的类型，name为要获取的属性的名称，callback获值完成后的回调函数，该回调有两个参数：其中resultValue为：获取的值, isSuccess为：是否获取成功（例如：如果在获取时该属性绑定的内容尚产生关联时，这时：isSuccess的值就为false）</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3 class="mt-25">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码创建一个按钮组件，并给该按钮添加一个title属性用于设置按钮的标题
+                </p>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    按钮样式文件 main.json：
+                </h4>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">/*
+* 样式表
+*/</span>
+{
+    <span class="commentary">// 按钮的框架样式（容器）</span>
+    <span class="property">".butFrame"</span>: {
+        <span class="property">"width"</span>: 200,
+        <span class="property">"height"</span>: 60,
+        <span class="property">"borderWidth"</span>: 2,
+        <span class="property">"hoverColor"</span>: <span class="str">"255, 255, 255"</span>,
+        <span class="property">"lightIntensity"</span>: 1,
+        <span class="property">"backgroundColor"</span>: <span class="str">"0,255,0"</span>
+        <span class="property">"contentHorizontal"</span>: <span class="str">"center"</span>
+        <span class="property">"borderRadius"</span>: 4,
+        <span class="property">"overflow"</span>: <span class="str">"hidden"</span>
+    },
+
+    <span class="commentary">// 按钮图标样式</span>
+    <span class="property">".but-img"</span>: {
+        <span class="property">"width"</span>: 30,
+        <span class="property">"height"</span>: 30
+    },
+
+    <span class="commentary">// 按钮文本样式</span>
+    <span class="property">".but-label"</span>: {
+        <span class="property">"width"</span>: 70,
+        <span class="property">"height"</span>: 30,
+        <span class="property">"fontSize"</span>: 20,
+        <span class="property">"color"</span>: <span class="str">"0,0,0"</span>
+        <span class="property">"offset"</span>: <span class="str">"5,0,0"</span>
+    }
+}</pre>
+                </code>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    按钮视图文档代码 main.xml：
+                </h4>
+
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--引入组件样式表--&gt;</sub>
+    <span>&lt;</span><label>Stylesheet <span>path="Button/stypesheet/main" /</span></label><span>&gt;</span>
+
+    <sub>&lt;!--按钮--&gt;</sub>
+    <span>&lt;</span><label>PanelLayer<span> stylesheet="butFrame"</span></label><span>&gt;</span>
+        <sub>&lt;!--按钮Icon Image--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer<span> stylesheet="but-img" _backgroundImage="backgroundImage" /</span></label><span>&gt;</span>
+        <sub>&lt;!--按钮Text Label，这里直接接收来自组件title属性的值--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer<span> stylesheet="but-label" _text="title" </span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                    </code>
+                </div>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    组件类代码 Button.cs：
+                </h4>
+
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span class="tag">using</span> UnityEngine;
+<span class="tag">using</span> EMR.Entity;
+<span class="tag">using</span> System.Collections.Generic;
+
+<span class="tag">public class</span> <span class="genericity">Button : EMR.Component</span>
+<span class="block">{</span>
+    <span class="tag">public</span> <span class="methodName">Button</span>()
+    <span class="block">{</span>
+        <span class="commentary">// 绑定组件视图文档</span>
+        <span class="tag">this</span>.document = <span class="str">"Button/View/main"</span>;
+    <span class="block">}</span>
+
+    <span class="commentary">// 组件属性，注意要想使组件的属性能在视图中也能使用则其类型必须是基础数据类型</span>
+    <span class="tag">private string</span> _title = <span class="str">""</span>;
+    <span class="tag">public</span> <span class="tag">string</span> <span class="methodName">title</span> <span class="block">{</span>
+        <span class="tag">get</span> {
+            <span class="commentary">// 直接从属性绑定的内容上获取值，其中callback回调函数中参数resultVlaue为获取的值，isSuccess是否获取成功</span>
+            <span class="return">return</span> <span class="tag">this</span>.<span class="methodName">getProperty</span>&lt;<span class="tag">string></span>(<span class="tag">nameof</span>(title), (<span class="tag">resultVlaue</span>, <span class="tag">isSuccess</span>) =>
+            {
+                <span class="commentary">// 如果获取成功则将值赋给属性的暂存变量</span>
+                <span class="return">if</span>(<span class="tag">isSuccess</span>)
+                {
+                    <span class="tag">this</span>._title = (<span class="tag">string</span>)resultVlaue;
+                }
+                <span class="return">return</span> <span class="tag">this</span>._title;
+            });
+        }
+        <span class="tag">set</span> {
+            <span class="commentary">// 从组件属性穿透至关联的内容上将值赋给内容，其中callback回调函数参数resultVlaue为当前设置给该属性的值，它的值其实就是这里的value值</span>
+            <span class="tag">this</span>.<span class="methodName">setProperty</span>(<span class="tag">nameof</span>(title), value, (<span class="tag">resultVlaue</span>) =>
+            {
+                <span class="tag">this</span>._title = (<span class="tag">string</span>)resultVlaue;
+            });
+        }
+    <span class="block">}</span>
+<span class="block">}</span>
+</pre>
+                    </code>
+                </div>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    主视图 main.xml：
+                </h4>
+
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--定义一个存放按钮的容器--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> name="tools" x="0" y="0" z="1500" width="640" height="60" contentHorizontal="between"</span></label><span>&gt;</span>
+        <sub>&lt;!--在此设置按钮的title属性为Stop--&gt;</sub>
+        <span>&lt;</span><label>Button<span> backgroundImage="Button/source/image/pause" title="Stop" /</span></label><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                    </code>
+                </div>
+
+                <div class="result mt-10">
+                    <img width="100%" src="../../img/ex25.png" alt="" />
+                </div>
+
+                <div class="tip custom-block weightInfo">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/keynote.png" alt="" />
+                            </span>
+                            <label>注意：</label>
+                        </span>
+                    </p>
+                    <p>
+                        setProperty方法可以将属性值同时设置到多个绑定了该属性的内容上，但getProperty方法其实只从绑定了该属性的第一个内容上获取值，所以见意一个属性只绑定到视图的一个内容上不要将同一属性绑定给多个内容。
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

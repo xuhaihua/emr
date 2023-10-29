@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+            <h1 class="mb-10">
+                视图文档
+            </h1>
+            <p class="mb-10 fs-18">
+                视图文档是一个XML文档用于对空间中的内容进行描述(例如：一个平面、一个空间节点、空间内的一个NPC等)，它与Web中的html文档非常相似只是html是用来描述Web浏览器的内容（网页的内容）而EMR中的视图文档是用来描述空间中的内容
+            </p>
+            
+            <h3 class="mt-30">
+                <ul>
+                    <li style="margin-left: .463rem;">文档规范：</li>
+                </ul>
+            </h3>
+            <p class="mb-10" style="line-height: .463rem;font-size: .2963rem;">
+                <ol class="fs-16 ml-25">
+                    <li>
+                        视图文档遵循XML规范。
+                    </li>
+                    <li style="margin-top: .1852rem;margin-bottom: .1852rem;">
+                        所有节点必须包含在Root节点下且标签名、属性名大小写敏感。
+                    </li>
+                    <li style="margin-top: .1852rem;">
+                        文档内只允许包含SpaceNode、PanelRoot、PanelLayer、SpaceMagic、Component及用户自定义的组件。
+                    </li>
+                    <li style="margin-top: .1852rem;">
+                        如果标签的属性值引用的是变量属性必须以 “_” 做为前缀（例如：如果 width 属性的值是变量 sizeWidth，那标签上的属性应该这样写 _width="sizeWidth"）。
+                    </li>
+                    <li style="margin-top: .1852rem;">
+                        在视图文档中节点事件、组件事件必须以on做为前缀。
+                    </li>
+                    <li style="margin-top: .1852rem;">
+                        在视图文档中NPC事件必须以onNpc作为前缀。
+                    </li>
+                </ol>
+            </p>
+
+            <h3 class="mt-30">
+                <ul>
+                    <li style="margin-left: .463rem;">示例：</li>
+                </ul>
+            </h3>
+            <p class="mb-10" style="line-height: .4074rem;font-size: .2963rem;">
+                <div>
+                    <code style="line-height: .4074rem"><pre>
+<span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">Root</span><span style="color:#89DDFF;">&gt;</span>
+    <span style="color:rgb(94,153,85);">&lt;!--在空间坐标x:-160mm, y:0, z:800mm 处创建一个宽度20cm、高度30cm、深度20cm的空间节点，在该节点加载了一个在Resources/npc目录下的hero NPC--&gt;</span>
+    <span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">SpaceNode<label class="tagAttribute"> x="-160" y="0" z="800" width="200" height="300" depth="300" npcPath="sources/model/Man/Prefab/LostWarrior"</label> </span><span style="color:#89DDFF;">/&gt;</span>
+
+    <span style="color:rgb(94,153,85);">&lt;!--在空间坐标x:160mm, y:0, z:800mm 处创建一个宽度为45cm、高度为23cm的模态框用于显示加载的角色信息，并将背景设置为蓝色--&gt;</span>
+    <span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">PanelRoot <label class="tagAttribute">name="modalBox" x="160" y="0" z="800" width="450" height="230"  backgroundColor="0,0,255"</label></span><span style="color:#89DDFF;">&gt;</span>
+
+        <span style="color:rgb(94,153,85);">&lt;!--模态框的内容部分，overflow="scroll"表示内容溢出则启用滚动--&gt;</span>
+        <span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">PanelLayer <label class="tagAttribute">name="modalContent" left="30" right="30" top="30" bottom="30" overflow="scroll"</label> </span><span style="color:#89DDFF;">&gt;</span>
+
+            <span style="color:rgb(94,153,85);">&lt;!--定义模态框的内容标题部分，标题文本大小为18mm、文本内容垂直居中对齐--&gt;</span>
+            <span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">PanelLayer <label class="tagAttribute">name="title" left="10" top="10" right="0" height="45" fontSize="18" textVertical="middle"</label> </span><span style="color:#89DDFF;">&gt;</span>
+                Hero Information:
+            <span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">/PanelLayer</span><span style="color:#89DDFF;">&gt;</span>
+
+            <span style="color:rgb(94,153,85);">&lt;!--定义模态框的内容文本部分，文字大小为12mm、行高22mm--&gt;</span>
+            <span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">PanelLayer <label class="tagAttribute">name="content" left="10" top="65" right="0" height="45" fontSize="12" lineSpace="22"</label></span><span style="color:#89DDFF;">&gt;</span>
+                [Crazy Warrior Olaf], as introduced in his background story, Olaf is from the Rofa Peninsula on the coast of Ferrerdrod, and holding a battle axe, he longs for a glorious battle with all his heart
+            <span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">/PanelLayer</span><span style="color:#89DDFF;">&gt;</span>
+        <span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">/PanelLayer</span><span style="color:#89DDFF;">&gt;</span>
+    <span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">/PanelRoot</span><span style="color:#89DDFF;">&gt;</span>
+<span style="color:#89DDFF;">&lt;</span><span style="color:#F07178;">/Root</span><span style="color:#89DDFF;">&gt;</span></pre>
+                    </code>
+                </div>
+            </p>
+
+            <div style="border-left: .0741rem solid #dfe2e5; padding: .1852rem; padding-left: .463rem;">
+                <label style="display: block; font-size: .3333rem; font-weight: bold;">说明：</label>
+                <p style="display: block; font-size: .2963rem;">该文档首先在空间内创建了一个尺寸为20cm、高度为30cm、深度为20cm的空间节点，然后通过npcPath属性在该节点内加载一个英雄NPC，在NPC右侧通过PanelRoot标签(平面节点)创建一个信息提示框用于显示该NPC的相关信息。</p>
+            </div>
+           
+            <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                <img src="../../img/ex1.png" alt="" />
+            </div>
+
+            <div class="h-30"></div>
+        </div>
+    </body>
+</html>

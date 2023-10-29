@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../../css/style.css">
+        <script src="../../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <h1>
+                preventDefault方法（阻止事件默认行为）
+            </h1>
+
+            <p class="fs-16">
+                以下代码通过给container节点添加append事件，并在事件发生后调用preventDefault方法来阻止向container容器添加它的子节点。
+            </p>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem;">
+                视图文档代码：
+            </h4>
+            <div>
+                <code>
+<pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--操作结果提示信息Label--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> id="infoLable" x="0" y="250" z="800" width="800" height="60" fontSize="18" backgroundColor="0,255,0" textHorizontal="center" textVertical="middle"</span></label><span>&gt;</span>
+        info:   
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+    <sub>&lt;!--容纳节点的容器--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> id="container" x="0" y="0" z="800" width="800" height="400" backgroundColor="255,255,255"</span></label><span>/&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+                </code>
+            </div>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                组件代码：
+            </h4>
+            <div>
+                <code>
+<pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// mounted生命周期函数，在这里文档内容已绑定给视图</span>
+<span class="tag">public</span> <span class="adorn">void</span> <span class="methodName">mounted</span><span class="block">()</span>
+<span class="block">{</span>
+    <span class="commentary">// 通过createPanelLayer方法新建一个图层节点，用于过会添加给container容器</span>
+    <span class="adorn">var</span> newNode = this.<span class="methodName">createPanelLayer</span>(20, 20, null, 200, 100);
+    newNode.backgroundColor = <span class="str">"0,0,255"</span>;
+
+    <span class="commentary">// 获取视图中的container容器节点</span>
+    <span class="adorn">var</span> container = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">PanelRoot</span>>(<span class="str">"container"</span>);
+
+    <span class="commentary">// append事件会在添加子节点开始时被调用</span>
+    container.onAppend.<span class="methodName">AddListener</span>((<span class="genericity">AppendEventData</span> eventData) =>
+    {
+        <span class="commentary">// 阻止事件默认行为</span>
+        eventData.<span class="methodName">preventDefault</span>();
+    });
+
+    <span class="commentary">// appended事件会在添加结束时被调用</span>
+    container.onAppended.<span class="methodName">AddListener</span>((<span class="genericity">AppendedEventData</span> eventData) =>
+    {
+        var infoLable = this.<span class="methodName">getNodeById</span>&lt;PanelRoot>(<span class="str">"infoLable"</span>);
+
+        <span class="commentary">// isSuccess属性表示子节点是否添加成功</span>
+        if (eventData.isSuccess)
+        {
+            infoLable.text = infoLable.text + "  append node success!";
+        } 
+        
+        <span class="commentary">// 这里的代码会被掉用，因为在onAppend事件中已经阻止了添加事件的默认行为，所以代码会在infoLable中输出"append node fail!"</span>
+        if (!eventData.isSuccess)
+        {
+            infoLable.text = infoLable.text + "  append node fail!";
+        }
+    });
+
+    container.<span class="methodName">appendNode</span>(<span class="adorn">newNode</span>);
+<span class="block">}</span>
+</pre>
+                </code>
+            </div>
+
+            <div class="result mt-25">
+                <img width="100%" src="../../../img/ex7.png" alt="" />
+            </div>
+
+            <div class="tip custom-block">
+                <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                    <span class="infoTitle">
+                        <span>
+                            <img src="../../../img/info.png" alt="" />
+                        </span>
+                        <label>说明：</label>
+                    </span>
+                </p>
+                <p>
+                    以上代码本应会在视图加载完成后向container容器（白色区域部分）添加一个新的节点，但因在append事件内调用了preventDefault方法阻止了节点的默认添加行为，所以该节点最终并未添加到container容器中，程序的最后也在inforLabel元素上打印出了"info:append node success!"
+                </p>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../../css/style.css">
+        <script src="../../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div>
+                <h1>
+                    UpEventData
+                </h1>
+                <p class="fs-16">
+                    描述涉及针对节点进行的手部射线释放事件
+                </p>
+
+                <h2 class="mt-25">
+                    名称空间
+                </h2>
+                <ul class="fs-16 mt-10">
+                    <li style="list-style-type: none;">Namespace：EMR.Event</li>
+                </ul>
+
+                <h2 class="mt-25">
+                    继承
+                </h2>
+                <ul class="fs-16 mt-10">
+                    <li style="list-style-type: none;"><span class="link" onclick="toLink('./EventData.html', './content/node/struct/EventData.html')">EventData</span> -> UpEventData</li>
+                </ul>
+                
+                <h2 class="mt-25">
+                    Properties
+                </h2>
+                <table class="mt-10">
+                    <tr>
+                        <td class="font-bold">
+                            target：
+                        </td>
+                        <td>
+                            Node
+                        </td>
+                        <td style="padding-left: .463rem">
+                            释放的目标对象
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            point：
+                        </td>
+                        <td>
+                            Vector3
+                        </td>
+                        <td style="padding-left: .463rem">
+                            释放时所在的点
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            normal：
+                        </td>
+                        <td>
+                            Vector3
+                        </td>
+                        <td style="padding-left: .463rem">
+                            释放点的法线
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            original：
+                        </td>
+                        <td>
+                            MixedRealityPointerEventData
+                        </td>
+                        <td style="padding-left: .463rem">
+                            MRTK事件状态对象 <a style="margin-left: .2778rem;" href="https://learn.microsoft.com/zh-cn/dotnet/api/microsoft.mixedreality.toolkit?view=mixed-reality-toolkit-unity-2019-dotnet-2.6.0" target="_blank">详细请参见MRTK文档</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

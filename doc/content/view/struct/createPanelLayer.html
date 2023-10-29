@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../../css/style.css">
+        <script src="../../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+                <h3>createPanelLayer方法</h3>
+                <p class="fs-16">
+                    创建平面图层节点
+                </p>
+
+                <h3 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    原型：
+                </h3>
+
+                <p class="fs-16" style="padding-left: .463rem;">
+                    <span class="tag">protected </span> <span class="genericity">PanelLayer</span> createPanelLayer (<span class="tag">float?</span> left, <span class="tag">float?</span> top, <span class="tag">float?</span> right, <span class="tag">float?</span> bottom, <span class="tag">float</span> width = 0, <span class="tag">float</span> height = 0, <span class="tag">float</span> depth = 0, <span class="tag">int</span> zIndex = 0, <span class="tag">bool</span> isPanel = <span class="tag">true</span>, <span class="tag">NPC</span> npc = <span class="tag">null</span>, <span class="tag">RendMode</span> rendMode = <span class="genericity">RendMode</span>.opaque)
+                </p>
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    参数:
+                </h4>
+
+                <table class="fs-16" style="padding-left: .463rem;">
+                    <tr>
+                        <td class="font-bold">left：</td>
+                        <td>float?</td>
+                        <td style="padding-left: .463rem;">节点left值</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">top：</td>
+                        <td>float?</td>
+                        <td style="padding-left: .463rem;">节点top值</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">right：</td>
+                        <td>float?</td>
+                        <td style="padding-left: .463rem;">节点right值</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">bottom：</td>
+                        <td>float?</td>
+                        <td style="padding-left: .463rem;">节点bottom值</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">width：</td>
+                        <td>float</td>
+                        <td style="padding-left: .463rem;">宽度，默认值为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">height：</td>
+                        <td>float</td>
+                        <td style="padding-left: .463rem;">高度，默认值为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">depth：</td>
+                        <td>float</td>
+                        <td style="padding-left: .463rem;">深度，默认值为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">zIndex：</td>
+                        <td>int</td>
+                        <td style="padding-left: .463rem;">层叠次序，默认值为：0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">isPanel ：</td>
+                        <td>bool</td>
+                        <td style="padding-left: .463rem;">是否为平面，默认值true</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">npc ：</td>
+                        <td>NPC</td>
+                        <td style="padding-left: .463rem;">NPC，默认值null</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">rendMode ：</td>
+                        <td>RendMode</td>
+                        <td style="padding-left: .463rem;">渲染模式，默认值：<span class="genericity">RendMode</span>.opaque</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

@@ -1,0 +1,304 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    节点
+                </h1>
+                <p class="mb-10 fs-18">
+                    空间中的节点标识和对应着空间中的一个内容， 在数据结构上这些节点将以树元素的形式被加入到视图文档中
+                </p>
+
+                <div>
+                    <img style="width: 100%;" src="../../img/node.png" alt="" />
+                </div>
+            </div>
+            
+            <!--空间节点-->
+            <div class="mt-30">
+                <h3>
+                    <ul>
+                        <li class="ml-25">空间节点（SpaceNode）</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    表示空间中的一个内容或一块区域
+                </p>
+
+                <h3>
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码在空间的x: 0, y: 0, z: 300mm处创建了一个宽度为10cm、高度为20cm、深度为5cm的节点 并且该节点加载了一个NPC
+                </p>
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>SpaceNode <span>
+        x="0"
+        y="0"
+        z="300"
+        width="100"
+        height="200"
+        depth="50" 
+        xAngle="30"
+        yAngle="30"
+        borderWidth="1"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        renderMode="additive"
+        backgroundColor="0,0,0"
+        npcPath="sources/model/Tools/Prefab/axe"
+    /</span></label><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                    </code>
+                </div>
+
+                <div class="result mt-25">
+                    <img width="100%" src="../../img/ex3.png" alt="" />
+                </div>
+
+                <div class="tip custom-block weightInfo">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/keynote.png" alt="" />
+                            </span>
+                            <label>注意：</label>
+                        </span>
+                    </p>
+                    <p>
+                        SpaceNode节点下只能包含SpaceNode节点或PanelRoot（平面节点），它不能包含PanelLayer（图层）节点，因为PanelLayer是对平面内容的描述。
+                    </p>
+                </div>
+            </div>
+
+            <!--平面节点-->
+            <div>
+                <h3>
+                    <ul>
+                        <li class="ml-25">平面节点（PanelRoot）</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    表示空间内的一个平面，你可以把它理解为空间中的一个屏幕，然后在该屏幕下通过PanelLayer来布置内容
+                </p>
+
+                <h3>
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码在空间的x: 0, y: 0, z: 80cm处创建了一个宽度为88.9cm、高度为50cm的平面节点 并且该节点加载了一张图片
+                </p>
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>PanelRoot <span>
+        x="0"
+        y="0"
+        z="800"
+        width="889"
+        height="500"
+        backgroundImage="sources/image/pic"
+    /</span></label><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                    </code>
+                </div>
+
+                <div class="result mt-25">
+                    <img width="100%" src="../../img/ex4.png" alt="" />
+                </div>
+
+                <div class="tip custom-block weightInfo">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/keynote.png" alt="" />
+                            </span>
+                            <label>注意：</label>
+                        </span>
+                    </p>
+                    <p>
+                        PanelRoot节点下只能包含PanelLayer（图层）节点，它不能包含SpaceNode节点也不能再包含PanelRoot节点，因为SpaceNode节点是一个空间节点平面内只能包含图层不能包含另一个空间。
+                    </p>
+                </div>
+            </div>
+            
+            <!--平面图层节点-->
+            <div>
+                <h3>
+                    <ul>
+                        <li class="ml-25">图层节点（PanelLayer）</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    用于描述表示平面内容的一个区域，你可以把它理解为html中的一个div元素，只是div元素用于描述浏览器中的一个内容区域，而PanelLayer描述空间平面(PanelRoot)内的一个区域
+                </p>
+
+                <h3>
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码在平面内创建了一个图层区域，并在里面放置一些文本，如果文本内容溢出则启用滚动
+                </p>
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--在空间内创建一个平面--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> x="0" y="0" z="800" width="300" height="300" backgroundColor="255,255,255" </span></label><span>&gt;</span>
+
+        <sub>&lt;!--在平面内创建一个图层并将背景设置为蓝色，其中的文本居中对齐如果内容超出平面范围则允许滚动--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> left="2" top="2" right="2" bottom="2" color="255,255,255" fontSize="25" backgroundColor="0,0,255" textHorizontal="center" overflow="scroll" </span></label><span>&gt;</span>
+            Life is a stream On which we strew Petal by petal the flower of our heart; The end lost in dream, They float past our view, We only watch their glad, early start.
+        <span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                    </code>
+                </div>
+
+                <div class="result mt-25">
+                    <img width="100%" src="../../img/ex5.png" alt="" />
+                </div>
+
+                <div class="tip custom-block weightInfo">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/keynote.png" alt="" />
+                            </span>
+                            <label>注意：</label>
+                        </span>
+                    </p>
+                    <p>
+                        PanelLayer节点下只能包含PanelLayer（图层）节点，不能再包含其它类型的节点。
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h3>
+                    <ul>
+                        <li class="ml-25">摩法节点（SpaceMagic）</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    该节点主要用于防止Mesh变形，如果发现空间中内容显示不正常，你可以试一下将这个节点包囊在SpaceMagic下（如果还是不能解决问题，需要排查其它原因）
+                </p>
+
+                <h3>
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码将一个平面包囊在SpaceMagic中以防止PanelRoot Mesh变形 
+                </p>
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--PanelRoot被包囊在SpaceMagic节点下--&gt;</sub>
+    <span>&lt;</span><label>SpaceMagic<span></span></label><span>&gt;</span>
+        <span>&lt;</span><label>PanelRoot <span> x="0" y="0" z="800" width="300" height="300" backgroundColor="255,255,255" </span></label><span>/&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceMagic</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                    </code>
+                </div>
+
+                <div class="tip custom-block weightInfo">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/keynote.png" alt="" />
+                            </span>
+                            <label>注意：</label>
+                        </span>
+                    </p>
+                    <p>
+                        一个SpaceMagic只能包囊一个SpaceNode节点或PanelRoot节点
+                    </p>
+                </div>
+            </div>
+
+            <!--文本节点-->
+            <div>
+                <h3>
+                    <ul>
+                        <li class="ml-25">文本节点</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    EMR中文本节点是一种特殊的节点，它没有任何标签。文本可以出现在PanelRoot下，也可以出现在PanelLayer下或在CDATA标签内。
+                </p>
+
+                <h3>
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码在PanelRoot节点下创建了一些文本
+                </p>
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--在空间内创建一个平面--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> x="0" y="0" z="800" width="1300" height="300" fontSize="25" textHorizontal="center"</span></label><span>&gt;</span>
+        Hello World!
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+
+    <sub>&lt;!--在空间内创建一个平面--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> x="0" y="-150" z="800" width="1300" height="300" fontSize="25" textHorizontal="center"</span></label><span>&gt;</span>
+        <sub>&lt;!--放在CDATA标签内的内容可以包含特殊字符，例如 "&lt;"--&gt;</sub>
+        &lt;![CDATA[
+            <span class="methodName">CDATA Tag Can output special characters example: "<"</span> 
+        ]]>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                    </code>
+                </div>
+
+                <div class="result mt-25">
+                    <img width="100%" src="../../img/ex6.png" alt="" />
+                </div>
+
+                <div class="tip custom-block weightInfo">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/keynote.png" alt="" />
+                            </span>
+                            <label>注意：</label>
+                        </span>
+                    </p>
+                    <p>
+                        <ol class="ml-25">
+                            <li>
+                                在本版本中目前只有平面文本，所以文本必须被 PanelRoot 节点 或 PanelLayer 节点包囊
+                            </li>
+                            <li>
+                                虽然文本属于某一节点的子节点，但你无法在文档中直接通过遍历或节点查询的方法来获得该文本节点，因为文本节点本质上并不在文档树内，它只是被包含它的元素引用了而以。这一点与javascript对dom中文本节点的操作非常类似你无法通过任何Web Api接口直接获取到dom中的一个文本节点。
+                            </li>
+                            <li>
+                                若要操纵文本节点你可以通过PanelRoot或PanelLayer节点的text属性获取或设置属于该节点的文本内容。
+                            </li>
+                        </ol>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

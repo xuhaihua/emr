@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStorage) {
+                localStorage.setItem("currentChild", linkStorage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    Slot (插槽)
+                </h1>
+                <p class="mb-10 fs-18">
+                    Slost用于向组件传递视图内容处段
+                </p>
+
+                <h3 class="mt-25">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码创建了一个Toolbar组件，并向其中添加了一些Button子组件
+                </p>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    组件视图代码 main.xml：
+                </h4>
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>PanelRoot<span> 
+        name="barContainer"
+        _x="x"
+        _y="y"
+        _z="z"
+        _width="width"
+        _height="height"
+        _borderRadius="borderRadius"
+        contentHorizontal="between" 
+        horizontalInterval="10" 
+        horizontalLeftInterval="true"
+        horizontalRightInterval="true"
+        backgroundColor="255,255,255"
+    </span></label>>
+        <sub>&lt;!--内容插槽--&gt;</sub>
+        <span>&lt;</span><label>Slot</span></label>><span>&lt;</span><label>/Slot</span></label>>
+    <span>&lt;</span><label>/PanelRoot</span></label>>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+        </code>
+
+        <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+            组件类代码 Toolbar.cs：
+        </h4>
+
+        <div>
+            <code>
+                <pre style="margin: 0px; padding: 0px;">
+<span class="tag">using</span> UnityEngine;
+<span class="tag">using</span> EMR.Entity;
+<span class="tag">using</span> System.Collections.Generic;
+
+<span class="tag">public class</span> <span class="genericity">Toolbar : EMR.Component</span>
+<span class="block">{</span>
+    <span class="tag">public</span> <span class="methodName">Toolbar</span>()
+    <span class="block">{</span>
+        <span class="commentary">// 绑定组件视图文档</span>
+        <span class="tag">this</span>.document = <span class="str">"Toolbar/View/main"</span>;
+    <span class="block">}</span>
+
+    <span class="commentary">// 重写appendComponent方法阻止非Button类型的组件被加入</span>
+    <span class="tag">public override</span> <span class="genericity">EMR.Component</span>  appendComponent(<span class="genericity">EMR.Component</span> component)
+    {
+        <span class="return">if</span> (<span class="methodName">!</span> (<span class="tag">component</span> is <span class="genericity">Button</span>)) {
+            <span class="genericity">Debug</span>.<span class="methodName">LogError</span>(<span class="str">"不允许向TitleBar组件添加非Button类型的组件"</span>);
+
+            <span class="commentary">// 注意此处为了简便故意在示例中用return阻止程序继续往下运行，这里最好抛出异常中断程序，主要看情况而定</span>
+            <span class="return">return</span> null;
+        }
+        <span class="return">return</span> <span class="tag">base</span>.<span class="methodName">appendComponent</span>(<span class="tag">component</span>);
+    }
+<span class="block">}</span>
+</pre>
+            </code>
+        </div>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    主视图代码 main.xml：
+                </h4>
+                <code>
+<pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>Toolbar <span> x="0" y="0" z="1500" width="640" height="80" borderRadius="5"</span></label><span>&gt;</span>
+        <sub>&lt;!--向Toolbar组件添加按钮--&gt;</sub>
+        <span>&lt;</span><label>Button<span> backgroundImage="Button/source/image/pause" title="Stop"</span></label> />
+        <span>&lt;</span><label>Button<span> backgroundImage="Button/source/image/play" title="Play"</span></label> />
+        <span>&lt;</span><label>Button<span> backgroundImage="Button/source/image/next" title="Next"</span></label> />
+    <span>&lt;</span><span style="color:#F07178;">/Toolbar</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+                </code>
+
+                <div class="result mt-10">
+                    <img width="100%" src="../../img/ex26.png" alt="" />
+                </div>
+            </div>
+
+            <div class="tip custom-block">
+                <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                    <span class="infoTitle">
+                        <span>
+                            <img src="../../img/info.png" alt="" />
+                        </span>
+                        <label>注意：</label>
+                    </span>
+                </p>
+                <p>
+                    Slot其实是一个占位符，用于向组件的指定元素内插入视图片段，Slot标签在组件内必须被一个节点包囊
+                </p>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

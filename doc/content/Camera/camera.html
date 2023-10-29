@@ -1,0 +1,228 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStorage) {
+                localStorage.setItem("currentChild", linkStorage);
+                event.stopPropagation();
+                window.location.href = link;
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div>
+                <h1>
+                    Camera (摄像头) 模块
+                </h1>
+                <p class="fs-16">
+                    Camera模块可以方便的操控摄像头进行拍照和视频录制，该模块可以通过EMR.Space.camera这个静态属性来获取对他的引用
+                </p>
+            </div>
+
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>常用属性</li>
+                </ul>
+            </h3>
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td style="width:20%">名称</td>
+                        <td style="width:40%">数据类型</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">isUsable</td>
+                        <td>bool</td>
+                        <td>摄像头当前是否可用 （例如：摄像头当前正在进行其它任务的工作此时该属性为：false）</td>
+                    </tr>
+                </table>
+            </div>
+            
+
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>常用方法</li>
+                </ul>
+            </h3>
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td style="width:60%">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <span class="tag"> public void</span> <span class="methodName">takePhoto</span> (<span class="tag">string</span> <span class="adorn">name</span> = <span class="tag">null</span>)
+                        </td>
+                        <td>开始拍照，其中，参数<span class="font-bold">name</span>为：照片的完全限定名（用户可以自定义照片的名称及保存路径）</td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <span class="tag"> public void</span> <span class="methodName">StartRecording</span> (<span class="tag">string</span> <span class="adorn">name</span>)
+                        </td>
+                        <td>开始录制视频，其中，参数<span class="font-bold">name</span>为：视频的完全限定名（用户可以自定义视频的名称及保存路径）</td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <span class="tag"> public void</span> <span class="methodName">StopRecording</span> ()
+                        </td>
+                        <td>停止视频录制</td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>事件</li>
+                </ul>
+            </h3>
+
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td style="width:20%">名称</td>
+                        <td style="width:40%">事件委托</td>
+                        <td>说明</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">onVideoReady</td>
+                        <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/PhoneStartEventData.html', './content/Camera/struct/PhoneStartEventData.html')">PhoneStartEventData</span>></td>
+                        <td>拍照开始事件</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">onPhoneComplete</td>
+                        <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/PhoneCompleteEventData.html', './content/Camera/struct/PhoneCompleteEventData.html')">PhoneCompleteEventData</span>></td>
+                        <td>拍照完成事件</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">onStartRecording</td>
+                        <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/VideoStartRecordingEventData.html', './content/Camera/struct/VideoStartRecordingEventData.html')">VideoStartRecordingEventData</span>></td>
+                        <td>视频录制开始事件</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">onStopRecording</td>
+                        <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/VideoStopRecordingEventData.html', './content/Camera/struct/VideoStopRecordingEventData.html')">VideoStopRecordingEventData</span>></td>
+                        <td>视频录制停止事件</td>
+                    </tr>
+                </table>
+            </div>
+
+
+        
+            <h3 class="mt-30">
+                拍照示例：
+            </h3>
+            <p class="fs-16">
+                以下代码当用户单击按钮时会触发Camera的拍照功能
+            </p>
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                主视图代码：
+            </h4>
+            <code>
+                <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--创建一个平面节点作为拍照按钮--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot<span> id="shutter" x="0" y="0" z="1500" width="300" height="120" fontSize="30" backgroundColor="0,0,255" textHorizontal="center" textVertical="middle" onClick="takeHandle"</span></label> /<span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+            </code>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                代码逻辑：
+            </h4>
+            <code>
+                <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// 绑定给按钮onClick的事件处理程序</span>
+<span class="tag">public</span> <span class="adorn">void</span> <span class="methodName">takeHandle</span><span class="block">(</span><span class="genericity">ClickEventData</span> eventData<span class="block">)</span>
+<span class="block">{</span>
+    EMR.<span class="genericity">Space</span>.<span class="methodName">takePhoto</span>(<span class="str">"phone.jpg"</span>);
+<span class="block">}</span></pre></code>
+
+<h3 class="mt-30">
+    录制视频示例：
+</h3>
+<p class="fs-16">
+    以下代码当用户单击按钮触发Camera的录像功能
+</p>
+<h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+    主视图代码：
+</h4>
+<code>
+    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--创建一个平面节点作为录像开始按钮--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot<span> id="startRecord" x="0" y="0" z="1500" width="300" height="120" fontSize="30" backgroundColor="0,0,255" textHorizontal="center" textVertical="middle" onClick="startRecordHandle"</span></label> /<span>&gt;</span>
+
+    <sub>&lt;!--创建一个平面节点作为录像结束按钮--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot<span> id="endRecord" x="0" y="0" z="1500" width="300" height="120" fontSize="30" backgroundColor="0,0,255" textHorizontal="center" textVertical="middle" onClick="stopRecordHandle"</span></label> /<span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+</code>
+
+<h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+    代码逻辑：
+</h4>
+<code>
+    <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// 绑定给开始按钮onClick的事件处理程序</span>
+<span class="tag">public</span> <span class="adorn">void</span> <span class="methodName">startRecordHandle</span><span class="block">(</span><span class="genericity">ClickEventData</span> eventData<span class="block">)</span>
+<span class="block">{</span>
+    EMR.<span class="genericity">Space</span>.<span class="methodName">startRecording</span>(<span class="str">"video.mp4"</span>);
+<span class="block">}</span>
+
+<span class="commentary">// 绑定给结束按钮onClick的事件处理程序</span>
+<span class="tag">public</span> <span class="adorn">void</span> <span class="methodName">stopRecordHandle</span><span class="block">(</span><span class="genericity">ClickEventData</span> eventData<span class="block">)</span>
+<span class="block">{</span>
+    EMR.<span class="genericity">Space</span>.<span class="methodName">stopRecording</span>();
+<span class="block">}</span></pre></code>
+
+
+            <h3 class="mt-25">
+                <ul class="ml-25">
+                    <li>获取图像向量信息</li>
+                </ul>
+            </h3>
+            <p class="fs-16">
+                可以通过getPhoneProjection方法获取图像、摄像头的一些向量信息
+            </p>
+
+            <h3 class="mt-25" style="border-left:4px solid #999; padding-left: .1852rem;">
+                getPhoneProjection 原型：
+            </h3>
+            <p class="fs-16" style="padding-left: .463rem;">
+                <span class="tag"> public static <span class="font-bold link" onclick="toLink('./struct/PhoneProjection.html', './content/Camera/struct/PhoneProjection.html')">PhoneProjection</span>?</span> <span class="methodName">getPhoneProjection</span> (<span class="tag">Vector2</span> <span class="adorn">vector</span>, (<span class="tag">PhotoCaptureFrame</span> <span class="adorn">photoCaptureFrame</span>)
+            </p>
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                参数:
+            </h4>
+            <table class="fs-16" style="padding-left: .463rem;">
+                <tr>
+                    <td class="font-bold">vector：</td>
+                    <td>Vector2</td>
+                    <td style="padding-left: .463rem;">图像上某一点的坐标（图像上某一点的像素坐标）</td>
+                </tr>
+
+                <tr>
+                    <td class="font-bold">photoCaptureFrame：</td>
+                    <td>PhotoCaptureFrame</td>
+                    <td style="padding-left: .463rem;">图像的PhotoCaptureFrame对象</td>
+                </tr>
+            </table>
+        <div class="h-30"></div>
+    </body>
+</html>

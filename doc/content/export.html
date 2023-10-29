@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    导出
+                </h1>
+                <p class="fs-16" style="font-size: .2593rem; line-height: .4074rem;">
+                    将一个应用部署到Holoens2设备需要经过以下步骤：
+                </p>
+
+                <div class="ml-30" style="margin-left: .2778rem;">
+                    <ol class="fs-16">
+                        <li >在unity 菜单中依次选择 File -> Build Settings：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/e1.png" alt="" />
+                            </div>
+                        </li>
+                        <li >按下图设置 Build Settings 窗口内的各参数，点击 Build 按钮</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/e2.png" alt="" />
+                            </div>
+                        </li>
+                        <li >选择导出的目标目录，然后点击 “选择文件夹” 按钮，等待导出完成</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/e3.png" alt="" />
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="ml-25">
+                <h3 class="mt-30">
+                    <ul>
+                        <li>
+                            部署到 Hololens2 设备
+                        </li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    原则上MRTK是跨平台跨设备的，凡被MRTK支持的设备应该都能将其导出的工程部署到设备上，这里以Hololens2为例：
+                </p>
+
+                <ol class="fs-16" style="margin-left: .2778rem;">
+                    <li >通过 USB线 将设备连接到电脑</li>
+                    <li style="margin-top: .1852rem; margin-bottom: .1852rem;">确保在 Hololens2 设备中 开发者模式 已被打开，Setting -> uPDATE & Security -> For developers 下 Developer Mode 选项被打开</li>
+                    <li style="margin-top: .1852rem; margin-bottom: .1852rem;">打开 Visual Studio 2022</li>
+                    <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                        <div style="margin-top: .1852rem; ">
+                            <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/e4.png" alt="" />
+                        </div>
+                    </li>
+                    <li style="margin-top: .1852rem; margin-bottom: .1852rem;">点击右侧打开项目或解决方案，选择刚刚导出成功的项目工程文件，点击右下角的 “打开” 按钮</li>
+                    <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                        <div style="margin-top: .1852rem; ">
+                            <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/e5.png" alt="" />
+                        </div>
+                    </li>
+                    <li style="margin-top: .1852rem; margin-bottom: .1852rem;">将Visual Studio 的生成方式设置为: Relase 或 Debug, 将平台架构设置为: ARM64，将部署方式设置为：设备，如下图： </li>
+                    <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                        <div style="margin-top: .1852rem; ">
+                            <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/e6.png" alt="" />
+                        </div>
+                    </li>
+
+                    <li style="margin-top: .1852rem; margin-bottom: .1852rem;">在 Visual studio 菜单中依次选择 调试 -> 开始调试，带上头显等待部署成功 </li>
+                    <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                        <div style="margin-top: .1852rem; ">
+                            <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/e7.png" alt="" />
+                        </div>
+                    </li>
+                    <li style="margin-top: .1852rem; margin-bottom: .1852rem;">如果是第一次将应用程序从 Visual Studio 部署到Hololens2设备，将提示输入PIN码，这时，在Hololens2设备上，呼出开始菜单，依次选择 Settings -> Update & Security _> For Developers 打开开发设置面板，点击Pair按钮生成PIN码，在Visual Studio弹窗中输入此PIN码完成配对，如下图：</li>
+                    <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                        <div style="margin-top: .1852rem; ">
+                            <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/e8.png" alt="" />
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="ml-25">
+                <h3 class="mt-30">
+                    <ul>
+                        <li>
+                            常见问题：
+                        </li>
+                    </ul>
+                </h3>
+
+                <ol class="fs-16" style="margin-left: .2778rem;">
+                    <li >平台架构设置列表下没有 “设备” 选项，可能需要将 Visual studio 解决方案的启动项目从 IL2CPP 项目更改为 UWP 项目。 为此，请在“解决方案资源管理器”中右键单击项目，然后选择“设为启动项目”，如下图：</li>
+                    <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                        <div style="margin-top: .1852rem; ">
+                            <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/r1.png" alt="" />
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="h-30"></div>
+    </body>
+</html>

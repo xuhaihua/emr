@@ -1,0 +1,276 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    <ul class="ml-25">
+                        <li>
+                            尺寸百分比
+                        </li>
+                    </ul>
+                </h1>
+                <p class="mb-10 fs-18">
+                    EMR中元素的尺寸单位是毫米（mm），但可以通过一些属性将其设置成百分比的表现形式，这些属性如下表：
+                </p>
+
+                <div class="table-border mt-10">
+                    <table cellspacing="0" class="table bb-1 bt-1">
+                        <tr>
+                            <td class="name" style="width: 20%;">名称</td>
+                            <td style="width: 30%;">说明</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold">widthFixed</td>
+                            <td>节点宽度是否固定，限制宽度的变化</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-bold">heightFixed</td>
+                            <td>节点高度是否固定，限制高度的变化</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-bold">depthFixed</td>
+                            <td>节点深度或厚度是否固定，限制高度的变化</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3 class="mt-30">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码在容器节点下创建了四个子节点这些子节点的宽度占父节点宽度的20% 【(子节点宽度为200 / 父节点宽度为800) / 4 * 100 = 20%】
+                </p>
+                        <code>
+                            <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--创建一个平面--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> name="container" x="0" y="0" z="1500" width="800" height="500" enableSize="true" sizeBoxPadding="10" contentHorizontal="center"</span></label><span>&gt;</span>
+        <sub>&lt;!--在平面内放置4个子节点并将其宽度设为：200、widthFixed设为：false使各子节点占父节点的20%--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="200" height="500" widthFixed="false" backgroundColor="255,255,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="200" height="500" widthFixed="false" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="200" height="500" widthFixed="false" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="200" height="500" widthFixed="false" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                        </code>
+
+                        <div class="result mt-25 v1">
+                            <div>
+                                <video src="../img/v17.mp4" muted="muted" autoplay="autoplay" loop></video>
+                            </div>
+                        </div>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../img/info.png" alt="" />
+                            </span>
+                            <label>注意：</label>
+                        </span>
+                    </p>
+                    <p>
+                        从以上示例可以看出当将子节点的widthFixed设为false时子节点的宽度将按原先尺寸在父节点中的占比，随父节点大小的变化而变化
+                    </p>
+                </div>
+            </div>
+
+
+            <!--概述-->
+            <div class="mb-30">
+                <h1>
+                    <ul class="ml-25">
+                        <li>
+                            位置百分比
+                        </li>
+                    </ul>
+                </h1>
+                <p class="mb-10 fs-18">
+                    EMR中元素的位置单位是毫米（mm）但可以通过一些属性将其设置成百分比的表现形式，这些属性如下表：
+                </p>
+
+                <div class="table-border mt-10">
+
+                    <div class="table-subTitle">
+                        <div>
+                            <span></span>
+                            <label>PanelLayer节点</label>
+                        </div>
+                    </div>
+                    <table cellspacing="0" class="table bt-1">
+                        <tr class="tableHead">
+                            <td class="name" style="width: 20%;">名称</td>
+                            <td style="width: 30%;">说明</td>
+                        </tr>
+    
+                        <tr>
+                            <td class="font-bold">leftFixed</td>
+                            <td>固定当前节点的左侧与父节左侧的距离值，限制节点的left属性变化</td>
+                        </tr>
+    
+                        <tr>
+                            <td class="font-bold">topFixed</td>
+                            <td>固定当前节点的顶部与父节点顶部的距离值，限制节点的top属性变化</td>
+                        </tr>
+                    </table>
+
+                    <div class="table-subTitle">
+                        <div>
+                            <span></span>
+                            <label>具有空间特性的节点（SpaceNode、PanelRoot）</label>
+                        </div>
+                    </div>
+                    <table cellspacing="0" class="table bt-1">
+                        <tr class="tableHead">
+                            <td class="name" style="width: 20%;">名称</td>
+                            <td style="width: 30%;">说明</td>
+                        </tr>
+    
+                        <tr>
+                            <td class="font-bold">xFixed</td>
+                            <td>x轴坐标是否固定，限制x轴的移动</td>
+                        </tr>
+    
+                        <tr>
+                            <td class="font-bold">yFixed</td>
+                            <td>y轴坐标是否固定，限制y轴的移动</td>
+                        </tr>
+    
+                        <tr>
+                            <td class="font-bold">zFixed</td>
+                            <td>z轴坐标是否固定，限制z轴的移动</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3 class="mt-30">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码在容器节点下创建了1个子节点，使子节点left占父容器的6.25%【(子节点left：50 / 父节点宽度：800) * 100 = 6.25%】，top占父容器的10% 【(子节点left：50 / 父节点宽度：500) * 100 = 6.25%】
+                </p>
+                        <code>
+                            <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--创建一个平面--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> name="container"  x="0" y="0" z="1500" width="800" height="500" backgroundColor="255,255,255" enableSize="true" sizeBoxPadding="10"</span></label><span>&gt;</span>
+        <sub>&lt;!--在平面内放置1个子节点并将其left设为：50、top设为：50使其左侧距父节点的边距为：6.25%、顶部距父节点的边距为：10%--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> left="50" top="50" leftFixed="false" topFixed="false" width="200" height="200" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                        </code>
+
+                        <div class="result mt-25 v1">
+                            <div>
+                                <video src="../img/v18.mp4" muted="muted" autoplay="autoplay" loop></video>
+                            </div>
+                        </div>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../img/info.png" alt="" />
+                            </span>
+                            <label>注意：</label>
+                        </span>
+                    </p>
+                    <p>
+                        以上示例当容器节点尺寸被放大时子节点left、top将一直保持原百分比
+                    </p>
+                </div>
+                
+            </div>
+
+
+            <!--概述-->
+            <div class="mb-30">
+                <h1>
+                    <ul class="ml-25">
+                        <li>PanelLayer的尺寸</li>
+                    </ul>
+                </h1>
+                <p class="mb-25 fs-18">
+                    PanelLayer 除了可以通过width、height属性设置节点的尺寸外，还可以通过他的四个位置属性left、top、right、bottom来决定它的宽度和高度， 具体规则如下：
+                </p>
+                <ol class="fs-16" style="margin-left: .2778rem;">
+                    <li>
+                        如果节点同时设有left、right属性则宽度被决定且优先级大于它的width属性
+                    </li>
+                    <li style="margin-top: .1852rem; margin-bottom: .1852rem;">
+                        如果节点同时设有top、bottom，则高度被决定且优先级大于它的height属性
+                    </li>
+                </ol>
+
+                <h3 class="mt-25">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码在容器节点下创建了1个子节点，使子节点每边都距父节点50mm
+                </p>
+                        <code>
+                            <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--在空间内创建一个平面节点--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> x="0" y="0" z="1500" width="1000" height="1000" backgroundColor="255,255,255"</span></label><span>&gt;</span>
+        <sub>&lt;!--创建一个平面图层，将left、right、top、bottom这四个属性设置为50使其每一边都距父节点50mm--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> left="50" right="50" top="50" bottom="50" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                        </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex51.png" alt="" />
+                </div>
+            </div>
+
+
+            <!--概述-->
+            <div class="mt-30">
+                <h1>
+                    <ul class="ml-25">
+                        <li>PanelLayer的位置</li>
+                    </ul>
+                </h1>
+                <p class="mb-25 fs-18">
+                    在PanelLayer节点上对 left、top、right、bottom 中任意两个组合后不会对尺寸产生引响的属性设值都能决定该节点在父节点中的位置，例如：同时设置：left、top，同时设置：left、bottom，同时设置：right、top，同时设置right、bottom
+                </p>
+                <h3 class="mt-25">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码将节点定位到父节点的最右侧最底部的位置
+                </p>
+                        <code>
+                            <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--在空间内创建一个平面节点--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> x="0" y="0" z="1500" width="1000" height="1000" backgroundColor="255,255,255"</span></label><span>&gt;</span>
+        <sub>&lt;!--创建一个平面图层，将right、bottom这两个属性设置为0使该节点位置父节点最右侧最底部--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> right="0" bottom="0" width="100" height="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                        </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../img/ex52.png" alt="" />
+                </div>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

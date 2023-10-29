@@ -1,0 +1,323 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    快速开始
+                </h1>
+                <p class="fs-16">
+                    本节展示一个简单的示例，该示例在空间内放置一段简单的文本 Hollo World，旨在快速了解EMR程序开发的过程和一些基础概念
+                </p>
+            </div>
+
+            <div class="ml-25">
+                <h3 class="mt-30">
+                    <ul>
+                        <li>
+                            创建Room
+                        </li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    在Unity中创建一个类Hollo.cs该类继承自Room（ 每一个应用都从一个继承自<span class="font-bold">Room</span>的根组件开始，您可以把它理解为unity中的一个场景、web中的一个窗口、或应用的入口）。
+                </p>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+    <span class="commentary">// 根组件必须继承自EMR.Room</span>
+    <span class="tag">public class</span> <span class="genericity">Hollo : EMR.Room</span>
+    <span class="block">{</span>
+        <span class="commentary">// 构造器</span>
+        <span class="tag">public</span> <span class="methodName">Hollo</span>()
+        <span class="block">{</span>
+            <span class="commentary">// 绑定room的视图文件</span>
+            <span class="adorn">this</span>.document = <span class="str">"view/main"</span>;
+        <span class="block">}</span>
+
+        <span class="commentary">// create 生命周期勾子函数</span>
+        <span class="tag">public override void</span> <span class="methodName">create</span>() <span class="block">{</span><span class="block">}</span>
+    
+        <span class="commentary">// created 生命周期勾子函数</span>
+        <span class="tag">public override void</span> <span class="methodName">created</span>() <span class="block">{</span><span class="block">}</span>
+    
+        <span class="commentary">// mounted 生命周期勾子函数</span>
+        <span class="tag">public override void</span> <span class="methodName">mounted</span>() <span class="block">{</span><span class="block">}</span>
+    
+        <span class="commentary">// destoryBefore 生命周期勾子函数</span>
+        <span class="tag">public override void</span> <span class="methodName">destoryBefore</span>() <span class="block">{</span><span class="block">}</span>
+    
+        <span class="commentary">// destoryed 生命周期勾子函数</span>
+        <span class="tag">public override void</span> <span class="methodName">destoryed</span>() <span class="block">{</span><span class="block">}</span>
+    <span class="block">}</span></pre>
+                </code>
+
+                <h3 class="mt-30">
+                    <ul>
+                        <li>
+                            创建视图文件
+                        </li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    在 Unity 的 <span class="font-bold">Resources/view</span> 目录下创建一个<span class="font-bold"> main.xml </span>文件作为 Room 的视图文档，EMR的视图文档是一个XML文件，与HTML不同HTML描述的是网页或浏览器中的内容而EMR中的视图文档描述的是空间中的内容。
+                </p>
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+    <span>&lt;</span><label>Root</label><span>&gt;</span>
+        <sub>&lt;!--在空间（0,0,1500mm）处放置一段文本，该文本水平垂直居中，文本颜色白色，文本字符大小50mm--&gt;</sub>
+        <span>&lt;</span><label>PanelRoot <span>
+            x="0"
+            y="0"
+            z="1500"
+            width="1000"
+            height="500"
+            color="255,255,255"
+            fontSize="50"
+            textHorizontal="center"
+            textVertical="middle"
+        </span></label><span>&gt;</span>
+            Hollo World
+        <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+
+                <default name="main" document="code/WinTestView" type="WinTest"></default>
+                <TypeQueryList>
+                    <EMR></EMR>
+                    <EMR.Entity></EMR.Entity>
+                </TypeQueryList>
+
+                <h3 class="mt-30">
+                    <ul>
+                        <li>
+                            应用配制
+                        </li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    打开Resources目录下的<span class="font-bold"> EMRConfig.xml </span>文件（如果没有创建一个），将 <span class="font-blod">default</span> 标签中的 type 属性设置为刚刚创建的Root子类Hollo
+                </p>
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+    <span>&lt;</span><label>Root</label><span>&gt;</span>
+        <sub>&lt;!--应用的默认Room（可以把它理解为默认场景）程序启动后会先从这个场景进入--&gt;</sub>
+        <span>&lt;</span><label>default <span> name="main" type="Hollo"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/default</span><span>&gt;</span>
+
+        <sub>&lt;!--程序集（EMR会在列表的程序集内搜索指定的类型）--&gt;</sub>
+        <span>&lt;</span><label>assemblyList<span></span></label><span>&gt;</span>
+            <span>&lt;</span><label>assembly<span> name="Life"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/assembly</span><span>&gt;</span>
+            <span>&lt;</span><label>assembly<span> name="Assembly-CSharp"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/assembly</span><span>&gt;</span>
+        <span>&lt;</span><span style="color:#F07178;">/assemblyList</span><span>&gt;</span>
+        
+        <sub>&lt;!--类型搜询列表每一个标签代表一个查询名称空间 （EMR会先从System名称空间中查询匹配的类型如果没有找到则按下表的顺序查找，你也可以在里面新增新的查找空间）--&gt;</sub>
+        <span>&lt;</span><label>typeQueryList<span></span></label><span>&gt;</span>
+            <span>&lt;</span><label>EMR<span></span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/EMR</span><span>&gt;</span>
+            <span>&lt;</span><label>EMR.Entity<span></span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/EMR.Entity</span><span>&gt;</span>
+        <span>&lt;</span><span style="color:#F07178;">/typeQueryList</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25">
+                    <img width="100%" src="../img/q1.png" alt="" />
+                </div>
+
+                <div class="tip custom-block weightInfo">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../img/keynote.png" alt="" />
+                            </span>
+                            <label>注意：</label>
+                        </span>
+                    </p>
+                    <p>
+                        <ol class="ml-25">
+                            <li>与unity不同，unity中的尺寸单位是比例（scale），在EMR中尺寸的单位是 <span class="font-bold">毫米（mm）</span> ,例如上面的示例中 z="1500"、width="1000"、height="500" 分别代表1500mm、1000mm、500mm</li>
+                            <li style="margin-top: .0926rem;">视图文档、模型、图片、其他资源等必须放在Resources目录下在代码中访问Resouces目录中的内容直接：目录 + 文件名 但不用跟后缀，例如：source/images/backImg 这路径代表访问的是 Resources/images目录下的backImg资源 backImg是图片但不用跟后缀名</li>
+                        </ol>
+                        
+                    </p>
+                </div>
+
+                <!--节点事件-->
+                <div class="mt-30">
+                    <h3>
+                        <ul>
+                            <li>EMRConfig 配制详解</li>
+                        </ul>
+                    </h3>
+                    <p class="fs-16">
+                        在正常运行程序之前都需要对EMR的应用作一些相关的配制，例如：应用所在的入口Room（可以把它理解为Unity中的入口场景）、应用中类的搜询列表
+                    </p>
+
+                    <div>
+                        <div class="table-border">
+                            <table cellspacing="0" class="table bb-1 bt-1">
+                                <tr class="tableHead">
+                                    <td style="width:20%">标签名称</td>
+                                    <td>说明</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold">default</td>
+                                    <td>该标签主要用于告诉EMR程序运行的默认Room是哪个（启动Room），其中属性：
+                                        <table style="background-color: #fff;" cellspacing="0">
+                                            <tr>
+                                                <td style="background-color: #fff; padding: 0px; width: .9259rem; border: 0px;"><span class="font-bold">name：</span></td>
+                                                <td style="background-color: #fff;">自定义room名称可以随便取（该属性为可选属性，如果不指定则在程序运行过程中无法手动通过查询方法找到该Room）</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="background-color: #fff; padding: 0px; width: .9259rem;  border: 0px;"><span class="font-bold">document：</span></td>
+                                                <td style="background-color: #fff;">用于指定Room的视图文档（该属性为可选属性，如果在Room类中已经绑定了可以在这里不用添加）</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="background-color: #fff; padding: 0px; width: .9259rem;  border: 0px;"><span class="font-bold">type：</span></td>
+                                                <td style="background-color: #fff;">Room的类名（该属性为可选属性，如果属性不存在但添加有document属性则系统会自动创建一个匿名组件作为根组件来加载由document属性指定的视图）</td>
+                                            </tr>
+                                        </table>
+                                </tr>
+
+                                <tr>
+                                    <td class="font-bold">assemblyList</td>
+                                    <td> 程序集列表，该元素将包含用于描述列表程序集的assembly元素，EMR将按该列表的先后次序搜寻指定的类型（例如：节点、组件） </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="font-bold">assembly</td>
+                                    <td>
+                                        程序集描述元素，该元素作为assemblyList元素的子元素用于描述列表中的一个程序集，其中属性： <span class="font-bold">name:</span> 为程序集的名称
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="font-bold">typeQueryList</td>
+                                    <td>在该列表内的子节点为类型搜询空间，EMR在查找一个类型或组件时会先从一个程序集的 System 名称空间内查询，如果没有找到则再按这个列表依次查找，但有个例外：如果标签名称是完全限定名则EMR将只在该标名中标定的命名空间下查找类型（例如，&ltComponetNamespace.Element>，它会直接查询 ComponetNamespace 名称空间下的 Element类型） </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mt-30">
+                    <h3>
+                        <ul>
+                            <li>Room</li>
+                        </ul>
+                    </h3>
+                    <p class="fs-16">
+                         每一个应用都从一个Room开始，您可以把它理解为unity中的一个场景、web中的一个窗口、或应用的入口
+                    </p>
+                    <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                        生命周期：
+                    </h4>
+
+                    <div class="table-border">
+                        <table cellspacing="0" class="table bb-1 bt-1">
+                            <tr class="tableHead">
+                                <td style="width: 30%;">方法</td>
+                                <td>说明</td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag">protected virtual void</span> <span class="font-bold">create</span> ()</td>
+                                <td>Room开始创建时被调用，在该阶段无法访问到Room的内容</td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag">protected virtual void</span> <span class="font-bold">created</span> ()</td>
+                                <td>Room的内容及其结构已全部生成，但Room的内容在视图上还未完成样式的初始化，在该阶段可以访问到Room的内容但内容的样式还未被设置</td>
+                            </tr>
+        
+        
+                            <tr>
+                                <td><span class="tag">protected virtual void</span> <span class="font-bold">mounted</span> ()</td>
+                                <td>Room的内容已绑定到视图并完成了所有样式的设置和内容的布局，在该阶段可以安全的访问到Room的内容</td>
+                            </tr>
+            
+                            <tr>
+                                <td><span class="tag">protected virtual void</span> <span class="font-bold">destoryBefore</span> ()</td>
+                                <td>当调用Room的destory方法后该勾子函数会被调用，在该阶段Room的内容仍然存在还未真正的被清理</td>
+                            </tr>
+    
+                            <tr>
+                                <td><span class="tag">protected virtual void</span> <span class="font-bold">destoryed</span> ()</td>
+                                <td>Room的所有内容已被完全销毁，此刻用户已无法该问到该Room的内容</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <p class="fs-16">
+                        关于Room的生命周期它与组件一样可以参照组件的<span class="link" onclick="toLink('./component/lifecycle.html', './content/queryStart.html')"> 生命周期 </span>，Room本质上也是一个组件
+                    </p>
+
+                    <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .5556rem; ">
+                        常用属性：
+                    </h4>
+
+                    <div class="table-border">
+                        <table cellspacing="0" class="table bb-1 bt-1">
+                            <tr class="tableHead">
+                                <td class="name" style="width: 20%;">名称</td>
+                                <td style="width: 10%">数据类型</td>
+                                <td style="width: 30%;">说明</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" style="width: 15%;">document</td>
+                                <td >string</td>
+                                <td>Room的视图文档</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h4 style="margin-top: .5556rem; border-left:4px solid #999; padding-left: .1852rem;">
+                        常用方法：
+                    </h4>
+
+                    <div class="table-border">
+                        <table cellspacing="0" class="table bb-1 bt-1">
+                            <tr class="tableHead">
+                                <td style="width:36%">方法</td>
+                                <td>说明</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 15%;"><span class="tag">void</span> <span class="font-bold">delay</span> (<span class="tag">int</span> delayTime, <span class="tag">TimerCallbackHandle</span> handle)</td>
+                                <td>延迟执行，其中参数：delayTime为：延迟的秒数，handle为：执行的委托方法</td>
+                            </tr>
+
+                            <tr>
+                                <td style="width: 15%;"><span class="tag">void</span> <span class="font-bold">next</span> (<span class="tag">CirculateTaskHandler</span> handle)</td>
+                                <td>下一循环周期执行，执行委托方法</td>
+                            </tr>
+
+                            <tr>
+                                <td style="width: 15%;"><span class="tag">void</span> <span class="font-bold">destory</span>()</td>
+                                <td>Room销毁</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="h-30"></div>
+    </body>
+</html>

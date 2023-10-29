@@ -1,0 +1,249 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStorage) {
+                localStorage.setItem("currentChild", linkStorage);
+                event.stopPropagation();
+                window.location.href = link;
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div>
+                <h1>
+                    Audio (音频) 模块
+                </h1>
+                <p class="fs-16">
+                    EMR中的Audio模块接入了MRTK中的空间音效，使用它可以很方便的在场景中实现声音在真实空间中传播的效果（空间音效）
+                </p>
+            </div>
+
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>创建模块</li>
+                </ul>
+            </h3>
+
+            <code>
+                <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// 创建audio模块</span>
+<span class="tag">var</span> audio = new <span class="genericity">Audio</span> (node);
+</pre>
+            </code>
+
+            <div class="tip custom-block">
+                <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                    <span class="infoTitle">
+                        <span>
+                            <img src="../../img/info.png" alt="" />
+                        </span>
+                        <label>说明：</label>
+                    </span>
+                </p>
+                <p>
+                    在创建audio时，需要传入一个节点作为Audio 3d音效所在的空间位置
+                </p>
+            </div>
+            
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>常用属性</li>
+                </ul>
+            </h3>
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td style="width:20%">名称</td>
+                        <td style="width:40%">数据类型</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">clip</td>
+                        <td>AudioClip</td>
+                        <td>当前音频剪辑</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">length</td>
+                        <td>float</td>
+                        <td>当前音频剪辑的时长（单位秒）</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">audioList</td>
+                        <td>List&lt;AudioClip></td>
+                        <td>音频剪辑列表（凡通过addClip方法添加的音频剪辑都在这个列表里）</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">audioMode</td>
+                        <td>AudioMode 可选的值：<span class="font-bold">three</span>（空间音效） | <span class="font-bold">two</span>（2D音效）</td>
+                        <td>音效模式，默认为two </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">isPlaying</td>
+                        <td>bool</td>
+                        <td>是否正在播放</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">speed</td>
+                        <td>float</td>
+                        <td>播放速度</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">volume</td>
+                        <td>float</td>
+                        <td>音量</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">isLoop</td>
+                        <td>bool</td>
+                        <td>是否循环播放</td>
+                    </tr>
+                </table>
+            </div>
+            
+
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>常用方法</li>
+                </ul>
+            </h3>
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td style="width:60%">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <span class="tag"> public void</span> <span class="methodName">addClip</span> (<span class="tag">string</span> <span class="adorn">name</span>, <span class="tag">string</span> <span class="adorn">filePath</span>)
+                        </td>
+                        <td>添加音频剪辑，其中，参数<span class="font-bold">name</span>为：音频剪辑的名称，<span class="font-bold">filePath</span>为：音频剪辑所在的Resources路径</td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <span class="tag"> public void</span> <span class="methodName">addClip</span> (<span class="tag">string</span> <span class="adorn">name</span>, <span class="genericity">AudioClip</span> <span class="adorn">clip</span>)
+                        </td>
+                        <td>添加音频剪辑，其中，参数<span class="font-bold">name</span>为：音频剪辑的名称，<span class="font-bold">clip</span>为：要添加的音频剪辑</td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <span class="tag"> public void</span> <span class="methodName">removeClip</span> (<span class="tag">string</span> <span class="adorn">name</span>)
+                        </td>
+                        <td>移除音频剪辑，其中，参数<span class="font-bold">name</span>为：要移除的音频剪辑的名称</td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <span class="tag"> public void</span> <span class="methodName">play</span> ()
+                        </td>
+                        <td>播放当前音频剪辑（如果当前clip为空则会将列表中的第一个clip作为当前播放clip）</td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <span class="tag"> public void</span> <span class="methodName">play</span> (<span class="tag">string</span> <span class="adorn">name</span>)
+                        </td>
+                        <td>播放指定名称的音频剪辑</td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <span class="tag"> public void</span> <span class="methodName">play</span> (<span class="genericity">AudioClip</span> <span class="adorn">clip</span>)
+                        </td>
+                        <td>播放指定音频剪辑</td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <span class="tag"> public void</span> <span class="methodName">pause</span> ()
+                        </td>
+                        <td>暂停</td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <span class="tag"> public void</span> <span class="methodName">stop</span> ()
+                        </td>
+                        <td>停止</td>
+                    </tr>
+                </table>
+            </div>
+        
+            <h3 class="mt-30">
+                Example：
+            </h3>
+            <p class="fs-16">
+                以下代码将音频赋于一个节点，当用户在空间内移动这个节点时将会听到声在真实空间中传播的效果（3D空间音效）
+            </p>
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                主视图代码：
+            </h4>
+            <code>
+                <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--创建一个空间节点并由该节点加载一个音箱NPC--&gt;</sub>
+    <span>&lt;</span><label>SpaceNode<span> id="rodio" x="0" y="0" z="1500" width="300" height="300" depth="300" backgroundColor="0,0,0" npcPath="sources/model/Radio/Prefab/radio" enableManipulator="true" renderMode="additive"</span></label> /<span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+            </code>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                代码逻辑：
+            </h4>
+            <code>
+                <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// mounted生命周期函数，在这里文档内容已绑定给视图，内容的样式、布局都已完成设置</span>
+<span class="tag">protected</span> <span class="tag">override</span> <span class="adorn">void</span> <span class="methodName">mounted</span><span class="block">(</span>)</span>
+<span class="block">{</span>
+    <span class="commentary">// 获取radio节点</span>
+    <span class="tag">var</span> <span class="adorn">rodio</span> = <span class="tag">this</span>.<span class="methodName">getNodeById</span>&lt;<span class="genericity">SpaceNode</span>>(<span class="str">"rodio"</span>);
+
+    <span class="commentary">// 创建audio模块</span>
+    <span class="tag">var</span> audio = new <span class="genericity">Audio</span> (rodio);
+
+    <span class="commentary">// 将模式设置为3D空间音效</span>
+    <span class="adorn">audio</span>.audioMode = <span class="methodName">AudioMode</span>.three;
+
+    <span class="commentary">// 向audio添加一个音频，并将该音频在audio中命名为music</span>
+    <span class="adorn">audio</span>.<span class="methodName">addClip</span>(<span class="str">"music"</span>, <span class="str">"sources/sound/music"</span>);
+
+    <span class="commentary">// 播放audio 中名称为m1的音频</span>
+    <span class="adorn">audio</span>.<span class="methodName">play</span>(<span class="str">"music"</span>);
+<span class="block">}</span>
+</pre>
+            </code>
+
+            <div class="result mt-30 v8">
+                <div>
+                    <video src="../../img/v14.mp4" muted="muted" autoplay="autoplay" loop></video>
+                </div>
+            </div>
+
+            <div class="tip custom-block">
+                <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                    <span class="infoTitle">
+                        <span>
+                            <img src="../../img/info.png" alt="" />
+                        </span>
+                        <label>说明：</label>
+                    </span>
+                </p>
+                <p>
+                    当用户在空间中拖动这个音箱时会感觉到声音在空间中的位置和大小在不断变化。
+                </p>
+            </div>
+
+        <div class="h-30"></div>
+    </body>
+</html>

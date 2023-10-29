@@ -1,0 +1,134 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    空间感知
+                </h1>
+                <p class="mb-10 fs-16">
+                    MR应用的特点是融合虚实，需要准确对齐虚拟世界与真实世界，虚实之间也要能相互作用，如反射、遮挡、物理模拟等，空间感知基于空间网格，它是头戴示显示器的视觉传感器捕捉到的空间表间网格信息，如下图
+                </p>
+
+                <div class="result mt-25">
+                    <img style="width: 100%;" src="../../img/ex86.png" alt="" />
+                </div>
+
+                <h3 class="mt-25">
+                    <ul class="ml-25">
+                        <li>
+                            开启空间感知：
+                        </li>
+                    </ul>
+                </h3>
+
+                <p class="fs-16">
+                    可以通过 EMR.Space.spatialAwarenessEnable 属性控制空间感知的开启与否
+                </p>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+<sub>// 打开空间感知</sub>
+EMR.<span class="genericity">Space</span>.spatialAwarenessEnable = <span class="tag">true</span>;
+</pre></code>
+
+
+<div class="mt-30">
+    <h3>
+        <ul>
+            <li class="ml-25">空间感知事件</li>
+        </ul>
+    </h3>
+    <p class="fs-16">
+        以下事件都属性EMR.Space类的静态事件
+    </p>
+
+    <div>
+        <div class="table-border">
+            <table cellspacing="0" class="table bb-1 bt-1">
+                <tr class="tableHead">
+                    <td style="width:20%">名称</td>
+                    <td style="width:40%">事件委托</td>
+                    <td>说明</td>
+                </tr>
+                <tr>
+                    <td class="font-bold" style="width: 15%;">onAddSpatialMesh</td>
+                    <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/AddSpatialMeshEventData.html', './content/spatialPerception/struct/AddSpatialMeshEventData.html')">AddSpatialMeshEventData</span>></td>
+                    <td>空间网格添加事件</td>
+                </tr>
+                <tr>
+                    <td class="font-bold" style="width: 15%;">onUpdatedSpatialMesh</td>
+                    <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/UpdatedSpatialMeshEventData.html', './content/spatialPerception/struct/UpdatedSpatialMeshEventData.html')">UpdatedSpatialMeshEventData</span>></td>
+                    <td>空间网格更新事件</td>
+                </tr>
+                <tr>
+                    <td class="font-bold" style="width: 15%;">onRemovedSpatialMesh</td>
+                    <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/RemovedSpatialMeshEventData.html', './content/spatialPerception/struct/RemovedSpatialMeshEventData.html')">RemovedSpatialMeshEventData</span>></td>
+                    <td>空间网格移除事件</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="tip custom-block weightInfo">
+        <p class="custom-block-title pd-0 color-black font-bold mt-0">
+            <span class="infoTitle">
+                <span>
+                    <img src="../../img/keynote.png" alt="" />
+                </span>
+                <label>注意：</label>
+            </span>
+        </p>
+        <p>
+            以上事件均属于EMR.Space类的静态事件
+        </p>
+    </div>
+
+    <h3 class="mt-25">
+        <ul>
+            <li class="ml-25">常用属性</li>
+        </ul>
+    </h3>
+
+    <div>
+        <div class="table-border">
+            <table cellspacing="0" class="table bb-1 bt-1">
+                <tr class="tableHead">
+                    <td style="width:20%">属性名称</td>
+                    <td style="width:60%">类型</td>
+                    <td>说明</td>
+                </tr>
+                <tr>
+                    <td class="font-bold" style="width: 15%;">spatialMeshVisibleMode</td>
+                    <td><span class="link" onclick="toLink('./struct/SpatialMeshVisibleMode.html', './content/spatialPerception/struct/SpatialMeshVisibleMode.html')">SpatialMeshVisibleMode</span> 枚举，none（不显示） | visible（显示） | occlusion（遮挡）</td>
+                    <td>网格显示模式</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="result mt-25">
+    <img style="width: 100%;" src="../../img/ex89.png" alt="" />
+</div>
+        <div class="h-30"></div>
+    </body>
+</html>

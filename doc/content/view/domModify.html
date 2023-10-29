@@ -1,0 +1,717 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+            <h1 class="mb-10">
+                文档操作
+            </h1>
+            <p class="mb-10">
+                EMR中提供了一些对视图文档操作的基本方法，使用这些方法可以很方便的创建、修改和控制空间中的内容，它的作用类似于Web开发中对 Dom（文档对象模型）的操作，这些方法理解起来也非常容易
+            </p>
+
+            <h3 class="mt-25">
+                创建节点
+            </h3>
+
+            <p class="mb-10">
+                下表列出的方法用于创建节点
+            </p>
+
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">protected PanelRoot</span> <span class="link" onclick="toLink('./struct/createPanelRoot.html', './content/view/struct/createPanelRoot.html')">createPanelRoot</span> (<span title="float x, float y, float z, float xAngle, float yAngle, float zAngle, float width, float height, float depth, bool isPanel = true, NPC npc = null, RendMode rendMode = RendMode.opaque" style="cursor: pointer;"> ... </span>)</td>
+                        <td>创建PanelRoot节点</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">protected PanelLayer</span> <span class="link" onclick="toLink('./struct/createPanelLayer.html', './content/view/struct/createPanelLayer.html')">createPanelLayer</span> (<span title="float? left, float? top, float? right, float? bottom, float width = 0, float height = 0, float depth = 0, int zIndex = 0, bool isPanel = true, NPC npc = null, RendMode rendMode = RendMode.opaque" style="cursor: pointer;"> ... </span>)</td>
+                        <td>创建PanelLayer节点</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="tag">protected SpaceNode</span> <span class="link" onclick="toLink('./struct/createSpanceNode.html', './content/view/struct/createSpanceNode.html')">createSpanceNode</span> (<span title="float x, float y, float z, float xAngle, float yAngle, float zAngle, float width, float height, float depth, NPC npc = null, RendMode rendMode = RendMode.opaque" style="cursor: pointer;"> ... </span>)</td>
+                        <td>创建SpaceNode节点</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="tag">protected SpaceMagic</span> <span class="genericity">createSpaceMagic</span> ()</td>
+                        <td>创建SpaceMagic节点</td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <h3 class="mt-25">
+                创建组件
+            </h3>
+
+            <p class="mb-10">
+                下表列出的方法用于创建组件
+            </p>
+
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr>
+                        <td><span class="tag">public T</span> <sapn class="font-bold">createComponent</sapn> &lt;<span class="methodName">T</span>> ()</td>
+                        <td>创建组件</td>
+                    </tr>
+        
+                    <tr>
+                        <td><span class="tag">public T</span> <sapn class="font-bold">createComponent</sapn> &lt;<span class="methodName">T</span>> (<span class="tag">object[]</span> parameters)</td>
+                        <td>创建组件</td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+            
+
+            <h3 class="mt-25">
+                查找节点
+            </h3>
+
+            <p class="mb-10">
+                下表列出的方法用于查找指定节点，节点的查找可以在全局、文档、节点、组件下进行
+            </p>
+
+            <div class="table-border">
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>全局范围</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">public static</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">EMR.Space.getNodes</sapn> ()</td>
+                        <td>全局查找当前应用中的所有节点</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">public static</span> <span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">EMR.Space.getNodes</sapn> &lt;<span class="methodName">T</span>> ()</td>
+                        <td>EMR.Space.getNodes的泛型方法，其中泛型参数 T 的类型可以是<span class="font-bold">PanelRoot</span>、<span class="font-bold">PanelLayer</span>、<span class="font-bold">SpaceNode</span>中的一种</td>
+                    </tr>
+
+
+                    <tr>
+                        <td><span class="tag">public static</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">EMR.Space.getNodesByName</sapn> (<span class="tag">string</span> name)</td>
+                        <td>按名称全局查找当前应用中的所有名称为name的节点</td>
+                    </tr>
+    
+                    <tr>
+                        <td><span class="tag">public static</span> <span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">EMR.Space.getNodesByName</sapn> &lt;<span class="methodName">T</span>> (<span class="tag">string</span> name)</td>
+                        <td>EMR.Space.getNodesByName的泛型方法，其中泛型参数 T 的类型可以是<span class="font-bold">PanelRoot</span>、<span class="font-bold">PanelLayer</span>、<span class="font-bold">SpaceNode</span>中的一种</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>文档范围</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">getNodes</sapn> ()</td>
+                        <td>获取前组件视图文档内的所有节点</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">getNodes</sapn> &lt;<span class="methodName">T</span>> ()</td>
+                        <td>getNodes的泛型方法，其中泛型参数 T 的类型可以是<span class="font-bold">PanelRoot</span>、<span class="font-bold">PanelLayer</span>、<span class="font-bold">SpaceNode</span>中的一种</td>
+                    </tr>
+
+
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">EMR.Entity.Node</span> <sapn class="font-bold">getNodeById</sapn> (<span class="tag">string</span> id)</td>
+                        <td>在当前组件的视图文档内按Id查找节点（如果指定的id不存在则返回null）</td>
+                    </tr>
+    
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="methodName">T</span> <sapn class="font-bold">getNodeById</sapn> &lt;<span class="methodName">T</span>> (<span class="tag">string</span> id)</td>
+                        <td>getNodeById的泛型方法，其中泛型参数 T 的类型可以是<span class="font-bold">PanelRoot</span>、<span class="font-bold">PanelLayer</span>、<span class="font-bold">SpaceNode</span>中的一种</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">EMR.Entity.Node</span> <sapn class="font-bold">getNodesByName</sapn> (<span class="tag">string</span> name)</td>
+                        <td>在当前组件的视图文档内按称名查找节点</td>
+                    </tr>
+    
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">EMR.Entity.Node</span> <sapn class="font-bold">getNodesByName</sapn> (<span class="tag">string</span> name)</td>
+                        <td>getNodesByName的泛型方法，其中泛型参数 T 的类型可以是<span class="font-bold">PanelRoot</span>、<span class="font-bold">PanelLayer</span>、<span class="font-bold">SpaceNode</span>中的一种</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>在节点下查找</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">EMR.Entity.Node.getChildNodes</sapn> ()</td>
+                        <td>查找指定节点下的所有子节点</td>
+                    </tr>
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">EMR.Entity.Node.getChildNodes</sapn> &lt;<span class="methodName">T</span>> ()</td>
+                        <td>EMR.Entity.Node.getChildNodes的泛型方法，其中泛型参数 T 的类型可以是<span class="font-bold">PanelRoot</span>、<span class="font-bold">PanelLayer</span>、<span class="font-bold">SpaceNode</span>中的一种</td>
+                    </tr>
+
+                    <!-- <tr>
+                        <td>List&lt;EMR.Entity.Node> <sapn class="font-bold">EMR.Entity.Node.getChildNodeById</sapn> (string id)</td>
+                        <td>在指定节点下按id查找子节点（如果指定的id不存在或不在该节点下则返回null）</td>
+                    </tr>
+                    <tr>
+                        <td>List&lt;T> <sapn class="font-bold">EMR.Entity.Node.getChildNodeById</sapn> &lt;T> (string id)</td>
+                        <td>EMR.Entity.Node.getChildNodeById的泛型方法，其中泛型参数T的类型可以是PanelRoot、PanelLayer、SpaceNode中的一种</td>
+                    </tr> -->
+
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">EMR.Entity.Node.getChildNodesByName</sapn> (<span class="tag">string</span> name)</td>
+                        <td>查找指定节点下的所有名称为name的子节点</td>
+                    </tr>
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">EMR.Entity.Node.getChildNodesByName</sapn> &lt;<span class="methodName">T</span>> (<span class="tag">string</span> name)</td>
+                        <td>EMR.Entity.Node.getChildNodesByName的泛型方法，其中泛型参数 T 的类型可以是<span class="font-bold">PanelRoot</span>、<span class="font-bold">PanelLayer</span>、<span class="font-bold">SpaceNode</span>中的一种</td>
+                    </tr>
+                </table>
+
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>在组件下查找</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">EMR.Component.getChildNodes</sapn> ()</td>
+                        <td>查找指定组件下的所有子节点</td>
+                    </tr>
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">EMR.Component.getChildNodes</sapn> &lt;<span class="methodName">T</span>> ()</td>
+                        <td>EMR.Component.getChildNodes的泛型方法，其中泛型参数T的类型可以是<span class="font-bold">PanelRoot</span>、<span class="font-bold">PanelLayer</span>、<span class="font-bold">SpaceNode</span>中的一种</td>
+                    </tr>
+
+                    <!-- <tr>
+                        <td>List&lt;EMR.Entity.Node> <sapn class="font-bold">EMR.Component.getChildNodeById</sapn> (string id)</td>
+                        <td>在指定组件下按id查找子节点（如果指定的id不存在或不在该组件下则返回null）</td>
+                    </tr>
+                    <tr>
+                        <td>List&lt;T> <sapn class="font-bold">EMR.Component.getChildNodeById</sapn> &lt;T> (string id)</td>
+                        <td>EMR.Component.getChildNodeById的泛型方法，其中泛型参数T的类型可以是PanelRoot、PanelLayer、SpaceNode中的一种</td>
+                    </tr> -->
+
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">EMR.Component.getChildNodesByName</sapn> (<span class="tag">string</span> name)</td>
+                        <td>查找指定组件下的所有名称为name的子节点</td>
+                    </tr>
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">EMR.Component.getChildNodesByName</sapn> &lt;T> (<span class="tag">string</span> name)</td>
+                        <td>EMR.Component.getChildNodesByName的泛型方法，其中泛型参数 T 的类型可以是<span class="font-bold">PanelRoot</span>、<span class="font-bold">PanelLayer</span>、<span class="font-bold">SpaceNode</span>中的一种</td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <h3 class="mt-25">
+                添加节点
+            </h3>
+
+            <p class="mb-10">
+                下表列出的方法用于在节点或组件下追加一个子节点
+            </p>
+
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">EMR.Entity.Node.appendNode</sapn> (<span class="tag">EMR.Entity.Node</span> node)</td>
+                        <td>在指定节点下追加子节点</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">EMR.Component.appendNode</sapn> (<span class="tag">EMR.Entity.Node</span> node)</td>
+                        <td>在指定组件下追加子节点</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="mt-25">
+                插入节点
+            </h3>
+
+            <p class="mb-10">
+                下表列出的方法用于在节点或组件下插入一个子节点
+            </p>
+            <div class="table-border">
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>在节点下插入</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">EMR.Entity.Node.insertBefore</sapn> (<span class="tag">EMR.Entity.Node</span> node, <span class="tag">EMR.Entity.Node</span> refNode)</td>
+                        <td>在指定的已有的节点之前插入新的节点，其中参数：node为要插入的节点，refNode为参照节点（新节点将被插入到这个节点之前）</td>
+                    </tr>
+    
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">EMR.Entity.Node.insertBefore</sapn> (<span class="tag">EMR.Entity.Node</span> node, <span class="tag">EMR.Component</span> refComponent)</td>
+                        <td>在指定的已有组件之前插入新的节点，其中参数：node为要插入的节点，refComponent为参照组件（新节点将被插入到这个组件之前）</td>
+                    </tr>
+                </table>
+
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>在组件下插入</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">EMR.Component.insertBefore</sapn> (<span class="tag">EMR.Entity.Node</span> node, <span class="tag">EMR.Entity.Node</span> refNode)</td>
+                        <td>在指定的已有的节点之前插入新的组件，其中参数：node为要插入的节点，refNode为参照节点（新节点将被插入到这个节点之前）</td>
+                    </tr>
+    
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Entity.Node</span>> <sapn class="font-bold">EMR.Component.insertBefore</sapn> (<span class="tag">EMR.Entity.Node</span> node, <span class="tag">EMR.Component</span> refComponent)</td>
+                        <td>在指定的已有组件之前插入新的组件，其中参数：node为要插入的节点，refComponent为参照组件（新节点将被插入到这个组件之前）</td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+            <h3 class="mt-25">
+                查找组件
+            </h3>
+
+            <p class="mb-10">
+                下表列出的方法用于查找指定组件，组件的查找可以在全局、文档、节点、组件下进行
+            </p>
+
+            <div class="table-border">
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>全局范围</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">public static</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">EMR.Space.getComponents</sapn> ()</td>
+                        <td>全局查找当前应用中的所有组件</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">public static</span> <span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">EMR.Space.getComponents</sapn> &lt;<span class="methodName">T</span>> ()</td>
+                        <td>EMR.Component.getComponents的泛型方法，其中泛型参数 T 为继承自 <span class="font-bold">Component</span> 的类型</td>
+                    </tr>
+
+
+                    <tr>
+                        <td><span class="tag">public static</span> <span class="genericity">List</span>&lt;EMR.Component> <sapn class="font-bold">EMR.Space.getComponentsByName</sapn> (<span class="tag">string</span> name)</td>
+                        <td>按名称全局查找当前应用中的所有名称为name的组件</td>
+                    </tr>
+    
+                    <tr>
+                        <td><span class="tag">public static</span> <span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">EMR.Space.getComponentsByName</sapn> &lt;<span class="methodName">T</span>> (<span class="tag">string</span> name)</td>
+                        <td>EMR.Space.ggetComponentsByName的泛型方法，其中泛型参数 T 为继承自<sapn class="font-bold">Component</sapn>的类型</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>文档范围</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">getComponents</sapn> ()</td>
+                        <td>获取视图文档内的所有组件</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">getComponents</sapn> &lt;<span class="methodName">T</span>> ()</td>
+                        <td>getComponents的泛型方法，其中泛型参数 <sapn class="font-bold">T</sapn> 为继承自<span class="font-bold">Component</span>的类型</td>
+                    </tr>
+
+
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">EMR.Component</span> <sapn class="font-bold">getComponentById</sapn> (<span class="tag">string</span> id)</td>
+                        <td>在视图文档内按Id查找组件（如果指定的id不存在则返回null）</td>
+                    </tr>
+    
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="methodName">T</span> <sapn class="font-bold">getComponentById</sapn> &lt;<span class="methodName">T</span>> (<span class="tag">string</span> id)</td>
+                        <td>getComponentById的泛型方法，其中泛型参数 T 为继承自<span class="font-bold">Component</span>的类型</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">getComponentsByName</sapn> (<span class="tag">string</span> name)</td>
+                        <td>在当前组件的视图文档内按称名查找组件</td>
+                    </tr>
+    
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">getComponentsByName</sapn> (<span class="tag">string</span> name)</td>
+                        <td>getComponentsByName的泛型方法，其中泛型参数  T 为继承自<span class="font-bold">Component</span>的类型</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>在节点下查找</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">EMR.Entity.Node.getChildComponents</sapn> ()</td>
+                        <td>查找指定节点下的所有子组件</td>
+                    </tr>
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">EMR.Entity.Node.getChildComponents</sapn> &lt;<span class="methodName">T</span>> ()</td>
+                        <td>EMR.Entity.Node.getChildComponents的泛型方法，其中泛型参数 T 为继承自<span class="font-bold">Component</span>的类型</td>
+                    </tr>
+
+                    <!-- <tr>
+                        <td>List&lt;EMR.Component> <sapn class="font-bold">EMR.Entity.Node.getChildComponentById</sapn> (string id)</td>
+                        <td>在指定节点下按id查找子组件（如果指定的id不存在或不在该节点下则返回null）</td>
+                    </tr>
+                    <tr>
+                        <td>List&lt;T> <sapn class="font-bold">EMR.Entity.Node.getChildComponentById</sapn> &lt;T> (string id)</td>
+                        <td>EMR.Entity.Node.getChildComponentById的泛型方法，其中泛型参数T为继承自Component的类型</td>
+                    </tr> -->
+
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">EMR.Entity.Node.getChildComponentsByName</sapn> (<span class="tag">string</span> name)</td>
+                        <td>查找指定节点下的所有名称为name的子组件</td>
+                    </tr>
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;T> <sapn class="font-bold">EMR.Entity.Node.getChildComponentsByName</sapn> &lt;<span class="methodName">T</span>> (<span class="tag">string</span> name)</td>
+                        <td>EMR.Entity.Node.getChildComponentsByName的泛型方法，其中泛型参数 T 为继承自<span class="font-bold">Component</span>的类型</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>在组件下查找</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">EMR.Component.getChildComponents</sapn> ()</td>
+                        <td>查找指定组件下的所有子组件</td>
+                    </tr>
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">EMR.Component.getChildComponents</sapn> &lt;<span class="methodName">T</span>> ()</td>
+                        <td>EMR.Component.getChildComponents的泛型方法，其中泛型参数 T 为继承自<span class="font-bold">Component</span>的类型</td>
+                    </tr>
+
+                    <!-- <tr>
+                        <td>List&lt;EMR.Component> <sapn class="font-bold">EMR.Component.getChildComponentById</sapn> (string id)</td>
+                        <td>在指定组件下按id查找子组件（如果指定的id不存在或不在该组件下则返回null）</td>
+                    </tr>
+                    <tr>
+                        <td>List&lt;T> <sapn class="font-bold">EMR.Component.getChildComponentById</sapn> &lt;T> (string id)</td>
+                        <td>EMR.Component.getChildNodeById的泛型方法，其中泛型参数T为继承自Component的类型</td>
+                    </tr> -->
+
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">EMR.Component.getChildComponentsByName</sapn> (<span class="tag">string</span> name)</td>
+                        <td>查找指定组件下的所有名称为name的子组件</td>
+                    </tr>
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="methodName">T</span>> <sapn class="font-bold">EMR.Component.getChildComponentsByName</sapn> &lt;T> (<span class="tag">string</span> name)</td>
+                        <td>EMR.Component.getChildComponentsByName的泛型方法，其中泛型参数 T 为继承自<span class="font-bold">Component</span>的类型</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="mt-25">
+                添加组件
+            </h3>
+
+            <p class="mb-10">
+                下表列出的方法用于在节点或组件下追加一个子组件
+            </p>
+
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">EMR.Entity.Node.appendComponent</sapn> (<span class="tag">EMR.Component</span> component)</td>
+                        <td>在指定节点下追加子组件</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">EMR.Component.appendComponent</sapn> (<span class="tag">EMR.Component</span> component)</td>
+                        <td>在指定组件下追加子组件</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="mt-25">
+                插入组件
+            </h3>
+
+            <p class="mb-10">
+                下表列出的方法用于在节点或组件下插入一个子组件
+            </p>
+            <div class="table-border">
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>在节点下插入</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">EMR.Entity.Node.insertComponent</sapn> (<span class="tag">EMR.Component</span> component, <span class="tag">EMR.Entity.Node</span> refNode)</td>
+                        <td>在指定的已有的节点之前插入新的组件，其中参数：component为要插入的组件，refNode为参照节点（新组件将被插入到这个节点之前）</td>
+                    </tr>
+    
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">EMR.Entity.Node.insertComponent</sapn> (<span class="tag">EMR.Component</span> component, <span class="tag">EMR.Component</span> refComponent)</td>
+                        <td>在指定的已有组件之前插入新的组件，其中参数：component为要插入的组件，refNode为参照组件（新组件将被插入到这个组件之前）</td>
+                    </tr>
+                </table>
+
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>在组件下插入</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">EMR.Component.insertComponent</sapn> (<span class="tag">EMR.Component</span> component, <span class="tag">EMR.Entity.Node</span> refNode)</td>
+                        <td>在指定的已有的节点之前插入新的组件，其中参数：component为要插入的节点，refNode为参照节点（新组件将被插入到这个节点之前）</td>
+                    </tr>
+    
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Component</span>> <sapn class="font-bold">EMR.Component.insertComponent</sapn> (<span class="tag">EMR.Component</span> component, <span class="tag">EMR.Component</span> refComponent)</td>
+                        <td>在指定的已有组件之前插入新的节点，其中参数：component为要插入的组件，refComponent为参照组件（新组件将被插入到这个组件之前）</td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+            <h3 class="mt-25">
+                查找元素
+            </h3>
+
+            <p class="mb-10">
+                在系统内不管是节点还是组件它们都属于元素，元素与节点的区别是节点提供了操作的更多细节而元素只是一个接口，每个节点或组件在实现时都继承了它，元素抽取了所有节点和组件的公共属性。 下表列出了对元素的查询方法，元素的查找可以在文档、节点、组件下进行
+            </p>
+
+            <div class="table-border">
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>文档范围</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">List</span>&lt;EMR.Element> <sapn class="font-bold">getElements</sapn> ()</td>
+                        <td>获取视图文档内的所有元素</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">EMR.Element</span> <sapn class="font-bold">getElementById</sapn> (<sapn class="tag">string</sapn> id)</td>
+                        <td>在视图文档内按Id查找元素（如果指定的id不存在则返回null）</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">protected</span> <span class="genericity">List</span>&lt;<span class="genericity">EMR.Element</span>> <sapn class="font-bold">getElementsByName</sapn> (<sapn class="tag">string</sapn> name)</td>
+                        <td>在当前组件的视图文档内按称名查找元素</td>
+                    </tr>
+                </table>
+
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>在节点下查找</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="genericity">EMR.Element</span>> <sapn class="font-bold">EMR.Entity.Node.getChildElements</sapn> ()</td>
+                        <td>查找指定节点下的所有子元素</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="genericity">EMR.Element</span>> <sapn class="font-bold">EMR.Entity.Node.getChildElementsByName</sapn> (<sapn class="tag">string</sapn> name)</td>
+                        <td>查找指定节点下的所有名称为name的子元素</td>
+                    </tr>
+                </table>
+
+                <div class="table-subTitle">
+                    <div>
+                        <span></span>
+                        <label>在组件下查找</label>
+                    </div>
+                </div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="genericity">EMR.Element</span>> <sapn class="font-bold">EMR.Component.getChildElements</sapn> ()</td>
+                        <td>查找指定组件下的所有子元素</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="genericity">List</span>&lt;<span class="genericity">EMR.Element</span>> <sapn class="font-bold">EMR.Component.getChildElementsByName</sapn> (<sapn class="tag">string</sapn> name)</td>
+                        <td>查找指定组件下的所有名称为name的子元素</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="mt-25">
+                添加元素
+            </h3>
+
+            <p class="mb-10">
+                下表列出的方法用于在节点或组件下追加一个子元素
+            </p>
+
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">EMR.Element</span> <sapn class="font-bold">EMR.Entity.Node.appendElement</sapn> (<sapn class="tag">EMR.Element</sapn> element)</td>
+                        <td>在指定节点下追加子元素</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">EMR.Element</span> <sapn class="font-bold">EMR.Component.appendElement</sapn> (<sapn class="tag">EMR.Element</sapn> element)</td>
+                        <td>在指定组件下追加子元素</td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <h3 class="mt-25">
+                插入元素
+            </h3>
+
+            <p class="mb-10">
+                下下表列出的方法用于在节点或组件下插入一个子元素
+            </p>
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">EMR.Element</span> <sapn class="font-bold">EMR.Entity.Node.insertElement</sapn> (<sapn class="tag">EMR.Element</sapn> element, <sapn class="tag">EMR.Element</sapn> refElement)</td>
+                        <td>在指定的已有的元素之前插入新的元素，其中参数：element为要插入的元素，refElement为参照元素（新元素将被插入到这个元素之前）</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">virtual</span> <span class="genericity">EMR.Element</span> <sapn class="font-bold">EMR.Component.insertElement</sapn> (<sapn class="tag">EMR.Element</sapn> element, <sapn class="tag">EMR.Element</sapn> refElement)</td>
+                        <td>在指定的已有的元素之前插入新的元素，其中参数：element为要插入的元素，refElement为参照元素（新元素将被插入到这个元素之前）</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="h-30"></div>
+        </div>
+    </body>
+</html>

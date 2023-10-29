@@ -1,0 +1,293 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStorage) {
+                localStorage.setItem("currentChild", linkStorage);
+                event.stopPropagation();
+                window.location.href = link;
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div>
+                <h1>
+                    Voice (语音) 模块
+                </h1>
+                <p class="fs-16">
+                    Voice模块可以很方便的实现语音与空间中虚拟对象间的交互，可以通过EMR.Space.voice这个静态属性来获取他的引用
+                </p>
+            </div>
+
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>常用属性</li>
+                </ul>
+            </h3>
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td style="width:20%">名称</td>
+                        <td style="width:40%">数据类型</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">supportVoice</td>
+                        <td>bool</td>
+                        <td>当前语音模块是否可用</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">mode</td>
+                        <td>VoiceMode 可选的值：<span class="font-bold">none</span> | <span class="font-bold">command</span> | <span class="font-bold">dictation</span></td>
+                        <td>当前的语音模式</td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>语音命令事件</li>
+                </ul>
+            </h3>
+
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td style="width:20%">名称</td>
+                        <td style="width:40%">事件委托</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">onVoiceCommand</td>
+                        <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/VoiceCommandEventData.html', './content/Voice/struct/VoiceCommandEventData.html')">VoiceCommandEventData</span>></td>
+                        <td>语音命令识别事件</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>语音听写事件</li>
+                </ul>
+            </h3>
+
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td style="width:20%">名称</td>
+                        <td style="width:40%">事件委托</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">onDictationHypothesis</td>
+                        <td>UnityAction&lt;<span class="link" onclick="toLink('./struct/VoiceDictationHypothesisEventData.html', './content/Voice/struct/VoiceDictationHypothesisEventData.html')">VoiceDictationHypothesisEventData</span>></td>
+                        <td>听写假设事件（实时的识别结果，未经过语音识别系统最后核对的初步结果）</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">onDictationResult</td>
+                        <td>UnityAction&lt;<span class="link" onclick="toLink('./struct/VoiceDictationResultEventData.html', './content/Voice/struct/VoiceDictationResultEventData.html')">VoiceDictationResultEventData</span>></td>
+                        <td>听写结果事件（单句语音的识别结果，是一个完整的识别语句）</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">onDictationError</td>
+                        <td>UnityAction&lt;<span class="link" onclick="toLink('./struct/VoiceDictationErrorEventData.html', './content/Voice/struct/VoiceDictationErrorEventData.html')">VoiceDictationErrorEventData</span>></td>
+                        <td>听写错误事件（描述涉及语音听写错误（异常或者识别错误</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">onDictationComplete</td>
+                        <td>UnityAction&lt;<span class="link" onclick="toLink('./struct/VoiceDictationCompleteEventData.html', './content/Voice/struct/VoiceDictationCompleteEventData.html')">VoiceDictationCompleteEventData</span>></td>
+                        <td>听写完成事件</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>常用方法</li>
+                </ul>
+            </h3>
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td style="width:60%">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <span class="tag"> public void</span> <span class="methodName">startDictation</span> (<span class="tag">int</span> <span class="adorn">recordingTime</span>)
+                        </td>
+                        <td>开始语音听写，其中参数：recordingTime为听写时长（单位秒）</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag">public void</span> <span class="methodName">stopDictation</span> ()</td>
+                        <td>停止语音听写</td>
+                    </tr>
+                </table>
+            </div>
+        
+            <h3 class="mt-30">
+                语音命令示例：
+            </h3>
+            <p class="fs-16">
+                以下代码在空间内加载了一个NPC (一把机枪)，当用户喊出“开火”命令后枪会向外发射子弹，当用户喊出“停火”命令后子弹将停止向外发射
+            </p>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                设置语音命令：（MixedRealityToolkit -> Input -> Speech Commands）
+            </h4>
+            <div class="result">
+                <img style="width:50%;" src="../../img/ex30.png" alt="" />
+            </div>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                主视图代码：
+            </h4>
+            <code>
+                <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--创建一个空间节点并由该节点加载一个NPC (一把机枪)--&gt;</sub>
+    <span>&lt;</span><label>SpaceNode<span> id="spear" x="0" y="0" z="1500" yAngle="45" width="500" height="500" depth="500" npcPath="sources/model/Spear/Prefab/spear"</span></label> /<span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+            </code>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                代码逻辑：
+            </h4>
+            <code>
+                <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// mounted生命周期函数，在这里文档内容已绑定给视图，内容的样式、布局都已完成设置</span>
+<span class="tag">protected</span> <span class="tag">override</span> <span class="adorn">void</span> <span class="methodName">mounted</span><span class="block">(</span>)</span>
+<span class="block">{</span>
+    <span class="tag">var</span> <span class="adorn">spear</span> = <span class="tag">this</span>.<span class="methodName">getNodeById</span>&lt;<span class="genericity">SpaceNode</span>>(<span class="str">"spear"</span>);
+
+    <span class="commentary">// 设置当前模式为语音命令识别</span>
+    EMR.<span class="genericity">Space</span>.voice.mode = <span class="methodName">VoiceMode</span>.command;
+
+    <span class="commentary">// 注册语音命令识别事件处理程序</span>
+    EMR.<span class="genericity">Space</span>.voice.onVoiceCommand.<span class="methodName">AddListener</span>((<span class="genericity">VoiceCommandEventData</span> eventData) =>
+    {
+        <span class="commentary">// 当当前语音命令为开火时：</span>
+        <span class="return">if</span> (<span class="adorn">eventData</span>.command == <span class="str">"开火"</span>)
+        {
+            <span class="adorn">spear</span>.npc.<span class="methodName">action</span>&lt;GatlingGun>(<span class="str">"fire"</span>);
+        }
+
+        <span class="commentary">// 当当前语音命令为停火时：</span>
+        <span class="return">if</span> (<span class="adorn">eventData</span>.command == <span class="str">"停火"</span>)
+        {
+            <span class="adorn">spear</span>.npc.<span class="methodName">action</span>&lt;GatlingGun>(<span class="str">"stop"</span>);
+        }
+    });
+<span class="block">}</span>
+</pre>
+            </code>
+
+            <div class="result mt-30 v8">
+                <div>
+                    <video src="../../img/v12.mp4" muted="muted" autoplay="autoplay" loop></video>
+                </div>
+            </div>
+
+
+
+            <h3 class="mt-30">
+                听写示例：
+            </h3>
+            <p class="fs-16">
+                以下代码创建了一个window窗体，并将听写来的语音实时转变成文字输出到该窗体内
+            </p>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                主视图代码：
+            </h4>
+            <code>
+                <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>PanelRoot<span> name="window" x="0" y="0" z="1500" width="1000" height="450" backgroundColor="255,255,255" lightIntensity="1" hoverColor="0,0,255" borderWidth="2"</span></label><span>&gt;</span>
+        <sub>&lt;!--定义标题栏--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer<span> name="titleBar" left="2" top="2" right="2" height="28" backgroundColor="128,128,128"</span></label><span>&gt;</span>
+            <span>&lt;</span><label>PanelLayer<span> left="0" top="0" bottom="0" width="400" offset="15,0,0" textVertical="middle"</span></label><span>&gt;</span>
+                Dictation Window
+            <span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+
+        <sub>&lt;!--窗体左侧侧边栏--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer<span> left="0" top="30" width="200" bottom="0"</span></label><span>&gt;</span>
+            <sub>&lt;!--开始按钮--&gt;</sub>
+            <span>&lt;</span><label>PanelLayer<span> name="button" left="10" top="15" right="10" height="50" backgroundColor="0,255,0" textVertical="middle" textHorizontal="center" collider="true" onClick="startDictation"</span></label><span>&gt;</span>
+                Start
+            <span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+
+            <sub>&lt;!--停止按钮--&gt;</sub>
+            <span>&lt;</span><label>PanelLayer<span> name="button" left="10" top="85" right="10" height="50" backgroundColor="255,0,0" textVertical="middle" textHorizontal="center" collider="true" onClick="stopDictation"</span></label><span>&gt;</span>
+                Stop
+            <span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+
+        <sub>&lt;!--内容区--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer<span> name="content" left="200" top="28" bottom="2" right="2" backgroundColor="255,255,255" lightIntensity="1" hoverColor="128,128,128" borderWidth="2"</span></label><span>&gt;</span>
+            <sub>&lt;!--文标Label--&gt;</sub>
+            <span>&lt;</span><label>PanelLayer<span> id="infoLabel" left="30" top="30" right="30" bottom="30" fontSize="22" color="0,0,0" </span></label><span>/&gt;</span>
+        <span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+            </code>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                代码逻辑：
+            </h4>
+            <code>
+                <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// 开始按钮单击事件</span>
+<span class="tag">public void </span><span class="methodName">startDictation</span>(<span class="genericity">ClickEventData</span> eventData)
+<span class="block">{</span>
+    EMR.<span class="genericity">Space</span>.voice.<span class="methodName">startDictation</span>(30);
+<span class="block">}</span>
+
+<span class="commentary">// 停止按钮单击事件</span>
+<span class="tag">public void </span><span class="methodName">stopDictation</span>(<span class="genericity">ClickEventData</span> eventData)
+<span class="block">{</span>
+    EMR.<span class="genericity">Space</span>.voice.<span class="methodName">stopDictation</span>();
+<span class="block">}</span>
+
+<span class="commentary">// mounted生命周期函数，在这里文档内容已绑定给视图，内容的样式、布局都已完成设置</span>
+<span class="tag">protected</span> <span class="tag">override</span> <span class="adorn">void</span> <span class="methodName">mounted</span><span class="block">(</span>)</span>
+<span class="block">{</span>
+    <span class="tag">var</span> <span class="adorn">infoLabel</span> = <span class="tag">this</span>.<span class="methodName">getNodeById</span>&lt;<span class="genericity">PanelLayer</span>>(<span class="str">"infoLabel"</span>);
+
+    <span class="commentary">// 设置当前模式为语音听写</span>
+    EMR.<span class="genericity">Space</span>.voice.mode = <span class="methodName">VoiceMode</span>.dictation;
+
+    <span class="commentary">// 注册语音听写结果事件处理程序</span>
+    EMR.<span class="genericity">Space</span>.voice.onDictationResult.<span class="methodName">AddListener</span>((eventData) =>
+    {
+        <span class="commentary">// 将听写结果输出到infoLabel上：</span>
+        <span class="adorn">infoLabel</span>.text = <span class="adorn">eventData</span>.result;
+    });
+<span class="block">}</span>
+</pre>
+            </code>
+
+            <div class="result mt-30 v12">
+                <div>
+                    <video src="../../img/v13.mp4" muted="muted" autoplay="autoplay" loop></video>
+                </div>
+            </div>
+                
+        <div class="h-30"></div>
+    </body>
+</html>

@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../../css/style.css">
+        <script src="../../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <div class="mb-10">
+                <h1>
+                    verticalTopInterval
+                </h1>
+                <p class="mb-10 fs-18">
+                    verticalTopInterval属性用于设置子节点垂直对齐时：起始节点顶部是否带有对齐间隔
+                </p>
+
+                <h3>
+                    <ul>
+                        <li class="ml-25">verticalTopInterval = true</li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个平面容器，设置contentVertical属性为top控制其中的子节点靠顶部对齐
+        设置verticalInterval属性为20控制各节点之间的间隔为20mm
+        设置verticalTopInterval属性为true使开始节点顶部存在对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="150"
+        height="500"
+        backgroundColor="255,255,255"
+        contentVertical="top"
+        verticalInterval="20"
+        verticalTopInterval="true"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../../../img/ex35.png" alt="" />
+                </div>
+
+
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">verticalTopInterval = false</li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个平面容器，设置contentVertical属性为top控制其中的子节点靠顶部对齐
+        设置verticalInterval属性为20控制各节点之间的间隔为20mm
+        设置verticalTopInterval属性为false取消开始节点顶部的对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="150"
+        height="500"
+        backgroundColor="255,255,255"
+        contentVertical="top"
+        verticalInterval="20"
+        verticalTopInterval="false"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+        <span>&lt;</span><label>PanelLayer <span> width="100" height="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="mt-25" style="background-color:black;display:flex;justify-content: center; overflow: hidden;">
+                    <img src="../../../img/ex93.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

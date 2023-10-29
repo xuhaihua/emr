@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStorage) {
+                localStorage.setItem("currentChild", linkStorage);
+                event.stopPropagation();
+                window.location.href = link;
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div>
+                <h1>
+                    Eye (眼睛) 模块
+                </h1>
+                <p class="fs-16">
+                    Eye模块基于MRTK中的眼动跟踪，使用它可以很方便的实现眼睛与空间中虚拟对象的交互，可以通过EMR.Space.eye这个静态属性来获取他的引用
+                </p>
+            </div>
+
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>事件</li>
+                </ul>
+            </h3>
+
+            <table cellspacing="0" class="table bb-1 bt-1">
+                <tr class="tableHead">
+                    <td style="width:20%">名称</td>
+                    <td style="width:40%">事件委托</td>
+                    <td>说明</td>
+                </tr>
+                <tr>
+                    <td class="font-bold" style="width: 15%;">onEyeGazeChange</td>
+                    <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/EyeGazeChangeEventData.html', './content/Eye/struct/EyeGazeChangeEventData.html')">EyeGazeChangeEventData</span>></td>
+                    <td>眼睛凝视改变事件</td>
+                </tr>
+
+                <tr>
+                    <td class="font-bold" style="width: 15%;">onEyeSaccade</td>
+                    <td>UnityEngine.Events.UnityAction&lt;<span class="link" onclick="toLink('./struct/EyeSaccadeEventData.html', './content/Eye/struct/EyeSaccadeEventData.html')">EyeSaccadeEventData</span>></td>
+                    <td>眼睛扫视事件</td>
+                </tr>
+            </table>
+        
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>onEyeGazeChange 示例：</li>
+                </ul>
+            </h3>
+            <p class="fs-16">
+                以下代码创建了两个空间节点用户通过转动眼球凝视不同的节点，被选种的节点将变为红色
+            </p>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                主视图代码：
+            </h4>
+
+            <code>
+                <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--创建两个空间节点--&gt;</sub>
+    <span>&lt;</span><label>SpaceNode<span> x="-350" y="0" z="1500" xAngle="30" yAngle="30" zAngle="30" width="300" height="300" depth="300" backgroundColor="255,255,255" collider="true" /<span>&gt;</span>
+    <span>&lt;</span><label>SpaceNode<span> x="350" y="0" z="1500" xAngle="30" yAngle="30" zAngle="30" width="300" height="300" depth="300" backgroundColor="255,255,255" collider="true" /<span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+            </code>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                代码逻辑：
+            </h4>
+            <code>
+                <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// mounted生命周期函数，在这里文档内容已绑定给视图，内容的样式、布局都已完成设置</span>
+<span class="tag">protected</span> <span class="tag">override</span> <span class="adorn">void</span> <span class="methodName">mounted</span><span class="block">(</span>)</span>
+<span class="block">{</span>
+    <span class="commentary">// 注册眼睛凝视改变事件处理程序</span>
+    EMR.<span class="genericity">Space</span>.eye.onEyeGazeChange.<span class="methodName">AddListener</span>((<span class="genericity">EyeGazeChangeEventData</span> eventData) =>
+    {
+        <span class="commentary">// 设置当前凝视节点的颜色为红色</span>
+        <span class="return">if</span> (<span class="adorn">eventData</span>.target != <span class="tag">null</span>)
+        {
+            <span class="adorn">eventData</span>.target.backgroundColor = "255,0,0";
+        }
+
+        <span class="commentary">// 将原节点的颜色设置为白色</span>
+        <span class="return">if</span> (<span class="adorn">eventData</span>.oldNode != <span class="tag">null</span>)
+        {
+            <span class="adorn">eventData</span>.oldNode.backgroundColor = "255,255,255";
+        }
+    });
+<span class="block">}</span>
+</pre>
+            </code>
+
+            <div class="result mt-30 v8">
+                <div>
+                    <video src="../../img/v10.mp4" muted="muted" autoplay="autoplay" loop></video>
+                </div>
+            </div>
+
+            <h3 class="mt-30">
+                <ul class="ml-25">
+                    <li>onEyeSaccade 示例：</li>
+                </ul>
+            </h3>
+            <p class="fs-16">
+                以下代码在一个平面内创建了一个红色图层，该图层将跟随眼睛移动
+            </p>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                主视图代码：
+            </h4>
+
+            <code>
+                <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>PanelRoot<span> id="activeArea" x="0" y="0" z="1500" width="1000" height="1000" backgroundColor="255,255,255" collider="true" </span></label>>
+        <sub>&lt;!--创建一个红色的图层，该图层将跟随眼睛的移动--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer<span> id="spirit" width="100" height="100" backgroundColor="255,0,0" </span></label>/>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+            </code>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                代码逻辑：
+            </h4>
+            <code>
+                <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// mounted生命周期函数，在这里文档内容已绑定给视图，内容的样式、布局都已完成设置</span>
+<span class="tag">protected</span> <span class="tag">override</span> <span class="adorn">void</span> <span class="methodName">mounted</span><span class="block">(</span>)</span>
+<span class="block">{</span>
+    <span class="commentary">// 注册眼睛扫视事件处理程序</span>
+    EMR.<span class="genericity">Space</span>.eye.onEyeSaccade.<span class="methodName">AddListener</span>((<span class="genericity">EyeSaccadeEventData</span> eventData) =>
+    {
+        <span class="commentary">// 获取图层所在的平面，它是该图层的活动区域</span>
+        <span class="tag">var</span> activeArea = <span class="adorn">this</span>.<span class="methodName">getNodeById</span><PanelRoot>(<span class="str">"activeArea"</span>);
+
+        <span class="commentary">// 获取被控图层</span>
+        <span class="tag">var</span> spirit = <span class="adorn">this</span>.<span class="methodName">getNodeById</span><PanelLayer>(<span class="str">"spirit"</span>);
+
+        <span class="return">if</span> (<span class="adorn">eventData</span>.target == <span class="tag">activeArea</span>)
+        {
+            <span class="commentary">// 将眼睛所注视到的当前位置赋给被控图层</span>
+            <span class="adorn">spirit</span>.parasitifer.transform.position = <span class="adorn">eventData</span>.point;
+        }
+    });
+<span class="block">}</span>
+</pre>
+            </code>
+
+            <div class="result mt-30 v11">
+                <div>
+                    <video src="../../img/v11.mp4" muted="muted" autoplay="autoplay" loop></video>
+                </div>
+            </div>
+        <div class="h-30"></div>
+    </body>
+</html>

@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../../css/style.css">
+        <script src="../../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div>
+                <h1>
+                    AnchorNodeHoverEventData
+                </h1>
+                <p class="fs-16">
+                    描述涉及节点进入锚感兴趣范围内的事件
+                </p>
+
+                <h2 class="mt-25">
+                    名称空间
+                </h2>
+                <ul class="fs-16 mt-10">
+                    <li style="list-style-type: none;">Namespace：EMR.Event</li>
+                </ul>
+
+                <h2 class="mt-25">
+                    继承
+                </h2>
+                <ul class="fs-16 mt-10">
+                    <li style="list-style-type: none;"><span class="link" onclick="toLink('../../node/Struct/EventData.html', './content/node/struct/EventData.html')">EventData</span> -> AnchorNodeHoverEventData</li>
+                </ul>
+                
+                <h2 class="mt-25">
+                    Properties
+                </h2>
+                <table class="mt-10">
+                    <tr>
+                        <td class="font-bold">
+                            anchor：
+                        </td>
+                        <td>
+                            Anchor
+                        </td>
+                        <td style="padding-left: .463rem">
+                            触发该事件的锚
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            interestNode：
+                        </td>
+                        <td>
+                            Node
+                        </td>
+                        <td style="padding-left: .463rem">
+                            触发该事件的感兴趣节点
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

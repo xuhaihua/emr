@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    边框
+                </h1>
+                <p class="mb-10 fs-18">
+                    要想给一个节点正确的设置边框它与该元素上的悬浮灯光、灯光的强度有关，具体规则如下：
+                </p>
+                <div class="fs-16" style="margin-left: .3704rem">
+                    <ol>
+                        <li>
+                            该元节点框的颜色 == 该节点上悬浮灯光的颜色（hoverColor）
+                        </li>
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">
+                            该元节点框的亮度 == 该节点上灯光的亮度 （lightIntensity）
+                        </li>
+                    </ol>
+                </div>
+
+                <h3>
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码在空间 (0,0,1500mm)处放置了一个空间节点并给它加上了一个宽度为2mm的边框
+                </p>
+                        <code>
+                            <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>SpaceNode <span>
+        x="0"
+        y="0"
+        z="1500"
+        width="300"
+        height="500"
+        depth="200"
+        borderWidth="2"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        backgroundColor="0,0,0"
+        renderMode="additive"
+    /</span></label><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                        </code>
+
+                <div class="result" style="margin-top: .2778rem;">
+                    <img style="width: 100%;" src="../img/ex29.png" alt="" />
+                </div>
+
+                <div class="tip custom-block weightInfo">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../img/keynote.png" alt="" />
+                            </span>
+                            <label>注意：</label>
+                        </span>
+                    </p>
+                    <p>
+                        如果只给出元素的边框但不设置元素的 <span class="font-bold" style="color:black">backgroundColor</span> 属性则边框是仍不会被显示出来的，所以在这里需要给元素一个背景色比如黑色。<br>
+                        <span class="font-bold" style="color:black">renderMode = "additive"</span> 是将该元素的显示模式设置为叠加式这样除边框以外如果里面有其它内容则内容可见
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

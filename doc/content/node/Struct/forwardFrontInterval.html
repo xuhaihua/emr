@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../../css/style.css">
+        <script src="../../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <div class="mb-10">
+                <h1>
+                    forwardFrontInterval
+                </h1>
+                <p class="mb-10 fs-18">
+                    forwardFrontInterval属性用于设置子节点Z轴方向对齐时：结束节点正前侧是否带有对齐间隔
+                </p>
+
+                <h3>
+                    <ul>
+                        <li class="ml-25">forwardFrontInterval = true</li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个空间节点，设置contentForward属性为forward控制其中的子节点靠Z轴正方向对齐
+        设置forwardInterval属性为20控制各节点之间的间隔为20mm
+        设置forwardFrontInterval属性为true使结束节点正前侧存在对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="500"
+        height="500"
+        depth="500"
+        renderMode="additive"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        borderWidth="2"
+        backgroundColor="0,0,0"
+        contentForward="forward"
+        forwardInterval="20"
+        forwardFrontInterval="true"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v4">
+                    <div>
+                        <video src="../../../img/v19.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">forwardFrontInterval  = false</li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--
+        创建一个空间节点，设置contentForward属性为forward控制其中的子节点靠Z轴正方向对齐
+        设置forwardInterval属性为20控制各节点之间的间隔为20mm
+        设置forwardFrontInterval属性为false取消结束节点正前侧的对齐间隔
+     --&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="500"
+        height="500"
+        depth="500"
+        renderMode="additive"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        borderWidth="2"
+        backgroundColor="0,0,0"
+        contentForward="forward"
+        forwardInterval="20"
+        forwardFrontInterval="false"
+    </span></label><span>&gt;</span>
+
+        <sub>&lt;!--子节点--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="0,255,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+        <span>&lt;</span><label>SpaceNode <span> width="100" height="100" depth="100" backgroundColor="0,0,255"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v4">
+                    <div>
+                        <video src="../../../img/v28.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

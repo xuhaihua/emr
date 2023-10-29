@@ -1,0 +1,207 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStorage) {
+                localStorage.setItem("currentChild", linkStorage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    节点动画
+                </h1>
+            </div>
+
+            <!--action方法-->
+            <div>
+                <h3>
+                    <ul>
+                        <li class="ml-25">animation 方法</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    animation 方法用于创建自定义动画
+                </p>
+
+                <h3 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    原型：
+                </h3>
+                <p class="fs-16" style="padding-left: .463rem;">
+                  <span class="tag">public void</span> animation (<span class="tag">Vector3</span> start, <span class="tag">Vector3</span> end, <span class="tag">float</span> time, <span class="tag"><span class="link" onclick="toLink('./struct/MotionCurve.html', './content/animation/struct/MotionCurve.html')">MotionCurve</span></span> curveType, <span class="tag"><span class="font-bold link" onclick="toLink('./AnimationAction.html', './content/animation/AnimationAction.html')">AnimationAction</span></span> action, <span class="tag">AnimationCallback</span> callback=null)
+                </p>
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    参数:
+                </h4>
+
+                <table class="fs-16" style="padding-left: .463rem;">
+                    <tr>
+                        <td class="font-bold">start：</td>
+                        <td>Vector3</td>
+                        <td style="padding-left: .463rem;">开始量</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">end：</td>
+                        <td>Vector3</td>
+                        <td style="padding-left: .463rem;">结束量</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">time：</td>
+                        <td>float</td>
+                        <td style="padding-left: .463rem;">动画时长</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">curveType：</td>
+                        <td>MotionCurve</td>
+                        <td style="padding-left: .463rem;">动画曲线类型</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">action：</td>
+                        <td><span class="font-bold link" onclick="toLink('./AnimationAction.html', './content/animation/AnimationAction.html')">AnimationAction</span></td>
+                        <td style="padding-left: .463rem;">动作</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">callback：</td>
+                        <td>AnimationCallback</td>
+                        <td style="padding-left: .463rem;">动画结束回调</td>
+                    </tr>
+                </table>
+
+                <h3 class="mt-30">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    创建一个平面并将其在空间内沿X轴移动一段距离
+                </p>
+
+                <div class="mt-10">
+                    <h4 style="border-left:4px solid #999; padding-left: .1852rem;">
+                        视图文档代码：
+                    </h4>
+                    <p class="fs-16">
+                        以下代码在空间中创建了一个平面并将其作为动画对象
+                    </p>
+                    <code>
+<pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--创建一个平面作为动画的对象--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot</label>
+        id="animationPanel"
+        x="-300"
+        y="0"
+        z="1500"
+        width="100"
+        height="100"
+        backgroundColor="0,0,255" 
+    /</span></label><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+                    </code>
+
+                    <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                        动画代码：
+                    </h4>
+                    <p class="fs-16">
+                        以下代码通过调用节点上的 animation 方法，将该节从初值x: -300的位置沿X轴平移至x: 300处
+                    </p>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// mounted生命周期函数，在这里文档内容已绑定给视图</span>
+<span class="tag">protected</span> <span class="adorn">override void</span> <span class="methodName">mounted</span><span class="block">()</span>
+<span class="block">{</span>
+    <span class="commentary">// 获取视图中需要被加上动画的节点animationPanel</span>
+    <span class="tag">var</span> <span class="adorn">animationPanel</span> = this.<span class="methodName">getNodeById</span>&lt;PanelRoot>(<span class="str">"animationPanel"</span>);
+    
+    <span class="commentary">// 在该节点上调用animation方法为其加上动画行为</span>
+    <span class="adorn">animationPanel</span>.<span class="methodName">animation</span> (<span class="tag">new</span> <span class="genericity">Vector3</span>(<span class="methodName">-300, 0, 1500</span>), <span class="tag">new</span> <span class="genericity">Vector3</span>(<span class="methodName">300, 0, 1500</span>), <span class="methodName">1.1f</span>, <span class="methodName">MotionCurve</span>.InBack, (<span class="adorn">data, isFinish</span>) =>
+    {
+        <span class="commentary">// 在动画过程中不断设置该节点在空间中的坐标</span>
+        <span class="adorn">animationPanel</span>.x = <span class="adorn">data</span>.x;
+        <span class="adorn">animationPanel</span>.y = <span class="adorn">data</span>.y;
+        <span class="adorn">animationPanel</span>.z = <span class="adorn">data</span>.z;
+
+        <span class="commentary">// 这里主要用于阻止在动画过程中不断的触发对象位置改变事件</span>
+        <span class="return">if</span> (!<span class="adorn">isFinish</span>)
+        {
+            <span class="adorn">animationPanel</span>.preventPositionEvent = true;
+        }
+    });
+<span class="block">}</span></pre>
+                    </code>
+                </div>
+
+                <div class="result mt-25 v1">
+                    <div>
+                        <video src="../../img/v6.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+                <h3 class="mt-25">
+                    节点上其他带动画的方法：
+                </h3>
+                <div class="table-border">
+                    <table cellspacing="0" class="table bb-1 bt-1">
+                        <tr class="tableHead">
+                            <td style="width: 12.037rem">方法</td>
+                            <td style="width: 1.8519rem">方法类型</td>
+                            <td style="width: 1.8519rem">支持的节点类型</td>
+                            <td>说明</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag">void</span> <span class="font-bold">moveTo</span> (<span class="link" onclick="toLink('./struct/PositionData.html', './content/animation/struct/PositionData.html')">PositionData</span> end, float time, <span class="link" onclick="toLink('./struct/MotionCurve.html', './content/animation/struct/MotionCurve.html')">MotionCurve</span> curveType, AnimationCallback callback=null)</td>
+                            <td>节点实例方法</td>
+                            <td>SpaceNode<br>PanelRoot<br>PanelLayer</td>
+                            <td>将节点移动到指定的位置</td>
+                        </tr>
+                        <tr>
+                            <td>void <span class="font-bold">sizeTo</span> (<span class="link" onclick="toLink('./struct/SizeData.html', './content/animation/struct/SizeData.html')">SizeData</span> end, float time, <span class="link" onclick="toLink('./struct/MotionCurve.html', './content/animation/struct/MotionCurve.html')">MotionCurve</span> curveType, AnimationCallback callback=null)</td>
+                            <td>节点实例方法</td>
+                            <td>SpaceNode<br>PanelRoot<br>PanelLayer</td>
+                            <td>将节点放大到指定尺寸</td>
+                        </tr>
+                        <tr>
+                            <td>void <span class="font-bold">rotateTo</span> (<span class="link" onclick="toLink('./struct/RotationData.html', './content/animation/struct/RotationData.html')">RotationData</span> end, float time, <span class="link" onclick="toLink('./struct/MotionCurve.html', './content/animation/struct/MotionCurve.html')">MotionCurve</span> curveType, AnimationCallback callback=null)</td>
+                            <td>节点实例方法</td>
+                            <td>SpaceNode<br>PanelRoot</td>
+                            <td>旋转节点到指定角度</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/info.png" alt="" />
+                            </span>
+                            <label>说明：</label>
+                        </span>
+                    </p>
+                    <p>
+                        以上列表中的这些节点动画方法其实现都是对animation方法的封装
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

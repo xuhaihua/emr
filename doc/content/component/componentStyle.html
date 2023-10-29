@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div>
+                <h1>
+                    组件自定义样式
+                </h1>
+                <p class="fs-18">
+                    要将一个组件的属性支持样式表，需要将该属性加入到组件的styleCollect集合中
+                </p>
+
+                <h3 class="mt-10">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码简单的创建一个渲染为平面的组件，并将该组件自定义的backColor属性加入到它的styleCollect集合中以在样式表中支持组件的该属性
+                </p>
+
+                <h4 class="mt-10" style="border-left:4px solid #999; padding-left: .1852rem;">
+                    组件视图文件
+                </h4>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>PanelRoot <span> x="0" y="0" z="1500" width="300" height="300" _backgroundColor="backColor" </span></label><span>/&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+            </div>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                组件类代码：
+            </h4>
+
+            <div>
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+<span class="tag">using</span> UnityEngine;
+<span class="tag">using</span> EMR.Entity;
+<span class="tag">using</span> System.Collections.Generic;
+
+<span class="tag">public class</span> <span class="genericity">PanelComponent : EMR.Component</span>
+<span class="block">{</span>
+    <span class="tag">public</span> <span class="methodName">PanelComponent</span>()
+    <span class="block">{</span>
+        <span class="tag">this</span>.document = <span class="str">"PanelComponent/main"</span>;
+
+        <span class="commentary">// 将自定义属性backColor加入styleCollect集合以在样式表中支持该属性</span>
+        <span class="tag">this</span>.styleCollect.<span class="methodName">add</span>(<span class="str">"backColor"</span>);
+    <span class="block">}</span>
+
+    <span class="tag">private string</span> _backColor = <span class="str">""</span>;
+    <span class="tag">public</span> <span class="tag">string</span> <span class="methodName">backColor</span> <span class="block">{</span>
+        <span class="tag">get</span> {
+            <span class="return">return</span> <span class="tag">this</span>.<span class="methodName">getProperty</span>&lt;<span class="tag">string></span>(<span class="tag">nameof</span>(backColor), (<span class="tag">resultVlaue</span>, <span class="tag">isSuccess</span>) =>
+            {
+                <span class="return">if</span>(<span class="tag">isSuccess</span>)
+                {
+                    <span class="tag">this</span>._backColor = (<span class="tag">string</span>)resultVlaue;
+                }
+                <span class="return">return</span> <span class="tag">this</span>._backColor;
+            });
+        }
+
+        <span class="tag">set</span> {
+            <span class="tag">this</span>.<span class="methodName">setProperty</span>(<span class="tag">nameof</span>(backColor), value, (<span class="tag">resultVlaue</span>) =>
+            {
+                <span class="tag">this</span>._backColor = (<span class="tag">string</span>)resultVlaue;
+            });
+        }
+    <span class="block">}</span>
+<span class="block">}</span>
+</pre>
+                </code>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

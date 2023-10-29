@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../../css/style.css">
+        <script src="../../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <div class="mb-10">
+                <h1>
+                    widthFixed
+                </h1>
+                <p class="mb-10 fs-18">
+                    widthFixed属性用于设置尺寸宽度是否固定
+                </p>
+
+                <h3>
+                    <ul>
+                        <li class="ml-25">Example：</li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>SpaceNode <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="500"
+        height="500"
+        depth="500"
+        renderMode="additive"
+        hoverColor="0,0,255"
+        lightIntensity="1"
+        borderWidth="2"
+        backgroundColor="0,0,0"
+        sizeBoxPadding="50"
+        widthFixed="true"
+        enableSize="true"
+    </span></label><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v4">
+                    <div>
+                        <video src="../../../img/v32.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../../img/info.png" alt="" />
+                            </span>
+                            <label>说明：</label>
+                        </span>
+                    </p>
+                    <p>
+                        可以看到当用户缩放尺寸时节点的宽度并没有被改变，该属性只限制因外界因素对尺寸的修改，但如果用户直接修改节点上width属性的值那么节点的尺寸将不受该属性的限制（尺寸仍然会被改变）
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

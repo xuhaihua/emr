@@ -1,0 +1,202 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div>
+                <h1>
+                    样式表
+                </h1>
+                <p class="fs-18">
+                    在EMR中它是一个json文件，用于存诸对元素样式统一设置的列表
+                </p>
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">样式选择器</li>
+                    </ul>
+                </h3>
+
+                <div class="ml-25">
+                    <h4>
+                        id选择器
+                    </h4>
+                    <dl class="fs-16">
+                        <dt class="ml-25">语法 : #id属性值</dt>
+                        <dd class="ml-25">
+                            作用 : 选中对应id属性值的元素
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="ml-25">
+                    <h4 class="mt-10">
+                        类选择器
+                    </h4>
+                    <dl class="fs-16">
+                        <dt class="ml-25">语法 : .stylesheet属性值</dt>
+                        <dd class="ml-25">
+                            作用 : 选中对应stylesheet属性值的元素
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="ml-25">
+                    <h4 class="mt-10">
+                        name选择器
+                    </h4>
+                    <dl class="fs-16">
+                        <dt class="ml-25">语法 : $name属性值</dt>
+                        <dd class="ml-25">
+                            作用 : 选中对应name属性值的元素
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="ml-25">
+                    <h4 class="mt-10">
+                        元素选择器
+                    </h4>
+                    <dl class="fs-16">
+                        <dt class="ml-25">语法 : 标签名（<span style="color: red">注意此处的标签名一定是该节点类型的完全限定名）</span></dt>
+                        <dd class="ml-25">
+                            作用 : 选中对应标签中的内容
+                        </dd>
+                    </dl>
+                </div>
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">选择器优选级</li>
+                    </ul>
+                </h3>
+                <div class="ml-25">
+                    <ol class="ml-25 fs-16">
+                        <li>id 选择器</li>
+                        <li>类选择器</li>
+                        <li>name选择器</li>
+                        <li>元素选择器</li>
+                    </ol>
+                </div>
+
+                <h3 class="mt-10">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码通过样式文件给视图中的节点设置外观样式
+                </p>
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem;">
+                    样式文件
+                </h4>
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">/*
+* 样式表
+*/</span>
+{
+    <span class="commentary">// id选择器 （给标签id属性为panelImg的这个节点加上一个背景图）</span>
+    <span class="property">"#panelImg"</span>: {
+        <span class="property">"backgroundImage"</span>: <span class="str">"sources/image/pic"</span>
+    },
+
+    <span class="commentary">// 类选择器 （背景色为红色）</span>
+    <span class="property">".bgRed"</span>: {
+        <span class="property">"backgroundColor"</span>: <span class="str">"255,0,0"</span>
+    },
+
+    <span class="commentary">// 类选择器 （背景色为红色）</span>
+    <span class="property">".bgGreen"</span>: {
+        <span class="property">"backgroundColor"</span>: <span class="str">"0,255,0"</span>
+    },
+
+    <span class="commentary">// name选择器（所有标签name属性为panel的节点宽度为：200mm、高度为：100mm，x,y的坐标分别为0,1500mm）</span>
+    <span class="property">"$panel"</span>: {
+        <span class="property">"x"</span>: 0,
+        <span class="property">"z"</span>: 1500,
+        <span class="property">"width"</span>: 200,
+        <span class="property">"height"</span>: 100
+    },
+
+    <span class="commentary">// 标签选择器 （所有PanelRoot标签背景色统一为白色 【注意：这里的标签名为节点类型的完全限定名】）</span>
+    <span class="property">"EMR.Entity.PanelRoot"</span>: {
+        <span class="property">"backgroundColor"</span>: <span class="str">"255,255,255"</span>
+    }
+}</pre>
+                </code>
+
+                <h4 class="mt-10" style="border-left:4px solid #999; padding-left: .1852rem;">
+                    视图文件
+                </h4>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--引入样式表--&gt;</sub>
+    <span>&lt;</span><label>Stylesheet </span> path="stylesheet/main"</span></label><span> /&gt;</span>
+
+    <sub>&lt;!--该节点依次会将EMR.Entity.PanelRoot元素选择器样式、$panel名称选择器样式、#panelImg id选择器样式作用上--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> y="0" id="panelImg" name="panel" </span></label><span>/&gt;</span>
+
+    <sub>&lt;!--该节点依次会将EMR.Entity.PanelRoot元素选择器样式、$panel名称选择器样式--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> y="-120" name="panel" </span></label><span>/&gt;</span>
+
+    <sub>&lt;!--该节点依次会将EMR.Entity.PanelRoot元素选择器样式、$panel名称选择器样式、.bgGreen 类选择器样式作用上--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> y="-240" name="panel" stylesheet="bgGreen" </span></label><span>/&gt;</span>
+
+    <sub>&lt;!--该节点依次会将EMR.Entity.PanelRoot元素选择器样式、$panel名称选择器样式、.bgRed 类选择器样式作用上--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> y="-360" name="panel" stylesheet="bgRed" </span></label><span>/&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25">
+                    <img width="100%" src="../img/ex21.png" alt="" />
+                </div>
+            </div>
+
+            <h3 class="mt-25">
+                <ul>
+                    <li class="ml-25">在视图中引入样式表</li>
+                </ul>
+            </h3>
+            <p class="fs-16">
+                在视图中引入一个样式表通过Stylesheet标签，其中path属性指向样式表所在的Resources路径，一般该标签见意放在Root下的第一行
+            </p>
+            <code style="padding: .1852rem; padding-left: .4444rem; border-radius: .1111rem;">
+                <pre style="margin: 0px; padding: 0px;"><span>&lt;</span><label>Stylesheet </span> path="stylesheet/main"</span></label><span> /&gt;</span></pre>
+            </code>
+
+            <h3 class="mt-25">
+                <ul>
+                    <li class="ml-25">EMR样式表与html中样式表对比</li>
+                </ul>
+            </h3>
+            <div class="ml-25">
+                <ol class="fs-16" style="line-height: .463rem; margin-left: .2778rem;">
+                    <li>
+                        与html css样式表一样一个视图文件可以引入多个样式表，通过添加多个Stylesheet标签完成，它们都是层叠式的。
+                    </li>
+                    <li style="margin-top: .0926rem;">
+                        EMR中的样式表是一个json文件而html中的样式表是一个以.css结尾的文件。
+                    </li>
+                    <li style="margin-top: .0926rem;">
+                        EMR中的样式表在这一版中只有以上这四个选择器，没有其它的选择器而html css中的选择器更多功能更强大，例如：后代选择器、子代选择器、相邻兄弟选择器等并且支持通配符而这些在EMR样式表中不存在。
+                    </li>
+                    <li style="margin-top: .0926rem;">
+                        EMR的样式不存在继随特性例如：在父元素上的属性fontSize的值不会被它的子元素继承至少在这一版中是这样后续会改进，而html css中的样式是可以被子元素继承的。
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    简介
+                </h1>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        使用HTML的方式进行空间开发
+                    </p>
+                    <p>
+                        <p class="custom-block-title pd-0 color-black mt-0">
+                            EMR  全称 Easy Mixed Reality 其中 Easy 指的是快速、敏捷、使用简便，EMR使用基于空间视图的模式带你进入元宇宙的开发，如果您平时会上网、会写一个静态网页那么进入元宇宙的开发对你来说不难。
+                        </p>
+                    </p>
+                </div>
+            </div>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem;">
+                视图代码：
+            </h4>
+            <code>
+<pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--浩瀚的宇宙有颗美丽的星球住着有钱的人类--&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span> x="0" y="0" z="1500" width="500" height="500" depth="500" npcPath="sources/model/Earth/Prefab/earth"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+
+    <span>&lt;</span><label>SpaceNode<span> id="moonContainer" x="0" y="0" z="1500" width="800" height="800" depth="800" </span></label><span>&gt;</span>
+        <sub>&lt;!--地球的附近有个小弟它一直绕着地球转--&gt;</sub>
+        <span>&lt;</span><label>SpaceNode <span> x="0" y="0" z="-400" width="60" height="60" depth="60" npcPath="sources/model/Moon/Prefab/moon"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+
+        <sub>&lt;!--画个简陋的轨道月球不能出轨--&gt;</sub>
+        <span>&lt;</span><label>PanelRoot<span> width="800" height="800" xAngle="90" lightIntensity="1" borderWidth="1" borderRadius="200" hoverColor="0,0,255" backgroundColor="0,0,0" renderMode="additive" </span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+            </code>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                组件逻辑：
+            </h4>
+            <code>
+                <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// mounted生命周期，这里空间中的内容已完全生成</span>
+<span class="tag">protected override</span> <span class="adorn">void</span> <span class="methodName">mounted</span><span class="block">()</span>
+<span class="block">{</span>
+    <span class="commentary">// 通过Id获取空间内的指定节点</span>
+    <span class="tag">var</span> moonContainer = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">SpaceNode</span>>(<span class="str">"moonContainer"</span>);
+
+    <span class="commentary">// 月球旋转，这里只是个示例为了演示说明，所以先让他转个 9999999999999 度，然后转上几年 100000000000 是时间</span>
+    moonContainer.<span class="methodName">rotateTo</span>(<span class="tag">new</span> <span class="genericity">RotationData</span>(<span class="methodName">0</span>, 9999999999999, <span class="methodName">0</span>), 100000000000, <span class="methodName">MotionCurve</span>.Linear);
+<span class="block">}</span>
+                </pre>
+            </code>
+
+            <div class="result mt-25 v15">
+                <div>
+                    <video src="../img/v15.mp4" muted="muted" autoplay="autoplay" loop style=""></video>
+                </div>
+            </div>
+
+            <div class="tip custom-block">
+                <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                    <span class="infoTitle">
+                        <span>
+                            <img src="../img/info.png" alt="" />
+                        </span>
+                        <label>说明：</label>
+                    </span>
+                </p>
+                <p>
+                    与HTML不同HTML有很多节点而EMR只有三个节点分别是SpaceNode（空间节点)、PanelRoot（平面节点）、PanelLayer（平面图层节点）不断组合和复用这些节点就可以完成对整个空间的布局，再通过隐含的空间文档模型（Space Doucment Model) 就可以操纵和修改空间中的任意内容。
+                </p>
+            </div>
+        </div>
+        <div class="h-30"></div>
+    </body>
+</html>

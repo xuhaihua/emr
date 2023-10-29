@@ -1,0 +1,214 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    规范
+                </h1>
+                <p class="mb-0 fs-16">
+                    NPC往往由美术提供，一个NPC为一个预制体，如果你即是一个美术又是一个开发那是最好的。
+                </p>
+            </div>
+
+            <!--Animator Controller-->
+            <div>
+                <h3>
+                    <ul>
+                        <li class="ml-25">Animator Controller</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    Animator Controller是一棵动画状态树，美术和动画通过在这棵树的树杆（Transition）上加上各种参数来达到对外暴露动画的目的，开发者拿到这些参数后通过调用NPC的action方法来完成动画间的切换
+                </p>
+
+                <h3>
+                    一个简单的示例
+                </h3>
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem;">
+                    Animator Controller：
+                </h4>
+                <div class="result">
+                    <img style="width: 100%;" src="../../img/ex10.png" alt="" />
+                </div>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    Profab animtor设置：
+                </h4>
+                <div class="result">
+                    <img style="width:50%;" src="../../img/ex11.png" alt="" />
+                </div>
+
+                <div>
+                    <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                        视图文档代码：
+                    </h4>
+                    <p class="fs-16">
+                        以下代码由空间节点加载一个NPC
+                    </p>
+                    <code>
+<pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--创建一个空间节点并加载一个NPC--&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        id="man"
+        x="0"
+        y="0"
+        z="1500"
+        width="300"
+        height="400"
+        depth="200"
+        yAngle="180"
+        borderWidth="1"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        renderMode="additive"
+        backgroundColor="0,0,0"
+        npcPath="sources/model/Man/Prefab/LostWarrior"
+        onClick="startWalkHandle"</span></label><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+                    </code>
+
+                    <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                        事件处理程序：
+                    </h4>
+                    <p class="fs-16">
+                        下面的代码通过在节点的onClick事件内调用action方法，触发NPC的行走动作
+                    </p>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// 绑定给onClick的事件处理程序</span>
+<span class="tag">public</span> <span class="adorn">void</span> <span class="methodName">startWalkHandle</span><span class="block">(</span><span class="genericity">ClickEventData</span> eventData<span class="block">)</span>
+<span class="block">{</span>
+    <span class="commentary">// 按Id获取当前视图文档内的节点</span>
+    <span class="tag">var</span> manNode = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">SpaceNode</span>>(<span class="str">"man"</span>);
+   
+    <span class="commentary">// 触发该节点下NPC的行走动作</span>
+    manNode.npc?.<span class="methodName">action</span>(<span class="str">"isWalk"</span>);
+<span class="block">}</span>
+                        </pre>
+                    </code>
+                </div>
+
+                <div class="result mt-25 v1">
+                    <div>
+                        <video src="../../img/v3.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="mt-25">
+                <h3>
+                    <ul>
+                        <li class="ml-25">抛出事件（emit）</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    NPC可以在适当的时机通过emit方法对外抛出事件，该方法是NPC的一个静态方法
+                </p>
+                <h3 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    emit 原型：
+                </h3>
+
+                <p class="fs-16" style="padding-left: .463rem;">
+                    <span class="tag">public static void</span> emit (<span class="genericity">GameObject</span> sender, <span class="tag">string</span> name, <span class="genericity"><span class="link" onclick="toLink('./struct/NPCEventData.html', './content/NPC/struct/NPCEventData.html')">NPCEventData</span></span> eventData)
+                </p>
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                    参数:
+                </h4>
+
+                <table class="fs-16" style="padding-left: .463rem;">
+                    <tr>
+                        <td class="font-bold">sender：</td>
+                        <td>GameObject</td>
+                        <td style="padding-left: .463rem;">发送者</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">name：</td>
+                        <td>string</td>
+                        <td style="padding-left: .463rem;">自定义事件名</td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">eventData：</td>
+                        <td>NPCEventData</td>
+                        <td style="padding-left: .463rem;">事件状态对象</td>
+                    </tr>
+                </table>
+                
+                <h3 class="mt-25">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码通过在动画的最后一帧抛出动画完成事件，可以在视图内接收该事件
+                </p>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    在动画的最后一帧插入unity帧事件：
+                </h4>
+                <div class="result">
+                    <img style="width:50%;" src="../../img/ex18.jpg" alt="" />
+                </div>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    定义unity帧事件所在的类lost.cs：
+                </h4>
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span class="tag">using</span> UnityEngine;
+<span class="tag">using</span> EMR.Entity;
+<span class="tag">using</span> System.Collections.Generic;
+
+<span class="tag">public class</span> <span class="genericity">lost : MonoBehaviour</span>
+<span class="block">{</span>
+    <span class="commentary">// 绑定给动画的帧事件</span>
+    <span class="tag">public</span> <span class="adorn">void</span> <span class="methodName">walkEnd</span><span class="block">()</span>
+    <span class="block">{</span>
+        <span class="commentary">// 自定义事件携带的数据</span>
+        <span class="genericity">Dictionary</span>&lt;<span class="tag">string</span>, <span class="tag">object</span>> data = new <span class="genericity">Dictionary</span>&lt;<span class="tag">string</span>, <span class="tag">object</span>>();
+        data.<span class="methodName">Add</span>("<span class="str">name</span>", "<span class="str">Lost Warrio</span>");           <span class="commentary">// 人物名称</span>
+        data.<span class="methodName">Add</span>("<span class="str">info</span>", "<span class="str">Walking completed!</span>");    <span class="commentary">// 事件信息描述</span>
+
+        <span class="commentary">// 向EMR抛出一个自定义的WalkEnd事件</span>
+        NPC.<span class="methodName">emit</span>(this.gameObject, "<span class="str">WalkEnd</span>", new EMR.Event.<span class="genericity">NPCEventData</span> {
+            data = data
+        });
+    <span class="block">}</span>
+<span class="block">}</span>
+                        </pre>
+                    </code>
+                </div>
+            </div>
+
+            <div style="border-left: .0741rem solid #dfe2e5; padding: .1852rem; padding-left: .463rem; margin-top: .463rem">
+                <label style="display: block; font-size: .3333rem; font-weight: bold;">小结：</label>
+                <p style="display: block; font-size: .2963rem;">定义一个NPC可以参照以上的内容进行，NPC解偶了美动、动画与开发</p>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

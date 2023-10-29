@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../../css/style.css">
+        <script src="../../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div>
+                <h1>
+                    HandPoseChangeEventData
+                </h1>
+                <p class="fs-16">
+                    描述涉及手位姿改变的事件
+                </p>
+
+                <h2 class="mt-25">
+                    名称空间
+                </h2>
+                <ul class="fs-16 mt-10">
+                    <li style="list-style-type: none;">Namespace：EMR.Event</li>
+                </ul>
+
+                <h2 class="mt-25">
+                    继承
+                </h2>
+                <ul class="fs-16 mt-10">
+                    <li style="list-style-type: none;"><span class="link" onclick="toLink('../../../content/node/Struct/EventData.html', './content/node/struct/EventData.html')">EventData</span> -> HandPoseChangeEventData</li>
+                </ul>
+                
+                <h2 class="mt-25">
+                    Properties
+                </h2>
+                <table class="mt-10">
+                    <tr>
+                        <td class="font-bold">
+                            position：
+                        </td>
+                        <td>
+                            Vector3
+                        </td>
+                        <td style="padding-left: .463rem">
+                            手的当前位置
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            rotation：
+                        </td>
+                        <td>
+                            Quaternion
+                        </td>
+                        <td style="padding-left: .463rem">
+                            手的当前旋转
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            original：
+                        </td>
+                        <td>
+                            SourcePoseEventData<MixedRealityPose>
+                        </td>
+                        <td style="padding-left: .463rem">
+                            MRTK事件状态对象
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

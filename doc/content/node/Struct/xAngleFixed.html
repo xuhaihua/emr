@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../../css/style.css">
+        <script src="../../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <div class="mb-10">
+                <h1>
+                    xAngleFixed
+                </h1>
+                <p class="mb-10 fs-18">
+                    xAngleFixed属性用于限制节点在X轴上的旋转
+                </p>
+
+                <h3>
+                    <ul>
+                        <li class="ml-25">Example：</li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <span>&lt;</span><label>SpaceNode <span>
+        name="container"
+        x="0"
+        y="0"
+        z="1500"
+        width="500"
+        height="500"
+        depth="500"
+        renderMode="additive"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        borderWidth="2"
+        xAngleFixed="true"
+        yAngleFixed="true"
+        zAngleFixed="true"
+        backgroundColor="0,0,0"
+        enableManipulator="true"
+    </span></label><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v4">
+                    <div>
+                        <video src="../../../img/v34.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../../img/info.png" alt="" />
+                            </span>
+                            <label>说明：</label>
+                        </span>
+                    </p>
+                    <p>
+                        上述代码通过将节点的属性 xAngleFixed、yAngleFixed、zAngleFixed都设为 true 限制节点在任何一个轴上的旋转， 可以看到无论用户如何旋转节点节点的角度始终保持不变，这些属性只限制因外界因素对节点的旋转量修改但如果用户在节点上直接修改xAngle、yAngle、zAngle这些属性的值那么节点的旋转将不受该属性的限制（节点的各轴旋转量仍然会被改变）
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

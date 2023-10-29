@@ -1,0 +1,134 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    Collider (碰撞体)
+                </h1>
+                <p class="fs-16">
+                    collider在unity中是一个碰撞体，它用于描述虚拟物体的碰撞边界。在EMR中有很多节点事件是依赖于collider的，例如：单击事件、触摸事件、节点碰撞事件等，只有拥有collider的节点才能触发这些事件。
+                </p>
+                <div>
+                    <img style="width: 100%;" src="../img/ex20.png" alt="" />
+                </div>
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../img/info.png" alt="" />
+                            </span>
+                            <label>说明：</label>
+                        </span>
+                    </p>
+                    <p>
+                        上图在空间中放置了一个节点，图中这些绿色线条包围的区域就是这个节点的collider，它描述了该节点的碰撞边界，该collider的大小、位置与该节点重合。
+                    </p>
+                </div>
+            </div>
+
+            <h3>
+                <ul>
+                    <li class="ml-25">检查节点是否已有collider</li>
+                </ul>
+            </h3>
+            <p class="fs-16">
+                可以通过hasCollider属性检查一个节点是否已包含collider
+            </p>
+
+            <h4>
+                hasCollider属性:
+            </h4>
+            <div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr>
+                        <td class="font-bold" style="width: 40%; border-left: 1px solid #dbdbdb;">hasCollider</td>
+                        <td style="width: 40%;">节点是否已包含collider</td>
+                        <td style="width: 10%">bool</td>
+                        <td style="border-right: 1px solid #dbdbdb;">-</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="mt-25">
+                <ul>
+                    <li class="ml-25">通过节点属性控制collider</li>
+                </ul>
+            </h3>
+
+            <p class="fs-16">
+                可以通过节点的collider属性，控制节点如何添加collider，当该属性值为true时节点会自动创建一个collider并且这个collider会被一直保持不被回收掉，否则会按照该节点的实际情况创建和回收collider。
+            </p>
+
+            <h4>
+                collider属性:
+            </h4>
+            <div>
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr>
+                        <td class="font-bold" style="width: 40%; border-left: 1px solid #dbdbdb;">collider</td>
+                        <td style="width: 40%;">是否强制添加collider，如果为: true则该节点会自动创建一个collider并且这个collider会被一直保持不被回收，否则会按照该节点的实际情况创建和回收这个collider（例如：该节点注册有单击事件、触摸事件时，会自动给这个节点带上collider，当这些事件都被注销后回收这个collider）</td>
+                        <td style="width: 10%">bool</td>
+                        <td style="border-right: 1px solid #dbdbdb;">默认为: false</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="mt-25">
+                <ul>
+                    <li class="ml-25">手动添加、查找和移除collider</li>
+                </ul>
+            </h3>
+            <p class="fs-16">
+                除了通过节点的属性控制节点如何添加collider外，还可以通过以下方法手动操作节点的collider
+            </p>
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 40%;">名称</td>
+                        <td >说明</td>
+                    </tr>
+                    <tr>
+                        <td><span class="genericity">BoxCollider</span> <span class="font-bold w-200">addCollider</span>  (<span class="tag">Vector3</span> center, <span class="tag">Vector3</span> size, <span class="tag">string</span> name)</td>
+                        <td>向节点添加一个collider，其中参数center为：collider的中心点，size为：collider的尺寸（单位为：比例），name为：collider的名称</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="genericity">BoxCollider</span> <span class="font-bold w-200">findColliderByName</span> (<span class="tag">string</span> name)</td>
+                        <td>按名称查找collider</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="tag">void</span> <span class="font-bold w-200">removeCollider</span> (<span class="tag">string</span> name)</td>
+                        <td>移除节点中指定名称的collider</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tip custom-block weightInfo">
+                <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                    <span class="infoTitle">
+                        <span>
+                            <img src="../img/keynote.png" alt="" />
+                        </span>
+                        <label>注意：</label>
+                    </span>
+                </p>
+                <p>
+                    由节点属性添加的collider，无法通过removeCollider方法移除，因为该collider的添加和移除只受系统控制
+                </p>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

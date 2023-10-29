@@ -1,0 +1,568 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    环境安装
+                </h1>
+
+                <p class="fs-16" style="font-size: .2593rem; line-height: .4074rem;">
+                    EMR的低层依赖于MRTK框架MRTK非常的强大它理论上可以支持跨设备，这也是EMR选择它作为低层隔离设备的主要原因，但MRTK环境的安装需要一点时间它并不难只是繁琐而且对计算机环境、操作系统都有一定的要求，你可以按照以下步骤进行安装：
+                </p>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        硬件环境要求：
+                    </p>
+                    <table>
+                        <tr>
+                            <td>
+                                CPU：
+                            </td>
+                            <td>
+                                Intel 桌面i7第6代以上或AMD Ryzen 5 1600及以上
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                GPU：
+                            </td>
+                            <td>
+                                支持 DX12的 NVIDIA GTX 1060 或者 AMD Radeon RX 480(2GB) 及以上
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                内存：
+                            </td>
+                            <td>
+                                支持 DDR4 2600 及以上频率的16G内存及以上
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                硬盘：
+                            </td>
+                            <td>
+                                240GB 固态硬件作为操作系统及各开发工具的安装盘
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                显示器：
+                            </td>
+                            <td>
+                                1920 * 1080 及以上分辨率的显示器
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                USB：
+                            </td>
+                            <td>
+                                至少一个USB接口
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        软件环境要求：
+                    </p>
+                    <table>
+                        <tr>
+                            <td>
+                                操作系统：
+                            </td>
+                            <td>
+                                Win10 专业版 64位
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Visual studio：
+                            </td>
+                            <td>
+                                Microsoft Visual Studio Community 2022 (64 位)
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Unity：
+                            </td>
+                            <td>
+                                Unity version 2019.4.40 personal
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                MRTK：
+                            </td>
+                            <td>
+                                MRTK2.6.1
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <!--空间节点-->
+            <div class="mt-30">
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">安装Win10 SDK：</li>
+                    </ul>
+                </h3>
+                <div class="ml-30 ml-25">
+                    <h4 class="mt-25" style="border-left:4px solid #999; padding-left: .1852rem;">
+                        SDK下载地址
+                    </h4>
+                    <table>
+                        <tr>
+                            <td>
+                                10.0.19041.685
+                            </td>
+                            <td style="padding-left: .2778rem;">
+                                https://go.microsoft.com/fwlink/p/?linkid=2120735
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                10.0.18362.1
+                            </td>
+                            <td style="padding-left: .2778rem;">
+                                https://go.microsoft.com/fwlink/?linkid=2083448
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                10.0.17763.1
+                            </td>
+                            <td style="padding-left: .2778rem;">
+                                https://go.microsoft.com/fwlink/p/?LinkID=2033686
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                10.0.20348.0
+                            </td>
+                            <td style="padding-left: .2778rem;">
+                                http://software-download.microsoft.com/download/pr/20348.1.210507-1500.fe_release_WindowsSDK.iso
+                            </td>
+                        </tr>
+                    </table>
+
+                    <h4 class="mt-25" style="border-left:4px solid #999; padding-left: .1852rem;">
+                        开始安装：
+                    </h4>
+                    <ul class="fs-16">
+                        <li style="list-style-type: none;">1、新建目录 C:/Win10 SDK</li>
+                        <li style="list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">2、双击下载的SDK并将安装目录设置为 C:/Win10 SDK，如下图：</li>
+                        <li style="list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="display:inline-block; border: 1px solid #dbdbdb; margin-left: .463rem; margin-top: .1852rem;">
+                                <img src="../img/step1.png" alt="" />
+                            </div>
+                        </li>
+                        <li style="list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">3、安装所有下载的win10 sdk</li>
+                    </ul>
+                </div>
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">安装Visual studio 2022：</li>
+                    </ul>
+                </h3>
+                <div class="ml-30 ml-25">
+                    <ol class="fs-16 ml-25">
+                        <li >从微软 visual studio 官网：https://visualstudio.microsoft.com/zh-hans/ 下载 visual studio 2022 Community 版本</li>
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">双击下载好的安装文件：<div style="display:inline-block;">
+                            <img style="position: relative; top: .0926rem;" src="../img/setp2.png" alt="" />
+                        </div></li>
+                       
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">在弹出的安装选项中分别选种 使用c++的桌面开发、通用Windows平台开发；勾选右侧的USB设备连接性、c++(v142)通用tWindows平台工具，如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/step3.png" alt="" />
+                            </div>
+                        </li>
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">点击安装</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/step4.png" alt="" />
+                            </div>
+                        </li>
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">等待安装完成</li>
+                    </ol>
+                </div>
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">安装Unity：</li>
+                    </ul>
+                </h3>
+                <div class="ml-30 ml-25">
+                    <ol class="fs-16 ml-25">
+                        <li >先安装Unity Hub</li>
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">打开Unity Hub，选择左侧的安装，点击右上角的安装，选择内容区中的“官方发布网站”</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/ustep1.png" alt="" />
+                            </div>
+                        </li>
+                       
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">从下载页面选择untiy 2019 4.40，点击右侧的“从Hub下载”</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/usetp2.png" alt="" />
+                            </div>
+                        </li>
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">取消 Microsoft Visual Studio Community 2019模块前面的复选框、勾选Universal Windows Platform Build Supper模块、Windows Build Support（IL2CPP）, 如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/ustep3.png" alt="" />
+                            </div>
+                        </li>
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">点击INSTALL等待安装完成</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/ustep4.png" alt="" />
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">设置开发者选项：</li>
+                    </ul>
+                </h3>
+                <ol class="fs-16 ml-25">
+                    <li >进入Win10开发者选项设置，打开“开发人员模式”选项</li>
+                    <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                        <div style="margin-top: .1852rem; ">
+                            <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/d1.png" alt="" />
+                        </div>
+                    </li>
+                </ol>
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">复制Win SDK：</li>
+                    </ul>
+                </h3>
+                <div class="ml-30 ml-25">
+
+                    <ol class="fs-16 ml-25">
+                        <li >在Program Files (x86)\Windows Kits目前下新建一个文件夹名称就为：10</li>
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">将C:\Win10 SDK\Extension SDKs这个目录直接复制到刚刚新建的这个文件加中</li>
+                    </ol>
+                </div>
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">下载MRTK2.6.1：</li>
+                    </ul>
+                </h3>
+                <div class="ml-30 ml-25">
+                    <table>
+                        <tr>
+                            <td>
+                                Foundation
+                            </td>
+                            <td style="padding-left: .2778rem;">
+                                <a href="https://github.com/microsoft/MixedRealityToolkit-Unity/releases/download/v2.6.1/Microsoft.MixedReality.Toolkit.Unity.Foundation.2.6.1.unitypackage">下载</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Unity
+                            </td>
+                            <td style="padding-left: .2778rem;">
+                                <a href="https://github.com/microsoft/MixedRealityToolkit-Unity/releases/download/v2.6.1/Microsoft.MixedReality.Toolkit.Unity.Tools.2.6.1.unitypackage">下载</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Extensions
+                            </td>
+                            <td style="padding-left: .2778rem;">
+                                <a href="/microsoft/MixedRealityToolkit-Unity/releases/download/v2.6.1/Microsoft.MixedReality.Toolkit.Unity.Extensions.2.6.1.unitypackage">下载</a>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                Examples
+                            </td>
+                            <td style="padding-left: .2778rem;">
+                                <a href="https://github.com/microsoft/MixedRealityToolkit-Unity/releases/download/v2.6.1/Microsoft.MixedReality.Toolkit.Unity.Examples.2.6.1.unitypackage">下载</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">工程创建与项目配制：</li>
+                    </ul>
+                </h3>
+                <div class="ml-30 ml-25">
+                    <h4 class="mt-25" style="margin-left: .1852rem; border-left:4px solid #999; padding-left: .1852rem;">
+                        创建工程：
+                    </h4>
+                    <ol class="fs-16 ml-25">
+                        <li >打开Unity Hub 点击右上角的新建按钮创建一个3D项目，例如：FirstEMR</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/p1.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li >打开编译设置选项 File -> Build Settings 在左侧的 Platform中选种 Universal Windows Platform 选项 并点击弹窗右下角的 Switch Platform 按钮</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/pr0.png" alt="" />
+                            </div>
+                        </li>
+                    </ol>
+
+                    <h4 class="mt-25" style="margin-left: .1852rem; border-left:4px solid #999; padding-left: .1852rem;">
+                        导入MRTK：
+                    </h4>
+                    <ol class="fs-16 ml-25">
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">将以上下载的这四个MRTK的内容依次导入Unity</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/mr1.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/mr2_0.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/mr3.png" alt="" />
+                            </div>
+                        </li>
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">选择Applay</li>
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">按上述步骤依次导入下载的全部MRTK包</li>
+                    </ol>
+
+                    <h4 class="mt-25" style="margin-left: .1852rem; border-left:4px solid #999; padding-left: .1852rem;">
+                        导入TextMeshPro：
+                    </h4>
+                    <ol class="fs-16 ml-25">
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">依次从菜单中选择 Window -> TextMeshPro -> Import TMP Essential Resources 导入TextMeshPro</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/ex69.png" alt="" />
+                            </div>
+                        </li>
+                    </ol>
+
+                    <h4 class="mt-25" style="margin-left: .1852rem; border-left:4px solid #999; padding-left: .1852rem;">
+                        配置项目：
+                    </h4>
+                    <ol class="fs-16 ml-25">
+                        <li >打开项目设置选项 Edit -> Project Settings</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/pj1.png" alt="" />
+                            </div>
+                        </li>
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">在 Project Settings窗口在侧点击 Player 然后在它的右侧 Publishing Settings 卷展栏下的 Expiation date 中点击 create 按钮创建证书 </li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/pr2.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">在 Publishing Settings 卷展栏下的 Capabilities 选项区中检查并选种 InternetClient、 WebCam、 Microphone、SpatialPerception、GazeInput这几个选项</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/pr3.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">在 XR Settings 卷展栏下勾选 Virtual Reality Supported选项 待导入完成在 Window Mixed Reality 中将  Depth Format 设置为：24-bit depth、 勾选 Enable Depth Buffer Sharing、将Stereo Rendering Mode：设置为：Single Pass Instanced，如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/pr8.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li style="margin-top: .1852rem; margin-bottom: .1852rem;">创建Mixed Reality Toolkit实例 Mixed Reality Toolkit -> Add to Scene and Configure</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/pr4.png" alt="" />
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">设置代码关联：（该步骤不是必须设置它是为了能在Visual中有代码提示功能）</li>
+                    </ul>
+                </h3>
+                <div class="ml-30 ml-25">
+                    <ol class="fs-16 ml-25">
+                        <li >打开Unity首选项 Edit -> Preferences 将右侧 External Script Editor 设置为 Visual Studio Community 2022</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/c1.png" alt="" />
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">EMR安装</li>
+                    </ul>
+                </h3>
+
+                <div class="ml-30 ml-25">
+                    <ol class="fs-16 ml-25">
+                        <li >从gitHub上下载 <a href="https://github.com/xuhaihua/emr" target="_blank">EMR</a> 包</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/doc1.png" alt="" />
+                            </div>
+                        </li>
+                        <li >在Unity中依次选择菜单 Window -> Package Manager , 打开 Package Manager 弹窗，如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/doc2.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li >点击右上角的 “+” 号按钮在弹出的菜单中选择 “Add package fram disk...” 菜单项， 如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/doc3.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li >在弹出的文件选择弹窗中选择刚刚下载的包内的 package.json 文件导入EMR包， 如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/doc4.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li >至此EMR包的导入已完成，在Package Manager弹窗内你可以看到 EMR 包已存在列表中， 如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/doc5.png" alt="" />
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+
+                <h3 class="mt-25">
+                    <ul>
+                        <li class="ml-25">在 MRKT 中配制 EMR</li>
+                    </ul>
+                </h3>
+                <div class="ml-30 ml-25">
+                    <ol class="fs-16 ml-25">
+                        <li >在左侧 Hierarchy 下点击 MixedRealityToolkit 实例</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/ex70.png" alt="" />
+                            </div>
+                        </li>
+                        <li >将右侧 MixedRealityToolkit 的配制文件修改成：EMRHTwoMixedRealityonfiaurationProfile，如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/doc6.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li >选种Input选项，将它的配制文件修改成：EMRHTwoMixedRealityInputSystemProfile，如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/doc7.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li >点击下方的Speech按钮卷展栏，将它的配制文件修改成：EMRHTwoMixedRealitySpeechCommandsProfile，如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/doc8.png" alt="" />
+                            </div>
+                        </li>
+                        <li >选种Spatial Awareness选项，将它的配制文件修改成：EMRHTwoMixedRealitySpatialAwarenessSystemProfile，如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/doc9.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li >点击下方的 Windows Mixed Reality Spatial Mesh Observer 按钮卷展栏，将它的配制文件修改成：EMRHTwoMixedRealitySpatialAwarenessMeshObserver，如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/doc10.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li >选种 Diagnostics 选项，去掉对 Enable Diagnostics System 的勾选</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/ex82.png" alt="" />
+                            </div>
+                        </li>
+
+                        <li >在左侧 Hierarchy 下点击 MixedRealityToolkit 实例，在右侧给该实例添加 EMRStart 组件，如下图：</li>
+                        <li style="display:flex; list-style-type: none; margin-top: .1852rem; margin-bottom: .1852rem;">
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/doc11.png" alt="" />
+                            </div>
+                            <div style="margin-top: .1852rem; ">
+                                <img style="width: 80%; display:inline-block; border: 1px solid #dbdbdb;" src="../img/doc12.png" alt="" />
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div style="border-left: .0741rem solid #dfe2e5; padding: .1852rem; padding-left: .463rem; margin-top: .463rem;">
+                    <p style="display: block; font-size: .2963rem;">至此整个环境的安装及配制已完成，现在可以按文档的说明进行开发了</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

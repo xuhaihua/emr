@@ -1,0 +1,297 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    组件
+                </h1>
+                <p class="mb-10 fs-18">
+                    EMR中的组件与Unity中的组件不同，Unity中的组件是对GameObject能力的扩展而EMR中的组件是对行为、内容、样式的封装。组件允许我们将空间中的内容封装成独立的可重用的部分，并且可对这部分内容进行单独的思考。有过Web开发经验的同学很容易理解这里的组件，它与Vue、angular、react中组件的概念相似只是把它引入到了空间开发中
+                </p>
+            </div>
+            
+            <!--空间节点-->
+            <div class="mt-30">
+                <h3>
+                    <ul>
+                        <li class="ml-25">组件的定义</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    每个组件必须继承自EMR.Component，可以在组件定义时为其关联一个视图文档但它不是必须的，也可以在组件内向视图添加内容。
+                </p>
+
+                <h4>
+                    定义组件的一般格式：
+                </h4>
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// 组件必须继承自EMR.Component，组件的名称将在视图中作为代表该组件的标签名</span>
+<span class="tag">public class</span> <span class="genericity">ComponentName : EMR.Component</span>
+<span class="block">{</span>
+    <span class="commentary">// 构造器</span>
+    <span class="tag">public</span> <span class="methodName">ComponentName</span>()
+    <span class="block">{</span>
+    <span class="block">}</span>
+    
+    <span class="commentary">// 组件属性，注意要想使组件的属性能在视图中也能使用则其类型必须是基础数据类型</span>
+    <span class="tag">public</span> <span class="tag">propertyType</span> <span class="methodName">propertyName</span> <span class="block">{</span>
+        <span class="tag">get</span> {
+            <span class="commentary">// 获取逻辑</span>
+        }
+        <span class="tag">set</span> {
+            <span class="commentary">// 设值逻辑</span>
+        }
+    <span class="block">}</span>
+
+    ...
+
+    <span class="commentary">// 生命周期勾子函数，组件开始创建时被调用，在该阶段无法访问到组件的内容</span>
+    <span class="tag">public override void</span> <span class="methodName">create</span>()
+    <span class="block">{</span>
+    <span class="block">}</span>
+
+    <span class="commentary">// 生命周期勾子函数，组件的内容及其结构已全部生成，但组件的内容在视图上还未完成样式的初始化，在该阶段可以访问到组件的内容但内容的样式还未被设置</span>
+    <span class="tag">public override void</span> <span class="methodName">created</span>()
+    <span class="block">{</span>
+    <span class="block">}</span>
+
+    <span class="commentary">// 组件的内容已绑定到视图并完成了所有样式的设置和内容的布局，在该阶段可以安全的访问组件的内容</span>
+    <span class="tag">public override void</span> <span class="methodName">mounted</span>()
+    <span class="block">{</span>
+    <span class="block">}</span>
+
+    <span class="commentary">// 当调用组件的destory方法后该勾子函数会被调用，在该阶段组件的内容仍然存在还未真正的被清理</span>
+    <span class="tag">public override void</span> <span class="methodName">destoryBefore</span>()
+    <span class="block">{</span>
+    <span class="block">}</span>
+
+    <span class="commentary">// 组件的所有内容已被完全销毁，此刻用户已无法该问到该组件的内容</span>
+    <span class="tag">public override void</span> <span class="methodName">destoryed</span>()
+    <span class="block">{</span>
+    <span class="block">}</span>
+
+    <span class="commentary">// 在需要时可以重载添加子节点，以限定该组件只能添加特定类型的子节点</span>
+    <span class="tag">public override Component</span> <span class="methodName">appendNode</span>(<span class="genericity">Node</span> node)
+    <span class="block">{</span>
+    <span class="block">}</span>
+
+    <span class="commentary">// 在需要时可以重载添加子组件方法，以限定该组件只能添加特定类型的子组件</span>
+    <span class="tag">public override Component</span> <span class="methodName">appendComponent</span>(<span class="genericity">Component</span> component)
+    <span class="block">{</span>
+    <span class="block">}</span>
+<span class="block">}</span></pre>
+                    </code>
+                </div>
+
+                <h3 class="mt-25">
+                    Example：
+                </h3>
+                <p class="fs-16">
+                    以下代码创建一个按钮组件
+                </p>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem;">
+                    按钮样式文件 main.json：
+                </h4>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">/*
+* 样式表
+*/</span>
+{
+    <span class="commentary">// 按钮的框架样式（容器）</span>
+    <span class="property">".butFrame"</span>: {
+        <span class="property">"width"</span>: 200,
+        <span class="property">"height"</span>: 60,
+        <span class="property">"borderWidth"</span>: 2,
+        <span class="property">"hoverColor"</span>: <span class="str">"255, 255, 255"</span>,
+        <span class="property">"lightIntensity"</span>: 1,
+        <span class="property">"backgroundColor"</span>: <span class="str">"0,255,0"</span>
+        <span class="property">"contentHorizontal"</span>: <span class="str">"center"</span>
+        <span class="property">"borderRadius"</span>: 4,
+        <span class="property">"overflow"</span>: <span class="str">"hidden"</span>
+    },
+
+    <span class="commentary">// 按钮图标样式</span>
+    <span class="property">".but-img"</span>: {
+        <span class="property">"width"</span>: 30,
+        <span class="property">"height"</span>: 30
+    },
+
+    <span class="commentary">// 按钮文本样式</span>
+    <span class="property">".but-label"</span>: {
+        <span class="property">"width"</span>: 50,
+        <span class="property">"height"</span>: 30,
+        <span class="property">"fontSize"</span>: 20,
+        <span class="property">"color"</span>: <span class="str">"0,0,0"</span>
+        <span class="property">"offset"</span>: <span class="str">"5,0,0"</span>
+    }
+}</pre>
+                </code>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    按钮视图文档代码 main.xml：
+                </h4>
+
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--引入组件样式表--&gt;</sub>
+    <span>&lt;</span><label>Stylesheet <span>path="Button/stypesheet/main" /</span></label><span>&gt;</span>
+
+    <sub>&lt;!--按钮--&gt;</sub>
+    <span>&lt;</span><label>PanelLayer<span> stylesheet="butFrame"</span></label><span>&gt;</span>
+        <sub>&lt;!--按钮Icon Image--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer<span> stylesheet="but-img" _backgroundImage="backgroundImage" /</span></label><span>&gt;</span>
+        <sub>&lt;!--按钮Text Label--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer<span> stylesheet="but-label" </span></label><span>&gt;</span>Play<span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                    </code>
+                </div>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    组件类代码 Button.cs：
+                </h4>
+
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span class="tag">using</span> UnityEngine;
+<span class="tag">using</span> EMR.Entity;
+<span class="tag">using</span> System.Collections.Generic;
+
+<span class="tag">public class</span> <span class="genericity">Button : EMR.Component</span>
+<span class="block">{</span>
+    <span class="tag">public</span> <span class="methodName">Button</span>()
+    <span class="block">{</span>
+        <span class="commentary">// 绑定组件视图文档</span>
+        <span class="tag">this</span>.document = <span class="str">"Button/view/main"</span>;
+    <span class="block">}</span>
+<span class="block">}</span></pre>
+                    </code>
+                </div>
+
+                <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .1852rem;">
+                    主视图 main.xml：
+                </h4>
+
+                <div>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--定义一个存放按钮的容器--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot <span> name="tools" x="0" y="0" z="1500" width="640" height="60" contentHorizontal="between"</span></label><span>&gt;</span>
+        <sub>&lt;!--按钮组件--&gt;</sub>
+        <span>&lt;</span><label>Button<span> backgroundImage="Button/source/image/play" /</span></label><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                    </code>
+                </div>
+
+                <div class="result mt-25">
+                    <img width="100%" src="../../img/ex22.png" alt="" />
+                </div>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/info.png" alt="" />
+                            </span>
+                            <label>说明：</label>
+                        </span>
+                    </p>
+                    <p>
+                        站在文档的视角，组件是一个单一的实体，它与节点一样可以以标签的形式出现在文档内（标签的名称就是组件的名称），与节点一样组件同样拥有样式、属性和事件。
+                    </p>
+                </div>
+            </div>
+
+            <h3>
+                <ul>
+                    <li class="ml-25">Component类常用的属性</li>
+                </ul>
+            </h3>
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td class="name" style="width: 20%;">名称</td>
+                        <td style="width: 10%">数据类型</td>
+                        <td style="width: 30%;">说明</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">document</td>
+                        <td >string</td>
+                        <td>Room的视图文档</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold" style="width: 15%;">type</td>
+                        <td >string</td>
+                        <td>组件的类型</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tip custom-block">
+                <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                    <span class="infoTitle">
+                        <span>
+                            <img src="../../img/info.png" alt="" />
+                        </span>
+                        <label>说明：</label>
+                    </span>
+                </p>
+                <p>
+                    其实在视图文档中任何组件都可以通过Component标签来加入，其中使用document属性来指定组件绑定的视图文档，使用type属性来指定组件的类型
+                </p>
+            </div>
+
+            <h3 class="mt-25">
+                <ul>
+                    <li class="ml-25">Component类常用的方法</li>
+                </ul>
+            </h3>
+
+            <div class="table-border">
+                <table cellspacing="0" class="table bb-1 bt-1">
+                    <tr class="tableHead">
+                        <td style="width:36%">方法</td>
+                        <td>说明</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 15%;"><span class="tag">void</span> <span class="font-bold">delay</span> (<span class="tag">int</span> delayTime, <span class="tag">TimerCallbackHandle</span> handle)</td>
+                        <td>延迟执行，其中参数：delayTime为：延迟的秒数，handle为：执行的委托方法</td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 15%;"><span class="tag">void</span> <span class="font-bold">next</span> (<span class="tag">CirculateTaskHandler</span> handle)</td>
+                        <td>下一循环周期执行，执行委托方法</td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 15%;"><span class="tag">void</span> <span class="font-bold">destory</span>()</td>
+                        <td>组件销毁</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

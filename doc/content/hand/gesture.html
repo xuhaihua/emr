@@ -1,0 +1,209 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStorage) {
+                localStorage.setItem("currentChild", linkStorage);
+                event.stopPropagation();
+                window.location.href = link;
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div>
+                <h1>
+                    gesture（节点手势）
+                </h1>
+                <p class="fs-16">
+                    Hand模块实现了一些对节点的基本手势的识别，例如：select、hold、navigation
+                </p>
+                <div style="display: flex; justify-content: center; border: 1px solid #dbdbdb;">
+                    <img style="width: 45%;" src="../../img/ex29.jpg" alt="" />
+                </div>
+            </div>
+
+            <h3 class="mt-25">
+                <ul class="ml-25">
+                    <li>手势触发</li>
+                </ul>
+            </h3>
+            <p class="fs-16">
+                节点上各手势的触发过程如下：
+            </p>
+            <table class="fs-16">
+                <tr>
+                    <td class="font-bold">select:</td>
+                    <td style="padding-left: .2778rem">当用户在节点上按下（通过手部射线或手指按压）时触发</td>
+                </tr>
+
+                <tr>
+                    <td class="font-bold">hold:</td>
+                    <td style="padding-left: .2778rem">当用户在节点上按下（通过手部射线或手指按压）并保持一段时间时触发</td>
+                </tr>
+
+                <tr>
+                    <td class="font-bold">navigation:</td>
+                    <td style="padding-left: .2778rem">当用户在节点上按下（通过手部射线或手指按压）并朝某一方向拖动一段距离后触发</td>
+                </tr>
+            </table>
+
+            <h3 class="mt-25">
+                <ul class="ml-25">
+                    <li>注册手势处理函数</li>
+                </ul>
+            </h3>
+            <p class="fs-16">
+                可以通过addGestureHandler方法为某一节点注册一个手势处理函数用于监听该节点上手势的变化
+            </p>
+
+            <h3 class="mt-25" style="border-left:4px solid #999; padding-left: .1852rem;">
+                addGestureHandler 原型：
+            </h3>
+            <p class="fs-16" style="padding-left: .463rem;">
+                <span class="tag">public void</span> addGestureHandler(<span class="genericity">Node</span> node, <span class="genericity">GestureHandle</span> handle)
+            </p>
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                参数:
+            </h4>
+            <table class="fs-16" style="padding-left: .463rem;">
+                <tr>
+                    <td class="font-bold">node：</td>
+                    <td>Node</td>
+                    <td style="padding-left: .463rem;">要监听手势的节点对象</td>
+                </tr>
+
+                <tr>
+                    <td class="font-bold">handle：</td>
+                    <td><span class="font-bold link" onclick="toLink('./struct/GestureHandle.html', './content/hand/struct/GestureHandle.html')">GestureHandle</span></td>
+                    <td style="padding-left: .463rem;">手势处理函数</td>
+                </tr>
+            </table>
+
+            <h3 class="mt-30">
+                <ul>
+                    <li class="ml-25">Example：</li>
+                </ul>
+            </h3>
+            <p class="fs-16">
+                以下代码通过监视节点手势实现平面滑动轮播效果
+            </p>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                主视图代码：
+            </h4>
+
+            <code>
+                <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--滑动轮播容器--&gt;</sub>
+    <span>&lt;</span><label>PanelRoot</label><span> id="slide" x="0" y="0" z="1500" width="300" height="224" overflow="hidden" contentHorizontal="left" scrollDirection="leftAndRight" </span><span>&gt;</span>
+
+        <sub>&lt;!--轮播容器的一些图片--&gt;</sub>
+        <span>&lt;</span><label>PanelLayer</label><span> width="300" height="224" backgroundImage="sources/image/1" </span><span>/&gt;</span>
+        <span>&lt;</span><label>PanelLayer</label><span> width="300" height="224" backgroundImage="sources/image/2" </span><span>/&gt;</span>
+        <span>&lt;</span><label>PanelLayer</label><span> width="300" height="224" backgroundImage="sources/image/3" </span><span>/&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+            </code>
+
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2778rem;">
+                代码逻辑：
+            </h4>
+
+            <code>
+                <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// mounted生命周期函数，在这里文档内容已绑定给视图，内容的样式、布局都已完成设置</span>
+<span class="tag">protected</span> <span class="tag">override</span> <span class="adorn">void</span> <span class="methodName">mounted</span><span class="block">(</span>)</span>
+<span class="block">{</span>
+    <span class="tag">var</span> <span class="adorn">slide</span> = <span class="tag">this</span>.<span class="methodName">getNodeById</span>&lt;<span class="genericity">PanelRoot</span>>(<span class="str">"slide"</span>);
+    <span class="tag">int</span> <span class="adorn">currentPage</span> = 1;
+
+    <span class="commentary">// 注册节点手势处理函数</span>
+    EMR.<span class="genericity">Space</span>.leftHand.<span class="methodName">addGestureHandler</span></span>(<span class="adorn">slide</span>, (<span class="adorn">node</span>, <span class="adorn">gesture</span>, <span class="adorn">direction</span>) =>
+    {
+        <span class="commentary">// 导航手势</span>
+        <span class="return">if</span> (<span class="adorn">gesture</span> == <span class="methodName">HandGesture</span>.navigationX)
+        {
+            <span class="commentary">// 在节点上左滑时</span>
+            if(<span class="adorn">direction</span> == <span class="methodName">GestureDirection</span>.left && <span class="adorn">currentPage</span> != 3)
+            {
+                <span class="adorn">currentPage</span>++;
+                <span class="adorn">slide</span>.<span class="methodName">scrollTo</span>((<span class="adorn">currentPage</span> - 1) * 300, <span class="methodName">ScrollDrientation</span>.leftAndRight);
+            }
+
+            <span class="commentary">// 在节点上右滑时</span>
+            if(<span class="adorn">direction</span> == <span class="methodName">GestureDirection</span>.right && <span class="adorn">currentPage</span> != 1)
+            {
+                <span class="adorn">currentPage</span>--;
+                slide.<span class="methodName">scrollTo</span>((<span class="adorn">currentPage</span> - 1) * 300, <span class="methodName">ScrollDrientation</span>.leftAndRight);
+            }
+        }
+    });
+<span class="block">}</span>
+</pre>
+            </code>
+
+            <div class="result mt-30 v4">
+                <div>
+                    <video src="../../img/v9.mp4" muted="muted" autoplay="autoplay" loop></video>
+                </div>
+            </div>
+
+            <h3 class="mt-25">
+                <ul class="ml-25">
+                    <li>移除手势处理函数</li>
+                </ul>
+            </h3>
+            <p class="fs-16">
+                可以通过removeGestureHandler方法在某一节点移除手势处理函数
+            </p>
+
+            <h3 class="mt-25" style="border-left:4px solid #999; padding-left: .1852rem;">
+                removeGestureHandler 原型：
+            </h3>
+            <p class="fs-16" style="padding-left: .463rem;">
+                <span class="tag">public void</span> removeGestureHandler(<span class="genericity">Node</span> node, <span class="genericity">GestureHandle</span> handle)
+            </p>
+            <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                参数:
+            </h4>
+            <table class="fs-16" style="padding-left: .463rem;">
+                <tr>
+                    <td class="font-bold">node：</td>
+                    <td>Node</td>
+                    <td style="padding-left: .463rem;">要监听手势的节点对象</td>
+                </tr>
+
+                <tr>
+                    <td class="font-bold">handle：</td>
+                    <td><span class="font-bold link" onclick="toLink('./struct/GestureHandle.html', './content/hand/struct/GestureHandle.html')">GestureHandle</span></td>
+                    <td style="padding-left: .463rem;">手势处理函数</td>
+                </tr>
+            </table>
+
+            <div class="tip custom-block">
+                <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                    <span class="infoTitle">
+                        <span>
+                            <img src="../../img/info.png" alt="" />
+                        </span>
+                        <label>说明：</label>
+                    </span>
+                </p>
+                <p>
+                    注意：这里的手势与MRTK中的手势有一点区别MRTK中的手势需要用户凝视被操作的对象而这里不需要
+                </p>
+            </div>
+        <div class="h-30"></div>
+    </body>
+</html>

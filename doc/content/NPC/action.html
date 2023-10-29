@@ -1,0 +1,162 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div class="mb-10">
+                <h1>
+                    NPC控制
+                </h1>
+                <p class="mb-0 fs-16">
+                    一个NPC可以拥有多个行为（动画），开发者可以通过调用action方法来触发NPC的不同行为。
+                </p>
+            </div>
+
+            <!--action方法-->
+            <div>
+                <h3>
+                    <ul>
+                        <li class="ml-25">action方法</li>
+                    </ul>
+                </h3>
+                <p class="fs-16">
+                    下面的代码在视图内加载了一个NPC（小女孩），当用户通过手部射线单击该NPC后，在单击事件的处理程序中将调用NPC的action方法控制NPC摆出Pose动作。
+                </p>
+
+                <div>
+                    <h4 style="border-left:4px solid #999; padding-left: .1852rem;">
+                        视图文档代码：
+                    </h4>
+                    <p class="fs-16">
+                        以下代码创建了一个空间节点并通过该节点的npcPath属性向该节点加载了一个NPC
+                    </p>
+                    <code>
+<pre style="margin: 0px; padding: 0px;">
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+    <sub>&lt;!--创建一个空间节点并加载一个NPC--&gt;</sub>
+    <span>&lt;</span><label>SpaceNode <span>
+        id="gril"
+        x="0"
+        y="0"
+        z="1500"
+        width="300"
+        height="400"
+        depth="200"
+        yAngle="180"
+        borderWidth="1"
+        hoverColor="255,255,255"
+        lightIntensity="1"
+        renderMode="additive"
+        backgroundColor="0,0,0"
+        npcPath="sources/model/Gril/Prefab/PQchan_Mechanim"
+        onClick="startPoseHandle"</span></label><span>&gt;</span>
+    <span>&lt;</span><span style="color:#F07178;">/SpaceNode</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span>
+</pre>
+                    </code>
+
+                    <h4 style="border-left:4px solid #999; padding-left: .1852rem; margin-top: .2963rem;">
+                        事件处理程序：
+                    </h4>
+                    <p class="fs-16">
+                        当用户在该节点上单击时将触发节点的onClick事件，通过在该事件内调用action方法控制NPC的动作
+                    </p>
+                    <code>
+                        <pre style="margin: 0px; padding: 0px;">
+<span class="commentary">// 绑定给onClick的事件处理程序</span>
+<span class="tag">public</span> <span class="adorn">void</span> <span class="methodName">startPoseHandle</span><span class="block">(</span><span class="genericity">ClickEventData</span> eventData<span class="block">)</span>
+<span class="block">{</span>
+    <span class="commentary">// 按Id获取当前视图文档内的节点</span>
+    <span class="tag">var</span> grilNode = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">SpaceNode</span>>(<span class="str">"gril"</span>);
+   
+    <span class="commentary">// 触发该节点下NPC摆出Pose的动作</span>
+    grilNode.npc?.<span class="methodName">action</span>(<span class="str">"isPose"</span>);
+<span class="block">}</span>
+                        </pre>
+                    </code>
+                </div>
+
+                <div class="result mt-25 v1">
+                    <div>
+                        <video src="../../img/v2.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/info.png" alt="" />
+                            </span>
+                            <label>信息：</label>
+                        </span>
+                    </p>
+                    <p>
+                        NPC一般由美术和动画设计师提供，开发者不用担心模型的设计及动画制作，只需专注于与NPC的交互，如果开发者需要自行定义NPC可以参照规范这一章，里面用到了一些unity的基础知识，关于Animator Controller、动画、帧事件可参阅unity官方文档。
+                    </p>
+                </div>
+
+                <h3 class="mt-25">
+                    action方法列表
+                </h3>
+                <div class="table-border">
+                    <table cellspacing="0" class="table bb-1 bt-1">
+                        <tr class="tableHead">
+                            <td style="width:36%">方法</td>
+                            <td>说明</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 15%;"><span class="tag">void</span> <span class="font-bold">action</span> (<span class="tag">string</span> name, <span class="tag">float</span> data)</td>
+                            <td>其中：name为动画状态机（<span class="font-bold">Animator Controller</span>）中的动画参数，data为该参数的值</td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 15%;"><span class="tag">void</span> <span class="font-bold">action</span> (<span class="tag">string</span> name, <span class="tag">int</span> data)</td>
+                            <td>其中：name为动画状态机（<span class="font-bold">Animator Controller</span>）中的动画参数，data为该参数的值</td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 15%;"><span class="tag">void</span> <span class="font-bold">action</span> (<span class="tag">string</span> name, <span class="tag">bool</span> data)</td>
+                            <td>其中：name为动画状态机（<span class="font-bold">Animator Controller</span>）中的动画参数，data为该参数的值</td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 15%;"><span class="tag">void</span> <span class="font-bold">action</span> (<span class="tag">string</span> name)</td>
+                            <td>其中：name为动画状态机（<span class="font-bold">Animator Controller</span>）中的动画参数，此处的data不需要传，前提是该参数在<span class="font-bold">Animator Controller</span>中的类型是：Trigger（触发）类型</td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 15%;"><span class="tag">void</span> <span class="font-bold">action</span>&lt;T> (<span class="tag">string</span> name, <span class="tag">object[]</span> name paramList =<span class="tag">null</span>)</td>
+                            <td>其中：泛型参数 T 为：一个继承自 MonoBehaviour 的类型，name 为： 该MonoBehaviour 中的方法，object[] 为：该方法的参数列表，这个方法主要是用于当 action 不依赖于 Animator Controller 暴露 而是以 MonoBehaviour类 的方法向外提供时使用</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../img/info.png" alt="" />
+                            </span>
+                            <label>解说：</label>
+                        </span>
+                    </p>
+                    <p>
+                        除action的泛型方法外其余action方法中的参数name其实是unity中Animator Controller的一个动画参数，它的值将控制或影响动画状态机流程，开发者无需关心这些值是如何在unity中定义的，美术和动画会把这些参数的名称和值的含义告诉你，你只需在适当的时机通过action方法将值传入完成交互
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

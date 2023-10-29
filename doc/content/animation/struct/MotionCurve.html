@@ -1,0 +1,419 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../../css/style.css">
+        <script src="../../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+        <script>
+            function toLink(link, linkStrage) {
+                localStorage.setItem("currentChild", linkStrage);
+                event.stopPropagation();
+                window.location.href = link;
+                
+            }
+        </script>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <!--概述-->
+            <div>
+                <h1>
+                    MotionCurve Enum
+                </h1>
+                <p class="fs-16">
+                    运动曲线枚举
+                </p>
+
+                <h2 class="mt-25">
+                    名称空间
+                </h2>
+                <ul class="fs-16 mt-10">
+                    <li style="list-style-type: none;">Namespace：EMR.Struct</li>
+                </ul>
+
+                <h2 class="mt-25">
+                    Properties
+                </h2>
+                <table class="mt-10 Properties" cellspacing="0">
+                    <tr>
+                        <td class="font-bold">
+                            Linear：
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td style="padding-left: .463rem">
+                            线性缓动，匀速运动
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InSine：
+                        </td>
+                        <td>
+                            1
+                        </td>
+                        <td style="padding-left: .463rem">
+                            正弦加速缓动，开始缓慢，后来加速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            OutSine：
+                        </td>
+                        <td>
+                            2
+                        </td>
+                        <td style="padding-left: .463rem">
+                            正弦减速缓动，开始快速，后来减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InOutSine：
+                        </td>
+                        <td>
+                            3
+                        </td>
+                        <td style="padding-left: .463rem">
+                            正弦波缓动，先加速后减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InQuad：
+                        </td>
+                        <td>
+                            4
+                        </td>
+                        <td style="padding-left: .463rem">
+                            二次方加速缓动，开始缓慢，后来加速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            OutQuad：
+                        </td>
+                        <td>
+                            5
+                        </td>
+                        <td style="padding-left: .463rem">
+                            二次方减速缓动，开始快速，后来减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InOutQuad：
+                        </td>
+                        <td>
+                            6
+                        </td>
+                        <td style="padding-left: .463rem">
+                            二次方波缓动，先加速后减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InCubic：
+                        </td>
+                        <td>
+                            7
+                        </td>
+                        <td style="padding-left: .463rem">
+                            三次方加速缓动，开始缓慢，后来加速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            OutCubic：
+                        </td>
+                        <td>
+                            8
+                        </td>
+                        <td style="padding-left: .463rem">
+                            三次方减速缓动，开始快速，后来减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InOutCubic：
+                        </td>
+                        <td>
+                            9
+                        </td>
+                        <td style="padding-left: .463rem">
+                            三次方波缓动，先加速后减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InQuart：
+                        </td>
+                        <td>
+                            10
+                        </td>
+                        <td style="padding-left: .463rem">
+                            四次方加速缓动，开始缓慢，后来加速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            OutQuart：
+                        </td>
+                        <td>
+                            11
+                        </td>
+                        <td style="padding-left: .463rem">
+                            四次方减速缓动，开始快速，后来减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InOutQuart：
+                        </td>
+                        <td>
+                            12
+                        </td>
+                        <td style="padding-left: .463rem">
+                            四次方波缓动，先加速后减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InQuint：
+                        </td>
+                        <td>
+                            13
+                        </td>
+                        <td style="padding-left: .463rem">
+                            五次方加速缓动，开始缓慢，后来加速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            OutQuint：
+                        </td>
+                        <td>
+                            14
+                        </td>
+                        <td style="padding-left: .463rem">
+                            五次方减速缓动，开始快速，后来减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InOutQuint：
+                        </td>
+                        <td>
+                            15
+                        </td>
+                        <td style="padding-left: .463rem">
+                            五次方波缓动，先加速后减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InExpo：
+                        </td>
+                        <td>
+                            16
+                        </td>
+                        <td style="padding-left: .463rem">
+                            指数加速缓动，开始缓慢，后来加速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            OutExpo：
+                        </td>
+                        <td>
+                            17
+                        </td>
+                        <td style="padding-left: .463rem">
+                            指数减速缓动，开始快速，后来减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InOutExpo：
+                        </td>
+                        <td>
+                            18
+                        </td>
+                        <td style="padding-left: .463rem">
+                            指数波缓动，先加速后减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InCirc：
+                        </td>
+                        <td>
+                            19
+                        </td>
+                        <td style="padding-left: .463rem">
+                            圆形加速缓动，开始缓慢，后来加速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            OutCirc：
+                        </td>
+                        <td>
+                            20
+                        </td>
+                        <td style="padding-left: .463rem">
+                            圆形减速缓动，开始快速，后来减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InOutCirc：
+                        </td>
+                        <td>
+                            21
+                        </td>
+                        <td style="padding-left: .463rem">
+                            圆形波缓动，先加速后减速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InOutBack：
+                        </td>
+                        <td>
+                            22
+                        </td>
+                        <td style="padding-left: .463rem">
+                            先正弦减速后正弦加速缓动，开始快速，后来减速，再加速
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InBack：
+                        </td>
+                        <td>
+                            23
+                        </td>
+                        <td style="padding-left: .463rem">
+                            回退加速（类似弹簧），开始缓慢，后来加速并回退一定距离，然后减速回弹
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            OutBack：
+                        </td>
+                        <td>
+                            24
+                        </td>
+                        <td style="padding-left: .463rem">
+                            回退减速（类似弹簧），开始快速，后来减速并回退一定距离，然后加速回
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InBounce：
+                        </td>
+                        <td>
+                            25
+                        </td>
+                        <td style="padding-left: .463rem">
+                            弹跳加速缓动，开始缓慢，后来加速并反弹
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            OutBounce：
+                        </td>
+                        <td>
+                            26
+                        </td>
+                        <td style="padding-left: .463rem">
+                            弹跳减速缓动，开始快速，后来减速并反弹
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InOutBounce：
+                        </td>
+                        <td>
+                            27
+                        </td>
+                        <td style="padding-left: .463rem">
+                            弹跳波缓动，先加速后减速并反弹
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InElastic：
+                        </td>
+                        <td>
+                            28
+                        </td>
+                        <td style="padding-left: .463rem">
+                            弹性加速缓动，开始缓慢，后来加速并弹性拉伸
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            OutElastic：
+                        </td>
+                        <td>
+                            29
+                        </td>
+                        <td style="padding-left: .463rem">
+                            弹性减速缓动，开始快速，后来减速并弹性拉伸
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-bold">
+                            InOutElastic：
+                        </td>
+                        <td>
+                            30
+                        </td>
+                        <td style="padding-left: .463rem">
+                            弹性波缓动，先加速后减速并弹性拉伸
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="h-30"></div>
+    </body>
+</html>

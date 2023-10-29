@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../../css/style.css">
+        <script src="../../../js/lib/flexible.js"></script>
+        <title>
+            EMR文档
+        </title>
+    </head>
+    <body style="overflow-y: scroll;height: 100%;">
+        <div class="content-right-frame">
+            <div class="h-30"></div>
+
+            <div class="mb-10">
+                <h1>
+                    leftFixed
+                </h1>
+                <p class="mb-10 fs-18">
+                    固定节点的left值
+                </p>
+
+                <h3>
+                    <ul>
+                        <li class="ml-25">Example：</li>
+                    </ul>
+                </h3>
+
+                <code>
+                    <pre style="margin: 0px; padding: 0px;" >
+<span>&lt;</span><label>Root</label><span>&gt;</span>
+<sub>&lt;!--创建一个平面--&gt;</sub>
+<span>&lt;</span><label>PanelRoot <span> name="container"  x="0" y="0" z="1500" width="800" height="500" backgroundColor="255,255,255" enableSize="true" sizeBoxPadding="10"</span></label><span>&gt;</span>
+<sub>&lt;!--在平面内放置1个子节点并将其left设为：50、top设为：50使其左侧距父节点的边距为：6.25%、顶部距父节点的边距为：10%--&gt;</sub>
+<span>&lt;</span><label>PanelLayer <span> left="50" top="50" leftFixed="false" topFixed="false" width="200" height="200" backgroundColor="255,0,0"</span></label><span>&gt;</span><span>&lt;</span><span style="color:#F07178;">/PanelLayer</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/PanelRoot</span><span>&gt;</span>
+<span>&lt;</span><span style="color:#F07178;">/Root</span><span>&gt;</span></pre>
+                </code>
+
+                <div class="result mt-25 v1">
+                    <div>
+                        <video src="../../../img/v18.mp4" muted="muted" autoplay="autoplay" loop></video>
+                    </div>
+                </div>
+
+                <div class="tip custom-block">
+                    <p class="custom-block-title pd-0 color-black font-bold mt-0">
+                        <span class="infoTitle">
+                            <span>
+                                <img src="../../../img/info.png" alt="" />
+                            </span>
+                            <label>说明：</label>
+                        </span>
+                    </p>
+                    <p>
+                        上述代码通过将 leftFixed 设置为 false，来允许left的值随尺寸的改变而改变，同样如果用户在节点上直接修改left属性的值那么节点的变化将不受leftFixed这个属性的值的引响
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
