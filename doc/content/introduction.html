@@ -23,7 +23,7 @@
                     </p>
                     <p>
                         <p class="custom-block-title pd-0 color-black mt-0">
-                            EMR  全称 Easy Mixed Reality 其中 Easy 指的是快速、敏捷、使用简便，EMR使用基于空间视图的模式带你进入元宇宙的开发，如果您平时会上网、会写一个静态网页那么进入元宇宙的开发对你来说不难。
+                            EMR  全称 Easy Mixed Reality 其中 Easy 指的是快速、敏捷、容易理解、维护方便，EMR使用基于空间视图的模式带你进入空间开发，如果你平时会上网、会写一个静态网页那么这对你来说将会很简单。
                         </p>
                     </p>
                 </div>
@@ -54,14 +54,14 @@
             </h4>
             <code>
                 <pre style="margin: 0px; padding: 0px;">
-<span class="commentary">// mounted生命周期，这里空间中的内容已完全生成</span>
+<span class="commentary">// mounted生命周期，在此可以安全的访问空间中的内容</span>
 <span class="tag">protected override</span> <span class="adorn">void</span> <span class="methodName">mounted</span><span class="block">()</span>
 <span class="block">{</span>
     <span class="commentary">// 通过Id获取空间内的指定节点</span>
     <span class="tag">var</span> moonContainer = this.<span class="methodName">getNodeById</span>&lt;<span class="genericity">SpaceNode</span>>(<span class="str">"moonContainer"</span>);
 
-    <span class="commentary">// 月球旋转，这里只是个示例为了演示说明，所以先让他转个 9999999999999 度，然后转上几年 100000000000 是时间</span>
-    moonContainer.<span class="methodName">rotateTo</span>(<span class="tag">new</span> <span class="genericity">RotationData</span>(<span class="methodName">0</span>, 9999999999999, <span class="methodName">0</span>), 100000000000, <span class="methodName">MotionCurve</span>.Linear);
+    <span class="commentary">// 旋转月球</span>
+    moonContainer.<span class="methodName">rotateTo</span>(<span class="tag">new</span> <span class="genericity">RotationData</span>(<span class="methodName">0</span>, 360 * 3000, <span class="methodName">0</span>), 60 * 60 * 5, <span class="methodName">MotionCurve</span>.Linear);
 <span class="block">}</span>
                 </pre>
             </code>
@@ -82,7 +82,7 @@
                     </span>
                 </p>
                 <p>
-                    与HTML不同HTML有很多节点而EMR只有三个节点分别是SpaceNode（空间节点)、PanelRoot（平面节点）、PanelLayer（平面图层节点）不断组合和复用这些节点就可以完成对整个空间的布局，再通过隐含的空间文档模型（Space Doucment Model) 就可以操纵和修改空间中的任意内容。
+                    与HTML不同HTML有很多节点而EMR只有三个节点分别是SpaceNode（空间节点)、PanelRoot（平面节点）、PanelLayer（平面图层节点）不断组合和复用这些节点就可以完成对整个空间的布局，再通过隐含的空间文档模型（Space Doucment Model） 就可以操纵和修改空间中的任意内容，文档内的所有示例用到的素材可在此<a href="https://pan.baidu.com/s/1-Aia0DwbFeA4pVu65LjPgQ?pwd=xkuy" target="_blank"> 素材 </a>下载。
                 </p>
             </div>
         </div>
