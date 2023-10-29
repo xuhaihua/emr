@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{40EF0AD4-0D59-4629-A649-09DB6F32FE2C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EMR</RootNamespace>
+    <AssemblyName>EMR</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.MixedReality.Toolkit">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Async">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Async.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Demos.Gltf">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Demos.Gltf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Demos.Gltf.Inspectors">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Demos.Gltf.Inspectors.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Demos.InspectorFields">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Demos.InspectorFields.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Demos.InspectorFields.Inspectors">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Demos.InspectorFields.Inspectors.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Demos.StandardShader.Inspectors">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Demos.StandardShader.Inspectors.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Demos.UX.Interactables">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Demos.UX.Interactables.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Editor.BuildAndDeploy">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Editor.BuildAndDeploy.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Editor.ClassExtensions">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Editor.ClassExtensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Editor.Inspectors">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Editor.Inspectors.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Editor.ServiceInspectors">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Editor.ServiceInspectors.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Editor.Utilities">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Editor.Utilities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Examples">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Examples.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Examples.Editor.Dwell">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Examples.Editor.Dwell.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Extensions.HandPhysics">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Extensions.HandPhysics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Extensions.SceneTransitionService">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Extensions.SceneTransitionService.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Extensions.Tracking">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Extensions.Tracking.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Extensions.Tracking.Editor">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Extensions.Tracking.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Gltf">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Gltf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Gltf.Importers">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Gltf.Importers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.MSBuild">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.MSBuild.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.LeapMotion">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.LeapMotion.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.LeapMotion.Editor">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.LeapMotion.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.ObjectMeshObserver">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.ObjectMeshObserver.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.OpenVR">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.OpenVR.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.UnityAR">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.UnityAR.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.UnityAR.Editor">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.UnityAR.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Editor">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Shared">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Shared.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsSceneUnderstanding">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.WindowsSceneUnderstanding.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsSceneUnderstanding.Editor">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.WindowsSceneUnderstanding.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsVoiceInput">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.WindowsVoiceInput.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.XRSDK.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.Handtracking.Editor">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.Handtracking.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK.WindowsMixedReality">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Providers.XRSDK.WindowsMixedReality.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.SDK">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.SDK.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Editor">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.SDK.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor.Interactive">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor.Interactive.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Experimental.Interactive">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.SDK.Experimental.Interactive.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Services.BoundarySystem">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Services.BoundarySystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Services.CameraSystem">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Services.CameraSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Services.DiagnosticsSystem">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Services.DiagnosticsSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Services.InputAnimation">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Services.InputAnimation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Services.InputSimulation">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Services.InputSimulation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Services.InputSimulation.Editor">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Services.InputSimulation.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Services.InputSystem">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Services.InputSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Services.InputSystem.Editor">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Services.InputSystem.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Services.SceneSystem">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Services.SceneSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Services.SpatialAwarenessSystem">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Services.SpatialAwarenessSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Services.TeleportSystem">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Services.TeleportSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.StandardAssets.Editor">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.StandardAssets.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Tests.Utilities">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Tests.Utilities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Tools">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Tools.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Tools.Runtime">
+      <HintPath>..\lib\Microsoft.MixedReality.Toolkit.Tools.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\lib\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\lib\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\lib\UnityEngine.AudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\lib\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\lib\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\lib\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\lib\UnityEngine.VideoModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="scripts\Animation\BuiltInCurve.cs" />
+    <Compile Include="scripts\Animation\Curve.cs" />
+    <Compile Include="scripts\Animation\ICurve.cs" />
+    <Compile Include="scripts\Animation\MotionCurve.cs" />
+    <Compile Include="scripts\Animation\Movement.cs" />
+    <Compile Include="scripts\Animation\Singleton.cs" />
+    <Compile Include="scripts\Common\Node.cs" />
+    <Compile Include="scripts\Common\PanelScrollingCollection.cs" />
+    <Compile Include="scripts\Common\SpaceScrollingCollection.cs" />
+    <Compile Include="scripts\Common\Utils.cs" />
+    <Compile Include="scripts\Component\Component.cs" />
+    <Compile Include="scripts\Component\Core\Assemble.cs" />
+    <Compile Include="scripts\Component\Core\AttributeCatch.cs" />
+    <Compile Include="scripts\Component\Core\CoreComponent.cs" />
+    <Compile Include="scripts\Component\Core\ElementRender.cs" />
+    <Compile Include="scripts\Component\Core\Index.cs" />
+    <Compile Include="scripts\Component\Core\ViewBind.cs" />
+    <Compile Include="scripts\Component\Event.cs" />
+    <Compile Include="scripts\Component\Index.cs" />
+    <Compile Include="scripts\Component\PropertyCollections.cs" />
+    <Compile Include="scripts\EMRStart.cs" />
+    <Compile Include="scripts\Entity\Anchor.cs" />
+    <Compile Include="scripts\Entity\Node\MagicProxy.cs" />
+    <Compile Include="scripts\Entity\Node\Node.cs" />
+    <Compile Include="scripts\Entity\Node\PanelLayer.cs" />
+    <Compile Include="scripts\Entity\Node\PanelNode.cs" />
+    <Compile Include="scripts\Entity\Node\PanelRoot.cs" />
+    <Compile Include="scripts\Entity\Node\PanelTextNode.cs" />
+    <Compile Include="scripts\Entity\Node\SpaceMagic.cs" />
+    <Compile Include="scripts\Entity\Node\SpaceNode.cs" />
+    <Compile Include="scripts\Entity\NPC.cs" />
+    <Compile Include="scripts\Entity\Pointer.cs" />
+    <Compile Include="scripts\Event\Anchor\AnchoJointHoverEvent.cs" />
+    <Compile Include="scripts\Event\Anchor\AnchoJointOutEvent.cs" />
+    <Compile Include="scripts\Event\Anchor\AnchoPointerHoverEvent.cs" />
+    <Compile Include="scripts\Event\Anchor\AnchoPointerOutEvent.cs" />
+    <Compile Include="scripts\Event\Anchor\AnchorNodeHoverEvent.cs" />
+    <Compile Include="scripts\Event\Anchor\AnchorNodeHoverOutEvent.cs" />
+    <Compile Include="scripts\Event\ColliderEvent.cs" />
+    <Compile Include="scripts\Event\Component\CustomEvent.cs" />
+    <Compile Include="scripts\Event\DocumentModelModify\AppendedEvent.cs" />
+    <Compile Include="scripts\Event\DocumentModelModify\AppendEvent.cs" />
+    <Compile Include="scripts\Event\DocumentModelModify\DestoryedEvent.cs" />
+    <Compile Include="scripts\Event\DocumentModelModify\DestoryEvent.cs" />
+    <Compile Include="scripts\Event\DocumentModelModify\InsertedEvent.cs" />
+    <Compile Include="scripts\Event\DocumentModelModify\InsertEvent.cs" />
+    <Compile Include="scripts\Event\Eey\EyeGazeChangeEvent.cs" />
+    <Compile Include="scripts\Event\Eey\EyeSaccadeEvent.cs" />
+    <Compile Include="scripts\Event\EMREvent.cs" />
+    <Compile Include="scripts\Event\EventData.cs" />
+    <Compile Include="scripts\Event\EventEngine.cs" />
+    <Compile Include="scripts\Event\hand\GestureSelect.cs" />
+    <Compile Include="scripts\Event\hand\HandPoseChangeEvent.cs" />
+    <Compile Include="scripts\Event\Node\BoundScaleEndedEvent.cs" />
+    <Compile Include="scripts\Event\Node\BoundScaleStartedEvent.cs" />
+    <Compile Include="scripts\Event\Node\CollisionEnterEvent.cs" />
+    <Compile Include="scripts\Event\Node\CollisionExitEvent.cs" />
+    <Compile Include="scripts\Event\Node\CollisionStayEvent.cs" />
+    <Compile Include="scripts\Event\Node\FocusChangedEvent.cs" />
+    <Compile Include="scripts\Event\Node\FocusEnterEvent.cs" />
+    <Compile Include="scripts\Event\Node\FocusExitEvent.cs" />
+    <Compile Include="scripts\Event\Node\ManipulationEnded.cs" />
+    <Compile Include="scripts\Event\Node\ManipulationStarted.cs" />
+    <Compile Include="scripts\Event\Node\PositionChangeEvent.cs" />
+    <Compile Include="scripts\Event\Node\RotationChangeEvent.cs" />
+    <Compile Include="scripts\Event\Node\ScrollEvent.cs" />
+    <Compile Include="scripts\Event\Node\ScrollReadyEvent.cs" />
+    <Compile Include="scripts\Event\Node\SizeChangeEvent.cs" />
+    <Compile Include="scripts\Event\NPC\NPCEvent.cs" />
+    <Compile Include="scripts\Event\Phone\PhoneCompleteEvent.cs" />
+    <Compile Include="scripts\Event\Phone\PhoneStartEvent.cs" />
+    <Compile Include="scripts\Event\Pointer\ClickEvent.cs" />
+    <Compile Include="scripts\Event\Pointer\DownEvent.cs" />
+    <Compile Include="scripts\Event\Pointer\DraggedEvent.cs" />
+    <Compile Include="scripts\Event\Pointer\UpEvent.cs" />
+    <Compile Include="scripts\Event\SpatialAwareness\AddSpatialMeshEvent.cs" />
+    <Compile Include="scripts\Event\SpatialAwareness\RemovedSpatialMeshEvent.cs" />
+    <Compile Include="scripts\Event\SpatialAwareness\UpdatedSpatialMeshEvent.cs" />
+    <Compile Include="scripts\Event\Touch\TouchCompletedEvent.cs" />
+    <Compile Include="scripts\Event\Touch\TouchStartedEvent.cs" />
+    <Compile Include="scripts\Event\Touch\TouchUpdateEvent.cs" />
+    <Compile Include="scripts\Event\Video\VideoEndEvent.cs" />
+    <Compile Include="scripts\Event\Video\VideoErrorEvent.cs" />
+    <Compile Include="scripts\Event\Video\VideoFrameDroppedEvent.cs" />
+    <Compile Include="scripts\Event\Video\VideoFrameReadyEvent.cs" />
+    <Compile Include="scripts\Event\Video\VideoPlayClockResyncOccurredEvent.cs" />
+    <Compile Include="scripts\Event\Video\VideoPlayEvent.cs" />
+    <Compile Include="scripts\Event\Video\VideoPlaySeekCompletedEvent.cs" />
+    <Compile Include="scripts\Event\Video\VideoReadyCompletedEvent.cs" />
+    <Compile Include="scripts\Event\Video\VideoRecordingEvent.cs" />
+    <Compile Include="scripts\Event\Video\VideoStopRecordingEvent.cs" />
+    <Compile Include="scripts\Event\Voice\VoiceCommandEvent.cs" />
+    <Compile Include="scripts\Event\Voice\VoiceDictationCompleteEvent.cs" />
+    <Compile Include="scripts\Event\Voice\VoiceDictationErrorEvent.cs" />
+    <Compile Include="scripts\Event\Voice\VoiceDictationHypothesisEvent.cs" />
+    <Compile Include="scripts\Event\Voice\VoiceDictationResultEvent.cs" />
+    <Compile Include="scripts\Interface\DocumentModify\IDocumentModelModify.cs" />
+    <Compile Include="scripts\Interface\Element.cs" />
+    <Compile Include="scripts\Interface\EventFeature\ICollisionEventFeature.cs" />
+    <Compile Include="scripts\Interface\EventFeature\IFocusEventFeature.cs" />
+    <Compile Include="scripts\Interface\EventFeature\IManipulationEventFeature.cs" />
+    <Compile Include="scripts\Interface\EventFeature\IPointerEventFeature.cs" />
+    <Compile Include="scripts\Interface\EventFeature\IScrollEventFeature.cs" />
+    <Compile Include="scripts\Interface\EventFeature\ISizeBoundsEventNode.cs" />
+    <Compile Include="scripts\Interface\EventFeature\ITouchEventFeature.cs" />
+    <Compile Include="scripts\Interface\ILayout.cs" />
+    <Compile Include="scripts\Interface\IPlugin.cs" />
+    <Compile Include="scripts\Interface\LayerFeature\IPanelLayoutFeature.cs" />
+    <Compile Include="scripts\Interface\LayerFeature\ISpaceILayoutFeature.cs" />
+    <Compile Include="scripts\Interface\NodeCharcteristic\IPanelCharcteristic.cs" />
+    <Compile Include="scripts\Interface\NodeCharcteristic\IPanelLayerCharacteristic.cs" />
+    <Compile Include="scripts\Interface\NodeCharcteristic\ISpaceCharacteristic.cs" />
+    <Compile Include="scripts\Interface\PositionFeature\IPanelLayerPositionFeature.cs" />
+    <Compile Include="scripts\Interface\PositionFeature\IRoationFeature.cs" />
+    <Compile Include="scripts\Interface\PositionFeature\ISpacePositionFeature.cs" />
+    <Compile Include="scripts\Interface\SizeFeature\ISizeFeature.cs" />
+    <Compile Include="scripts\Layout\PanelAngle.cs" />
+    <Compile Include="scripts\Layout\PanelLayout.cs" />
+    <Compile Include="scripts\Layout\SpaceAlign.cs" />
+    <Compile Include="scripts\Layout\SpaceBend.cs" />
+    <Compile Include="scripts\Layout\SpaceLayout.cs" />
+    <Compile Include="scripts\Module\Audio.cs" />
+    <Compile Include="scripts\Module\Camera.cs" />
+    <Compile Include="scripts\Module\Eye.cs" />
+    <Compile Include="scripts\Module\Hand.cs" />
+    <Compile Include="scripts\Module\Head.cs" />
+    <Compile Include="scripts\Module\Video.cs" />
+    <Compile Include="scripts\Module\Voice.cs" />
+    <Compile Include="scripts\plugin\NodeManipulator.cs" />
+    <Compile Include="scripts\plugin\PanelScroll.cs" />
+    <Compile Include="scripts\plugin\SizeBounds.cs" />
+    <Compile Include="scripts\plugin\SpaceClip.cs" />
+    <Compile Include="scripts\Room.cs" />
+    <Compile Include="scripts\Service\EMRService.cs" />
+    <Compile Include="scripts\Service\NodeService.cs" />
+    <Compile Include="scripts\Space.cs" />
+    <Compile Include="scripts\Struct\Axle.cs" />
+    <Compile Include="scripts\Struct\Dimensions\ScrollDirection.cs" />
+    <Compile Include="scripts\Struct\Layout\AlignMode.cs" />
+    <Compile Include="scripts\Struct\Layout\PanelNodeAction.cs" />
+    <Compile Include="scripts\Struct\Layout\PanelNodeActionInfo.cs" />
+    <Compile Include="scripts\Struct\Layout\SpaceNodeAction.cs" />
+    <Compile Include="scripts\Struct\Layout\SpaceNodeActionInfo.cs" />
+    <Compile Include="scripts\Struct\Module\AudioMode.cs" />
+    <Compile Include="scripts\Struct\Module\GestureDirection.cs" />
+    <Compile Include="scripts\Struct\Module\HandGesture.cs" />
+    <Compile Include="scripts\Struct\Module\PhoneProjection.cs" />
+    <Compile Include="scripts\Struct\Module\VoiceMode.cs" />
+    <Compile Include="scripts\Struct\Plugin\BoundBox.cs" />
+    <Compile Include="scripts\Struct\Position\Position.cs" />
+    <Compile Include="scripts\Struct\Position\PositionData.cs" />
+    <Compile Include="scripts\Struct\Position\Rotation.cs" />
+    <Compile Include="scripts\Struct\Position\RotationData.cs" />
+    <Compile Include="scripts\Struct\Render\NodeOverflow.cs" />
+    <Compile Include="scripts\Struct\Render\RenderMode.cs" />
+    <Compile Include="scripts\Struct\Render\SpatialMeshVisibleMode.cs" />
+    <Compile Include="scripts\Struct\Size\Size.cs" />
+    <Compile Include="scripts\Struct\Size\SizeData.cs" />
+    <Compile Include="scripts\Stylesheet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
