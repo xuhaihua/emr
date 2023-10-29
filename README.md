@@ -30,4 +30,7 @@ protected override void mounted()
 }
 ```
 <img width="100%" src="http://mms1.baidu.com/it/u=478280279,2859243190&fm=253&app=138&f=JPEG?w=670&h=473" />
+<p>
+    详细可查阅项目中doc目录下的文档
+</p>
 
