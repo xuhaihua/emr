@@ -5,7 +5,7 @@ EMR uses a web based architecture for designing and developing the metaverse
 ```
 <Root>
 
-    <!--Earth-->
+    <!--earth-->
     <SpaceNode  x="0" y="0" z="1500" width="500" height="500" depth="500" npcPath="sources/model/Earth/Prefab/earth"></SpaceNode>
 
     <SpaceNode id="moonContainer" x="0" y="0" z="1500" width="800" height="800" depth="800" >
