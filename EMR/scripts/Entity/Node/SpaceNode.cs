@@ -542,7 +542,7 @@ namespace EMR.Entity
         {
             get
             {
-                var result = this.rotation.yAngle;
+                var result = this.rotation.zAngle;
 
                 return result;
             }
