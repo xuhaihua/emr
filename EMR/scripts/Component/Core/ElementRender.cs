@@ -1008,6 +1008,12 @@ namespace EMR
             // 设置属性
             foreach (var key in attributes.Keys)
             {
+                // 如果当节点的component属性为组件时并且节点中不存在给当前节点的该属性赋值同时该属性又为值类型时直接使用样式
+                if (xmlNode.Attributes["_" + key] != null && !node.component.propertySetedMap.ContainsKey(xmlNode.Attributes["_" + key].Value))
+                {
+                    continue;
+                }
+
                 attributeCatchRecordList.Add(new AttributeCatchRecord
                 {
                     name = key,
@@ -1174,6 +1180,12 @@ namespace EMR
 
             foreach (var key in attributes.Keys)
             {
+                // 如果当节点的component属性为组件时并且节点中不存在给当前节点的该属性赋值同时该属性又为值类型时直接使用样式
+                if (xmlNode.Attributes["_" + key] != null && !component.parent.propertySetedMap.ContainsKey(xmlNode.Attributes["_" + key].Value))
+                {
+                    continue;
+                }
+
                 Utils.setProperty(key, attributes[key], component);
             }
 

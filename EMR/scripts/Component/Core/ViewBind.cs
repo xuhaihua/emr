@@ -126,6 +126,8 @@ namespace EMR
             return (T)result;
         }
 
+        private Dictionary<string, bool> propertySetedMap = new Dictionary<string, bool>();
+
         /// <summary>
         /// 设置关联对象属性值
         /// </summary>
@@ -135,6 +137,11 @@ namespace EMR
         public bool setProperty(string name, object value, SetPropertyCallback propertyHandler)
         {
             bool result = false;
+
+            if(!propertySetedMap.ContainsKey(name))
+            {
+                propertySetedMap.Add(name, true);
+            }
 
             if (!this.isAssembling && correlatorMap.ContainsKey(name))
             {

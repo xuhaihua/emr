@@ -5,3 +5,10 @@ C:\hololens\EMR\EMR\obj\Debug\EMR.csproj.CoreCompileInputs.cache
 C:\hololens\EMR\EMR\obj\Debug\EMR.csproj.CopyComplete
 C:\hololens\EMR\EMR\obj\Debug\EMR.dll
 C:\hololens\EMR\EMR\obj\Debug\EMR.pdb
+C:\work\emr\bin\EMR.dll
+C:\work\emr\bin\EMR.pdb
+C:\work\emr\EMR\obj\Debug\EMR.csproj.AssemblyReference.cache
+C:\work\emr\EMR\obj\Debug\EMR.csproj.CoreCompileInputs.cache
+C:\work\emr\EMR\obj\Debug\EMR.csproj.CopyComplete
+C:\work\emr\EMR\obj\Debug\EMR.dll
+C:\work\emr\EMR\obj\Debug\EMR.pdb

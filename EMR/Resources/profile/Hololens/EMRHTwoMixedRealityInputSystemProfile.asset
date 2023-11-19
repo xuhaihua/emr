@@ -102,7 +102,7 @@ MonoBehaviour:
     type: 2}
   pointerProfile: {fileID: 11400000, guid: 48aa63a9725047b28d4137fd0834bc31, type: 2}
   gesturesProfile: {fileID: 11400000, guid: bd7829a9b29409045a745b5a18299291, type: 2}
-  speechCommandsProfile: {fileID: 11400000, guid: 299973db48c76e74ba619932062e880f,
+  speechCommandsProfile: {fileID: 11400000, guid: 5ee8ee0ab04a60e4d8c42f785fedba1a,
     type: 2}
   enableControllerMapping: 1
   controllerMappingProfile: {fileID: 11400000, guid: 39ded1fd0711a0c448413d0e1ec4f7f3,

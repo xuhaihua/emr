@@ -19,8 +19,6 @@ namespace EMR.Layout
                 return;
             }
 
-            Debug.Log("bbbbb");
-
             /**
              * 以下逻辑用于处理当前节点
              */

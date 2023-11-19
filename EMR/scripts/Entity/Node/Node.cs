@@ -291,6 +291,7 @@ namespace EMR.Entity
             this.styleCollect.add("depthFixed");
             this.styleCollect.add("npcPath");
             this.styleCollect.add("npcOffset");
+            this.styleCollect.add("renderMode");
         }
 
         /// <summary>

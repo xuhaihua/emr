@@ -2568,5 +2568,33 @@ namespace EMR
             }
         }
         /*---------------------------------------------------定义功能属性结束---------------------------------------------------*/
+
+
+        private string _text = "";
+        /// <summary>
+        /// text
+        /// </summary>
+        public string text
+        {
+            get
+            {
+                return this.getProperty<string>(nameof(text), (resultValue, isSuccess) =>
+                {
+                    if (isSuccess)
+                    {
+                        this._text = (string)resultValue;
+                    }
+                    return this._text;
+                });
+            }
+
+            set
+            {
+                this.setProperty(nameof(text), value, (resultValue) =>
+                {
+                    this._text = (string)resultValue;
+                });
+            }
+        }
     }
 }
